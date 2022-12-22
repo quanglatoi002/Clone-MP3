@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
-
 import { Home, Login, Public } from "./containers/public";
+import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -8,7 +7,10 @@ function App() {
         <>
             <div className="">
                 <Routes>
-                    <Route path="/*" element={<Public />}></Route>
+                    <Route path={path.PUBLIC} element={<Public />}>
+                        <Route path={path.HOME} element={<Home />} />
+                        <Route path={path.LOGIN} element={<Login />} />
+                    </Route>
                 </Routes>
             </div>
         </>

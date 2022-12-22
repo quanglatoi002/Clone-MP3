@@ -1,5 +1,12 @@
+import { Outlet } from "react-router-dom";
+
 const Public = () => {
-    return <div>Public</div>;
+    return (
+        <div>
+            Public
+            <Outlet />
+        </div>
+    );
 };
 
 export default Public;
