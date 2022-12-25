@@ -1,5 +1,5 @@
 import icons from "./icon";
-
+import { zSVG, kSVG, tSVG } from "../SVG/listSVG";
 const { MdOutlineLibraryMusic } = icons;
 export const sidebarMenu = [
     {
@@ -10,16 +10,16 @@ export const sidebarMenu = [
     {
         path: "",
         text: "Khám phá",
-        icons: <MdOutlineLibraryMusic size={"24px"} />,
+        icons: zSVG,
     },
     {
         path: "zing-chart",
         text: "#zingchart",
-        icons: <MdOutlineLibraryMusic size={"24px"} />,
+        icons: kSVG,
     },
     {
         path: "follow",
         text: "Theo dõi",
-        icons: <MdOutlineLibraryMusic size={"24px"} />,
+        icons: tSVG,
     },
 ];
