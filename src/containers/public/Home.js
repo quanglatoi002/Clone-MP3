@@ -1,13 +1,27 @@
-import Header from "../../components/Header";
+import { useEffect } from "react";
 
-const Home = () => (
-    <div className="overflow-y-auto">
-        <div
-            className="h-[70px] px-[59px] flex
+import { Header } from "../../components";
+import * as apis from "../../apis";
+
+const Home = () => {
+    useEffect(() => {
+        const fetchDataHome = async () => {
+            const response = await apis.getHome();
+            console.log(response);
+            return response.data;
+        };
+        fetchDataHome();
+    }, []);
+
+    return (
+        <div className="overflow-y-auto">
+            <div
+                className="h-[70px] px-[59px] flex
          items-center "
-        >
-            <Header />
+            >
+                <Header />
+            </div>
         </div>
-    </div>
-);
+    );
+};
 export default Home;
