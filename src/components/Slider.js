@@ -11,7 +11,6 @@ const Slider = () => {
         const intervalId = setInterval(() => {
             const list = getArrSlider(min, max, sliderEls.length - 1);
             for (let i = 0; i < sliderEls.length; i++) {
-                // Delete classnames (css)
                 sliderEls[i]?.classList?.remove(
                     "animate-slide-right",
                     "order-last",
@@ -28,14 +27,12 @@ const Slider = () => {
                     "z-10"
                 );
 
-                // Hide or Show images
                 if (list.some((item) => item === i)) {
                     sliderEls[i].style.cssText = `display: block`;
                 } else {
                     sliderEls[i].style.cssText = `display: none`;
                 }
             }
-            // Add animation by adding classnames
             list.forEach((item) => {
                 if (item === max) {
                     sliderEls[item]?.classList?.add(
@@ -66,17 +63,22 @@ const Slider = () => {
     }, []);
     return (
         <div
-            className="flex gap-4 w-full overflow-hidden
-         px-[59px] pt-8"
+            className="w-full overflow-hidden
+        px-[59px]"
         >
-            {banner.items?.map((item) => (
-                <img
-                    key={item.encodeId}
-                    src={item.banner}
-                    alt="banner"
-                    className="slider-item flex-1 object-contain w-1/3 rounded-lg"
-                />
-            ))}
+            <div className="flex w-full gap-4 pt-8">
+                {banner.items?.map((item, index) => (
+                    <img
+                        key={item.encodeId}
+                        src={item.banner}
+                        alt="banner"
+                        className={`slider-item flex-1
+                        object-contain  slider_width
+                         rounded-lg
+                        ${index <= 2 ? "block" : "hidden"}`}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
