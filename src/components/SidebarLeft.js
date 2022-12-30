@@ -10,7 +10,7 @@ const activeStyle =
 
 const SidebarLeft = () => {
     return (
-        <div className="flex flex-col bg-bg_navLeft">
+        <div className="flex h-full flex-col bg-main-200">
             <div className="">
                 <img
                     src={logo}

@@ -3,12 +3,20 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
     theme: {
         extend: {
+            backgroundColor: {
+                "main-100": "#E7ECEC",
+                "main-200": "#DDE4E4",
+                "main-300": "#CED9D9",
+                "main-400": "#C0D8D8",
+                "main-500": "#0E8080",
+                "overlay-30": "rgba(0,0,0,0.3)",
+            },
             colors: {
-                primary: "#32323d",
-                secondary: "#0f7070",
-                bg_public: "#ced9d9",
-                bg_navLeft: "#DCE5E5",
-                search_text: "#282828",
+                "main-100": "#E7ECEC",
+                "main-200": "#DDE4E4",
+                "main-300": "#CED9D9",
+                "main-400": "#C0D8D8",
+                "main-500": "#0E8080",
             },
             fontFamily: {
                 poppins: ["Poppins", "sans-serif"],
