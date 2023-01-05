@@ -1,4 +1,8 @@
-import { MdOutlineLibraryMusic } from "react-icons/md";
+import {
+    MdOutlineLibraryMusic,
+    MdSkipPrevious,
+    MdSkipNext,
+} from "react-icons/md";
 import {
     AiOutlineArrowLeft,
     AiOutlineArrowRight,
@@ -8,6 +12,8 @@ import {
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
 import { FiSearch } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
+import { CiRepeat, CiShuffle } from "react-icons/ci";
+import { BsFillPlayFill, BsPauseFill } from "react-icons/bs";
 
 const icons = {
     MdOutlineLibraryMusic,
@@ -19,6 +25,12 @@ const icons = {
     AiOutlineHeart,
     AiFillHeart,
     BsThreeDots,
+    CiRepeat,
+    MdSkipPrevious,
+    MdSkipNext,
+    CiShuffle,
+    BsFillPlayFill,
+    BsPauseFill,
 };
 
 export default icons;

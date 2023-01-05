@@ -3,25 +3,45 @@ import { useEffect, useState } from "react";
 import * as apis from "../apis";
 import icons from "../utils/icon";
 
-const { AiOutlineHeart, AiFillHeart, BsThreeDots } = icons;
+const {
+    AiOutlineHeart,
+    BsThreeDots,
+    CiRepeat,
+    MdSkipPrevious,
+    MdSkipNext,
+    CiShuffle,
+    BsFillPlayFill,
+    BsPauseFill,
+} = icons;
 
 const Player = () => {
     const { curSongId } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
-    console.log(curSongId);
+    const [source, setSource] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+
     useEffect(() => {
         const fetchDetailsSong = async () => {
-            const response = await apis.getInfoSong(curSongId);
-            if (response.data.err === 0) {
-                setSongInfo(response?.data.data);
+            const [res1, res2] = await Promise.all([
+                apis.GetDetailSong(curSongId),
+                apis.getSong(curSongId),
+            ]);
+            if (res1.data.err === 0) {
+                setSongInfo(res1?.data.data);
             }
-            console.log(response);
+            if (res2.data.err === 0) {
+                setSource(res2?.data.data["128"]);
+            }
         };
         fetchDetailsSong();
     }, [curSongId]);
     // take 1
     //console.log
     //(JSON.parse(localStorage.getItem("persist:music")));
+
+    const handleTogglePlayMusic = () => {
+        setIsPlaying((pre) => !pre);
+    };
 
     return (
         <div className="bg-main-400 h-full px-5 flex cursor-pointer">
@@ -48,8 +68,43 @@ const Player = () => {
                     </span>
                 </div>
             </div>
-            <div className="w-[40%] flex-auto">Main Player</div>
-            <div className="w-[30%] flex-auto">Volume</div>
+            <div
+                className="w-[40%] flex-auto border
+             border-red-500 flex flex-col justify-center 
+             gap-2 items-center py-2 font-normal"
+            >
+                <div className="flex gap-8 justify-center items-center text-gray-700">
+                    <span title="Bật phát ngẫu nhiên">
+                        <CiShuffle size={26} />
+                    </span>
+                    <span>
+                        <MdSkipPrevious size={26} />
+                    </span>
+                    <span
+                        onClick={handleTogglePlayMusic}
+                        className="border p-1 border-gray-700 rounded-full hover:text-main-500"
+                    >
+                        {isPlaying ? (
+                            <BsPauseFill size={30} />
+                        ) : (
+                            <BsFillPlayFill className="pl-1" size={30} />
+                        )}
+                    </span>
+                    <span>
+                        <MdSkipNext size={26} />
+                    </span>
+                    <span title="Bật phát lại tất cả">
+                        <CiRepeat size={26} />
+                    </span>
+                </div>
+                <div>bar</div>
+            </div>
+            <div
+                className="w-[30%] flex-auto border
+             border-green-500"
+            >
+                Volume
+            </div>
         </div>
     );
 };
