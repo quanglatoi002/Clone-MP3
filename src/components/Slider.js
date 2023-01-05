@@ -1,8 +1,11 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { getArrSlider } from "../utils/fn";
+import * as actions from "../store/actions";
+
 const Slider = () => {
     const { banner } = useSelector((state) => state.app);
+    const dispatch = useDispatch();
     useEffect(() => {
         const sliderEls = document.getElementsByClassName("slider-item");
         let min = 0;
@@ -61,6 +64,13 @@ const Slider = () => {
             intervalId && clearInterval(intervalId);
         };
     }, []);
+
+    const handleClickBanner = (item) => {
+        if (item?.type === 1) {
+            dispatch(actions.setCurSongId(item.encodeId));
+        }
+    };
+
     return (
         <div
             className="w-full overflow-hidden
@@ -72,6 +82,7 @@ const Slider = () => {
                         key={item.encodeId}
                         src={item.banner}
                         alt="banner"
+                        onClick={() => handleClickBanner(item)}
                         className={`slider-item flex-1
                         object-contain  slider_width
                          rounded-lg

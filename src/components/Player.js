@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux";
+
 const Player = () => {
+    const { curSongId } = useSelector((state) => state.music);
+
     return (
         <div className="bg-main-400 h-full px-5 flex">
             <div className="w-[30%] flex-auto">Detail Song</div>
