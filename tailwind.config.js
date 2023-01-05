@@ -3,6 +3,9 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
     theme: {
         extend: {
+            screens: {
+                "3xl": "1600px",
+            },
             backgroundColor: {
                 "main-100": "#E7ECEC",
                 "main-200": "#DDE4E4",
@@ -64,5 +67,6 @@ module.exports = {
             },
         },
     },
+
     plugins: [],
 };
