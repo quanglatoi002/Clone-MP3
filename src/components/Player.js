@@ -27,8 +27,8 @@ const Player = () => {
     useEffect(() => {
         const fetchDetailsSong = async () => {
             const [res1, res2] = await Promise.all([
-                apis.GetDetailSong(curSongId),
-                apis.getSong(curSongId),
+                apis.apiGetDetailSong(curSongId),
+                apis.apiGetSong(curSongId),
             ]);
             if (res1.data.err === 0) {
                 setSongInfo(res1?.data.data);
@@ -44,7 +44,7 @@ const Player = () => {
     //(JSON.parse(localStorage.getItem("persist:music")));
 
     useEffect(() => {
-        audioElement.play();
+        // audioElement.play();
     }, [curSongId]);
 
     const handleTogglePlayMusic = () => {};
