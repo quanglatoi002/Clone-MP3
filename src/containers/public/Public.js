@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import { SidebarLeft, SidebarRight, Player } from "../../components";
+import { SidebarLeft, SidebarRight, Player, Header } from "../../components";
 
 const Public = () => {
     return (
@@ -12,7 +12,13 @@ const Public = () => {
                 >
                     <SidebarLeft />
                 </div>
-                <div className="flex-auto">
+                <div className="flex-auto px-[29px] lg:px-[59px]">
+                    <div
+                        className="h-[70px]  flex
+         items-center mb-5"
+                    >
+                        <Header />
+                    </div>
                     <Outlet />
                 </div>
                 <div className="w-[329px] hidden 3xl:flex flex-none border border-green-500 animate-slide-left bg-yellow-900">

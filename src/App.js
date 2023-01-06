@@ -10,6 +10,7 @@ function App() {
     useEffect(() => {
         dispatch(actions.getHome());
     }, [dispatch]);
+    //Note: Những route nào được gọi ở trong path.PUBLIC sẽ được chuyển đến <Outlet> được định nghĩa sẵn ở bên trong Public
     return (
         <>
             <div className="">

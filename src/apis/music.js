@@ -37,7 +37,7 @@ export const apiGetDetailPlaylist = (pid) =>
         try {
             const response = await axios({
                 method: "get",
-                url: "/getdetailplaylist",
+                url: "/detailplaylist",
                 params: { id: pid },
             });
             resolve(response);
