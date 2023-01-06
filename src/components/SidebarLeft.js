@@ -20,7 +20,7 @@ const SidebarLeft = () => {
                     src={logo}
                     alt="logo"
                     className="w-[120px] h-10 
-                    object-contain cursor-pointer"
+                    object-contain hidden lg:block cursor-pointer"
                 />
             </div>
 
@@ -33,7 +33,7 @@ const SidebarLeft = () => {
                     }
                 >
                     {item.icons}
-                    <span>{item.text}</span>
+                    <span className="hidden lg:block">{item.text}</span>
                 </NavLink>
             ))}
         </div>
