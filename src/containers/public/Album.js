@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 //
 import * as apis from "../../apis";
+import { ListSong } from "../../components";
 
 const Album = () => {
     const { pid } = useParams();
@@ -10,8 +11,8 @@ const Album = () => {
     useEffect(() => {
         const fetchDetailPlaylist = async () => {
             const response = await apis.apiGetDetailPlaylist(pid);
-            // console.log(response.data?.data);
-            if (response.data?.data.err === 0 || response.data?.data) {
+            console.log(response.data?.err);
+            if (response.data?.err === 0 || response.data?.data) {
                 setPlaylistData(response.data?.data);
             }
         };
@@ -43,12 +44,12 @@ const Album = () => {
                         </span>
                     </div>
                     <span className="text-[12px] leading-[21px] text-secondary">
-                        {playlistData?.artistsNames}{" "}
+                        {playlistData?.artistsNames}
                     </span>
                     <span className="text-[12px] leading-[21px] text-secondary">
                         {`${Math.round(
                             playlistData?.like / 1000
-                        )}K người yêu thích`}{" "}
+                        )}K người yêu thích`}
                     </span>
                 </div>
             </div>
@@ -56,7 +57,16 @@ const Album = () => {
                 className="flex-auto border
              border-blue-600"
             >
-                playlist
+                <div className="flex gap-1 text-sm mb-[10px]">
+                    <span className="text-secondary">Lời tựa</span>
+                    <span className="text-primary line-clamp-3 text-ellipsis">
+                        {playlistData?.sortDescription}
+                    </span>
+                </div>
+                <ListSong
+                    songs={playlistData?.song.items}
+                    totalDuration={playlistData?.song.totalDuration}
+                />
             </div>
         </div>
     );
