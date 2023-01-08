@@ -19,4 +19,10 @@
     .slider_width {
         width: calc((100% / 3) - 16px);
     }
+    .show_dots {
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }

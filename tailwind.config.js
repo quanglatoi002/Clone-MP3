@@ -15,6 +15,7 @@ module.exports = {
                 "overlay-30": "rgba(0,0,0,0.3)",
             },
             colors: {
+                hover_secondary: "#0f7070",
                 primary: "#32323d",
                 secondary: "#696969",
                 "main-100": "#E7ECEC",

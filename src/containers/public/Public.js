@@ -7,7 +7,7 @@ const Public = () => {
         <div className="flex flex-col w-full min-h-screen bg-main-300 ">
             <div className="w-full h-full flex flex-auto">
                 <div
-                    className="lg:w-[240px] w-auto min-h-screen flex-none border
+                    className="lg:w-[240px] w-git min-h-screen flex-none border
                  border-blue-500"
                 >
                     <SidebarLeft />
