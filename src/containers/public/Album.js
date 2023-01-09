@@ -55,7 +55,7 @@ const Album = () => {
             </div>
             <div
                 className="flex-auto border
-             border-blue-600"
+             border-blue-600 mb-10"
             >
                 <div className="flex gap-1 text-sm mb-[10px]">
                     <span className="text-secondary">Lời tựa</span>

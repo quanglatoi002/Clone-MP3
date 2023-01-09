@@ -4,18 +4,18 @@ import { SidebarLeft, SidebarRight, Player, Header } from "../../components";
 
 const Public = () => {
     return (
-        <div className="flex flex-col w-full min-h-screen bg-main-300 ">
+        <div className="flex flex-col w-full h-screen bg-main-300 ">
             <div className="w-full h-full flex flex-auto">
                 <div
-                    className="lg:w-[240px] w-git min-h-screen flex-none border
+                    className="lg:w-[240px] flex-none min-h-screen border
                  border-blue-500"
                 >
                     <SidebarLeft />
                 </div>
-                <div className="flex-auto px-[29px] lg:px-[59px]">
+                <div className="flex-auto overflow-y-auto">
                     <div
-                        className="h-[70px]  flex
-         items-center mb-5"
+                        className="h-[70px] flex
+         items-center mb-5 px-[29px] lg:px-[59px] "
                     >
                         <Header />
                     </div>

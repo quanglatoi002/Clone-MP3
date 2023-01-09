@@ -13,7 +13,12 @@ import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
 import { FiSearch } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
 import { CiRepeat, CiShuffle } from "react-icons/ci";
-import { BsFillPlayFill, BsPauseFill, BsMusicNoteBeamed } from "react-icons/bs";
+import {
+    BsFillPlayFill,
+    BsPauseFill,
+    BsMusicNoteBeamed,
+    BsDot,
+} from "react-icons/bs";
 
 const icons = {
     MdOutlineLibraryMusic,
@@ -32,6 +37,7 @@ const icons = {
     BsFillPlayFill,
     BsPauseFill,
     BsMusicNoteBeamed,
+    BsDot,
 };
 
 export default icons;
