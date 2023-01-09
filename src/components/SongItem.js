@@ -10,6 +10,7 @@ const { BsMusicNoteBeamed } = icons;
 
 const SongItem = ({ songData }) => {
     const dispatch = useDispatch();
+    console.log(songData);
 
     return (
         <div

@@ -10,7 +10,7 @@ const musicReducer = (state = initialState, action) => {
         case actionTypes.SET_CUR_SONG_ID:
             return {
                 ...state,
-                curSongId: action.sid || null,
+                curSongId: action.sid,
             };
         case actionTypes.PLAY:
             return {
