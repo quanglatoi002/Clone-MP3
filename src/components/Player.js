@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 //
 import * as apis from "../apis";
 import icons from "../utils/icon";
+import * as actions from "../store/actions";
 
 const {
     AiOutlineHeart,
@@ -16,15 +18,15 @@ const {
 } = icons;
 
 const Player = () => {
-    const audioElement = new Audio(
-        "https://mp3-s1-zmp3.zmdcdn.me/4c5b75e439a4d0fa89b5/7623286180255772087?authen=exp=1673158194~acl=/4c5b75e439a4d0fa89b5/*~hmac=906c91eac605fdc40046f6ee2c2451ae&fs=MTY3Mjk4NTM5NDg4NXx3ZWJWNnwwfDMdUngOTEdUngNDUdUngODU"
-    );
+    const audioElement = useRef(new Audio());
     const { curSongId, isPlaying } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
     const [source, setSource] = useState(null);
+    const dispatch = useDispatch();
     // const [isPlaying, setIsPlaying] = useState(false);
     console.log(audioElement);
-
+    console.log(apis.apiGetDetailSong(curSongId));
+    console.log(apis.apiGetSong(curSongId));
     useEffect(() => {
         const fetchDetailsSong = async () => {
             const [res1, res2] = await Promise.all([
@@ -45,10 +47,22 @@ const Player = () => {
     //(JSON.parse(localStorage.getItem("persist:music")));
 
     useEffect(() => {
-        // audioElement.play();
-    }, [curSongId]);
+        audioElement.current.pause();
+        audioElement.current.src = source;
+        audioElement.current.load();
+        if (isPlaying) audioElement.current.play();
+    }, [curSongId, source]);
+    console.log(source);
 
-    const handleTogglePlayMusic = () => {};
+    const handleTogglePlayMusic = () => {
+        if (isPlaying) {
+            audioElement.current.pause();
+            dispatch(actions.play(false));
+        } else {
+            audioElement.current.play();
+            dispatch(actions.play(true));
+        }
+    };
 
     return (
         <div className="bg-main-400 h-full px-5 flex cursor-pointer">

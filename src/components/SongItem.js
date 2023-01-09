@@ -1,14 +1,24 @@
 // Note đối số được truyền bởi props thì cần phải dùng Memo để ngăn re-render
 import { memo } from "react";
 import moment from "moment";
+import { useDispatch } from "react-redux";
 //
 import icons from "../utils/icon";
+import * as actions from "../store/actions";
 
 const { BsMusicNoteBeamed } = icons;
 
 const SongItem = ({ songData }) => {
+    const dispatch = useDispatch();
+
     return (
-        <div className="flex justify-between border-b border-solid border-gray-400 p-[10px]">
+        <div
+            onClick={() => {
+                dispatch(actions.setCurSongId(songData?.encodeId));
+                dispatch(actions.play(true));
+            }}
+            className="flex justify-between border-t border-solid border-gray-400 p-[10px] hover:bg-[#DCE5E5] cursor-pointer"
+        >
             <div
                 className="flex items-center gap-[10px] flex-1 mr-10 lg:mr-0
              "
@@ -33,9 +43,11 @@ const SongItem = ({ songData }) => {
                 </div>
             </div>
             <div className="flex-1 flex items-center">
-                {songData?.album?.title}
+                {songData?.album?.title.length > 30
+                    ? `${songData?.album?.title.slice(0, 30)}...`
+                    : songData?.album?.title}
             </div>
-            <div className="flex-1 flex justify-end">
+            <div className="flex justify-end">
                 {moment.utc(songData?.duration * 1000).format("mm:ss")}
             </div>
         </div>
