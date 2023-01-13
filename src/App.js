@@ -1,9 +1,12 @@
-import { Home, Login, Public, Personal, Album } from "./containers/public";
-import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import * as actions from "./store/actions";
 import { useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+//
+import { Home, Login, Public, Personal, Album } from "./containers/public";
+import path from "./utils/path";
 
 function App() {
     const dispatch = useDispatch();
@@ -32,6 +35,18 @@ function App() {
                     </Route>
                 </Routes>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </>
     );
 }

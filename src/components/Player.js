@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import moment from "moment";
+import { toast } from "react-toastify";
 //
 import * as apis from "../apis";
 import icons from "../utils/icon";
@@ -24,7 +26,11 @@ const Player = () => {
     const [songInfo, setSongInfo] = useState(null);
     const dispatch = useDispatch();
     const [audio, setAudio] = useState(new Audio());
+    const [curSeconds, setCurSeconds] = useState(0);
+
     const thumbRef = useRef();
+
+    // ----->take info song and song pass parameters(id)
     useEffect(() => {
         const fetchDetailsSong = async () => {
             const [res1, res2] = await Promise.all([
@@ -33,10 +39,18 @@ const Player = () => {
             ]);
             if (res1.data.err === 0) {
                 setSongInfo(res1?.data?.data);
+                setCurSeconds(0);
             }
             if (res2.data.err === 0) {
                 audio.pause();
+
                 setAudio(new Audio(res2?.data?.data["128"]));
+            } else {
+                setAudio(new Audio()); // nếu như ko set lại Audio thì phải mất 3s để đợi nó chạy lại bài hát trước khi chuyển qua bài mới.
+                dispatch(actions.play(false));
+                toast.warn(res2.data.msg);
+                setCurSeconds(0);
+                thumbRef.current.style.cssText = `left: 0`;
             }
         };
         fetchDetailsSong();
@@ -44,26 +58,24 @@ const Player = () => {
     // take 1
     //console.log
     //(JSON.parse(localStorage.getItem("persist:music")));
-
     useEffect(() => {
+        intervalId && clearInterval(intervalId);
+        audio.pause();
+        audio.load();
         if (isPlaying) {
+            audio.play();
             intervalId = setInterval(() => {
                 let percent =
                     Math.round(
                         (audio.currentTime * 10000) / songInfo.duration
                     ) / 100;
                 thumbRef.current.style.cssText = `right: ${100 - percent}%`;
+                setCurSeconds(Math.round(audio.currentTime));
             }, 100);
-        } else {
-            intervalId && clearInterval(intervalId);
         }
-    }, [isPlaying]);
+    }, [audio, isPlaying]);
 
-    useEffect(() => {
-        audio.load();
-        if (isPlaying) audio.play();
-    }, [audio]);
-
+    // -----> handle pause and play audio
     const handleTogglePlayMusic = () => {
         if (isPlaying) {
             audio.pause();
@@ -128,13 +140,19 @@ const Player = () => {
                         <CiRepeat size={26} />
                     </span>
                 </div>
-                <div className="w-full">
-                    <div className="h-[3px] rounded-l-full rounded-r-full relative m-auto w-4/5 bg-[#ADC2C2]">
+                <div className="w-full flex items-center px-3 lg:px-10">
+                    <span className="text-xs font-medium opacity-[0.5]">
+                        {moment.utc(curSeconds * 1000).format("mm:ss")}
+                    </span>
+                    <div className="h-[3px] hover:h-[6px] rounded-l-full rounded-r-full relative m-auto w-3/5 bg-[#ADC2C2]">
                         <div
                             ref={thumbRef}
-                            className="absolute top-0 left-0 h-[3px] bg-[#0F8080] rounded-l-full rounded-r-full"
+                            className="absolute top-0 left-0 h-[3px]  bg-[#0F8080] rounded-l-full rounded-r-full"
                         ></div>
                     </div>
+                    <span className="text-xs font-medium">
+                        {moment.utc(songInfo?.duration * 1000).format("mm:ss")}
+                    </span>
                 </div>
             </div>
             <div
