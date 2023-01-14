@@ -29,6 +29,7 @@ const Player = () => {
     const [curSeconds, setCurSeconds] = useState(0);
 
     const thumbRef = useRef();
+    const trackRef = useRef();
 
     // ----->take info song and song pass parameters(id)
     useEffect(() => {
@@ -50,7 +51,8 @@ const Player = () => {
                 dispatch(actions.play(false));
                 toast.warn(res2.data.msg);
                 setCurSeconds(0);
-                thumbRef.current.style.cssText = `left: 0`;
+                thumbRef.current.style.cssText = `right: 
+                100%`;
             }
         };
         fetchDetailsSong();
@@ -73,7 +75,7 @@ const Player = () => {
                 setCurSeconds(Math.round(audio.currentTime));
             }, 100);
         }
-    }, [audio, isPlaying]);
+    }, [audio]);
 
     // -----> handle pause and play audio
     const handleTogglePlayMusic = () => {
@@ -84,6 +86,18 @@ const Player = () => {
             audio.play();
             dispatch(actions.play(true));
         }
+    };
+
+    const handleClickProgressing = (e) => {
+        const trackRect = trackRef.current.getBoundingClientRect();
+        const percent = Math.round(
+            ((e.clientX - trackRect.left) * 10000) / trackRect.width / 100
+        );
+        trackRef.current.style.cssText = `right: ${100 - percent}%`;
+        audio.currentTime = (percent * songInfo.duration) / 100;
+        setCurSeconds(Math.round(percent * songInfo.duration) / 100);
+        console.log(e.clientX);
+        console.log(trackRect);
     };
 
     return (
@@ -144,10 +158,14 @@ const Player = () => {
                     <span className="text-xs font-medium opacity-[0.5]">
                         {moment.utc(curSeconds * 1000).format("mm:ss")}
                     </span>
-                    <div className="h-[3px] hover:h-[6px] rounded-l-full rounded-r-full relative m-auto w-3/5 bg-[#ADC2C2]">
+                    <div
+                        ref={trackRef}
+                        onClick={handleClickProgressing}
+                        className="h-[3px] hover:h-[6px] rounded-l-full rounded-r-full relative m-auto w-3/5 bg-[#ADC2C2]"
+                    >
                         <div
                             ref={thumbRef}
-                            className="absolute top-0 left-0 h-[3px]  bg-[#0F8080] rounded-l-full rounded-r-full"
+                            className="absolute top-0 left-0 bottom-0 bg-[#0F8080] rounded-l-full rounded-r-full"
                         ></div>
                     </div>
                     <span className="text-xs font-medium">
