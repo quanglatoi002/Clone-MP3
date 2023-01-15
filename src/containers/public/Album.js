@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import * as actions from "../../store/actions";
 //
 import * as apis from "../../apis";
 import { ListSong } from "../../components";
@@ -8,12 +10,16 @@ import { ListSong } from "../../components";
 const Album = () => {
     const { pid } = useParams();
     const [playlistData, setPlaylistData] = useState({});
+    const dispatch = useDispatch();
     useEffect(() => {
         const fetchDetailPlaylist = async () => {
             const response = await apis.apiGetDetailPlaylist(pid);
             console.log(response.data?.err);
             if (response.data?.err === 0 || response.data?.data) {
                 setPlaylistData(response.data?.data);
+                dispatch(
+                    actions.setPlaylist(response?.data?.data?.song?.items)
+                );
             }
         };
         fetchDetailPlaylist();
@@ -63,10 +69,7 @@ const Album = () => {
                         {playlistData?.sortDescription}
                     </span>
                 </div>
-                <ListSong
-                    songs={playlistData?.song?.items}
-                    totalDuration={playlistData?.song?.totalDuration}
-                />
+                <ListSong totalDuration={playlistData?.song?.totalDuration} />
             </div>
         </div>
     );

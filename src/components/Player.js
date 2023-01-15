@@ -22,7 +22,9 @@ const {
 var intervalId;
 
 const Player = () => {
-    const { curSongId, isPlaying } = useSelector((state) => state.music);
+    const { curSongId, isPlaying, atAlbum } = useSelector(
+        (state) => state.music
+    );
     const [songInfo, setSongInfo] = useState(null);
     const dispatch = useDispatch();
     const [audio, setAudio] = useState(new Audio());
@@ -88,6 +90,7 @@ const Player = () => {
         }
     };
 
+    //drag and drop bar
     const handleClickProgressing = (e) => {
         const trackRect = trackRef.current.getBoundingClientRect();
         const percent = Math.round(
@@ -98,6 +101,12 @@ const Player = () => {
         setCurSeconds(Math.round(percent * songInfo.duration) / 100);
         console.log(e.clientX);
         console.log(trackRect);
+    };
+
+    const handleNextSong = () => {
+        if (atAlbum) {
+            console.log(1);
+        }
     };
 
     return (
@@ -147,7 +156,7 @@ const Player = () => {
                             <BsFillPlayFill className="pl-1" size={30} />
                         )}
                     </span>
-                    <span>
+                    <span onClick={handleNextSong}>
                         <MdSkipNext size={26} />
                     </span>
                     <span title="Bật phát lại tất cả">

@@ -1,13 +1,15 @@
 import { memo } from "react";
 import icons from "../utils/icon";
 import moment from "moment";
-
+import { useSelector } from "react-redux";
 //
 import SongItem from "./SongItem";
 
 const { BsDot } = icons;
 
-const ListSong = ({ songs, totalDuration }) => {
+const ListSong = ({ totalDuration }) => {
+    const { songs } = useSelector((state) => state.music);
+
     return (
         <div className="flex flex-col text-secondary rounded-md ">
             <div
