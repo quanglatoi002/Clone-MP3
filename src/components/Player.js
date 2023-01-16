@@ -27,6 +27,7 @@ const Player = () => {
     const dispatch = useDispatch();
     const [audio, setAudio] = useState(new Audio());
     const [curSeconds, setCurSeconds] = useState(0);
+    const [isShuffle, setIsShuffle] = useState(false);
 
     const thumbRef = useRef();
     const trackRef = useRef();
@@ -101,7 +102,7 @@ const Player = () => {
         console.log(e.clientX);
         console.log(trackRect);
     };
-
+    // next songs
     const handleNextSong = () => {
         if (songs) {
             let currentSongIndex;
@@ -116,6 +117,7 @@ const Player = () => {
             dispatch(actions.play(true));
         }
     };
+    //prev songs
     const handlePrevSong = () => {
         if (songs) {
             let currentSongIndex;
@@ -130,6 +132,8 @@ const Player = () => {
             dispatch(actions.play(true));
         }
     };
+
+    const handleShuffle = () => {};
 
     return (
         <div className="bg-main-400 h-full px-5 flex cursor-pointer">
@@ -162,7 +166,11 @@ const Player = () => {
              gap-2 items-center py-2 font-normal"
             >
                 <div className="flex gap-8 justify-center items-center text-gray-700">
-                    <span title="Bật phát ngẫu nhiên">
+                    <span
+                        onClick={() => setIsShuffle((prev) => !prev)}
+                        className={`${isShuffle && "text-purple-600"}`}
+                        title="Bật phát ngẫu nhiên"
+                    >
                         <CiShuffle size={26} />
                     </span>
                     <span
