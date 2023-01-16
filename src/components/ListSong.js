@@ -9,7 +9,6 @@ const { BsDot } = icons;
 
 const ListSong = ({ totalDuration }) => {
     const { songs } = useSelector((state) => state.music);
-
     return (
         <div className="flex flex-col text-secondary rounded-md ">
             <div

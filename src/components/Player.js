@@ -22,9 +22,7 @@ const {
 var intervalId;
 
 const Player = () => {
-    const { curSongId, isPlaying, atAlbum } = useSelector(
-        (state) => state.music
-    );
+    const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
     const dispatch = useDispatch();
     const [audio, setAudio] = useState(new Audio());
@@ -49,6 +47,7 @@ const Player = () => {
 
                 setAudio(new Audio(res2?.data?.data["128"]));
             } else {
+                audio.pause();
                 setAudio(new Audio()); // nếu như ko set lại Audio thì phải mất 3s để đợi nó chạy lại bài hát trước khi chuyển qua bài mới.
                 dispatch(actions.play(false));
                 toast.warn(res2.data.msg);
@@ -104,8 +103,31 @@ const Player = () => {
     };
 
     const handleNextSong = () => {
-        if (atAlbum) {
-            console.log(1);
+        if (songs) {
+            let currentSongIndex;
+            songs?.forEach((item, index) => {
+                if (item.encodeId === curSongId) {
+                    currentSongIndex = index;
+                }
+            });
+            dispatch(
+                actions.setCurSongId(songs[currentSongIndex + 1].encodeId)
+            );
+            dispatch(actions.play(true));
+        }
+    };
+    const handlePrevSong = () => {
+        if (songs) {
+            let currentSongIndex;
+            songs?.forEach((item, index) => {
+                if (item.encodeId === curSongId) {
+                    currentSongIndex = index;
+                }
+            });
+            dispatch(
+                actions.setCurSongId(songs[currentSongIndex - 1].encodeId)
+            );
+            dispatch(actions.play(true));
         }
     };
 
@@ -143,7 +165,12 @@ const Player = () => {
                     <span title="Bật phát ngẫu nhiên">
                         <CiShuffle size={26} />
                     </span>
-                    <span>
+                    <span
+                        onClick={handlePrevSong}
+                        className={`${
+                            !songs ? "text-gray-500 " : "cursor-pointer"
+                        }`}
+                    >
                         <MdSkipPrevious size={26} />
                     </span>
                     <span
@@ -156,7 +183,12 @@ const Player = () => {
                             <BsFillPlayFill className="pl-1" size={30} />
                         )}
                     </span>
-                    <span onClick={handleNextSong}>
+                    <span
+                        onClick={handleNextSong}
+                        className={`${
+                            !songs ? "text-gray-500 " : "cursor-pointer"
+                        }`}
+                    >
                         <MdSkipNext size={26} />
                     </span>
                     <span title="Bật phát lại tất cả">

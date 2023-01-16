@@ -15,7 +15,6 @@ const Slider = () => {
         const sliderEls = document.getElementsByClassName("slider-item");
         let min = 0;
         let max = 2;
-        console.log(sliderEls);
         const intervalId = setInterval(() => {
             const list = getArrSlider(min, max, sliderEls.length - 1);
             for (let i = 0; i < sliderEls.length; i++) {
@@ -74,14 +73,13 @@ const Slider = () => {
         if (item?.type === 1) {
             dispatch(actions.setCurSongId(item.encodeId));
             dispatch(actions.play(true));
-            dispatch(actions.playAlbum(false));
+            dispatch(actions.setPlaylist(null));
         } else if (item?.type === 4) {
             dispatch(actions.playAlbum(true));
             const albumPath = item?.link?.split(".")[0];
-            console.log(albumPath);
             navigate(albumPath);
         } else {
-            dispatch(actions.playAlbum(false));
+            dispatch(actions.setPlaylist(null));
         }
     };
 
