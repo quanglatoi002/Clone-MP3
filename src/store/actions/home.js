@@ -7,7 +7,7 @@ export const getHome = () => async (dispatch) => {
         if (response?.data.err === 0) {
             dispatch({
                 type: actionTypes.GET_HOME,
-                homeData: response.data.data.items,
+                homeData: response?.data?.data?.items,
             });
         } else {
             dispatch({

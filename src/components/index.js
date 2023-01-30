@@ -6,3 +6,5 @@ export { default as Slider } from "./Slider";
 export { default as Player } from "./Player";
 export { default as ListSong } from "./ListSong";
 export { default as SongItem } from "./SongItem";
+export { default as Section } from "./Section";
+export { default as SectionItem } from "./SectionItem";

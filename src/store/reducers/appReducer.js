@@ -2,6 +2,7 @@ import actionTypes from "../actions/actionTypes";
 
 const initialState = {
     banner: [],
+    friday: {},
 };
 
 const appReducer = (state = initialState, action) => {
@@ -10,7 +11,11 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 banner: action.homeData?.find(
-                    ((item) => item.sectionType === "banner") || null
+                    ((item) => item.sectionId === "hSlider") || null
+                ),
+
+                friday: action.homeData?.find(
+                    ((item) => item.sectionId === "hAutoTheme1") || {}
                 ),
             };
         default:
