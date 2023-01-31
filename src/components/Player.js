@@ -28,6 +28,7 @@ const Player = () => {
     const [audio, setAudio] = useState(new Audio());
     const [curSeconds, setCurSeconds] = useState(0);
     const [isShuffle, setIsShuffle] = useState(false);
+    const [isRepeat, setIsRepeat] = useState(false);
 
     const thumbRef = useRef();
     const trackRef = useRef();
@@ -79,6 +80,23 @@ const Player = () => {
         }
     }, [audio]);
 
+    useEffect(() => {
+        const handleEnded = () => {
+            if (isShuffle) {
+                handleShuffle();
+            } else if (isRepeat) {
+                handleNextSong();
+            } else {
+                audio.pause();
+                dispatch(actions.play(false));
+            }
+        };
+        audio.addEventListener("ended", handleEnded);
+        return () => {
+            audio.removeEventListener("ended", handleEnded);
+        };
+    }, [audio, isShuffle, isRepeat]);
+
     // -----> handle pause and play audio
     const handleTogglePlayMusic = () => {
         if (isPlaying) {
@@ -87,6 +105,9 @@ const Player = () => {
         } else {
             audio.play();
             dispatch(actions.play(true));
+            audio.onended = () => {
+                console.log("ended");
+            };
         }
     };
 
@@ -133,7 +154,12 @@ const Player = () => {
         }
     };
 
-    const handleShuffle = () => {};
+    const handleShuffle = () => {
+        const randomIndex = Math.round(Math.random() * songs?.length);
+        dispatch(actions.setCurSongId(songs[randomIndex - 1].encodeId));
+        dispatch(actions.play(true));
+        setIsShuffle((prev) => !prev);
+    };
 
     return (
         <div className="bg-main-400 h-full px-5 flex cursor-pointer">
@@ -199,7 +225,11 @@ const Player = () => {
                     >
                         <MdSkipNext size={26} />
                     </span>
-                    <span title="Bật phát lại tất cả">
+                    <span
+                        onClick={() => setIsRepeat((prev) => !prev)}
+                        className={`${isRepeat && "text-purple-600"}`}
+                        title="Bật phát lại tất cả"
+                    >
                         <CiRepeat size={26} />
                     </span>
                 </div>

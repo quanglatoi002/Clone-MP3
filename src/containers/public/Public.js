@@ -20,6 +20,7 @@ const Public = () => {
                         <Header />
                     </div>
                     <Outlet />
+                    <div className="w-full h-[500px]"></div>
                 </div>
                 <div className="w-[329px] hidden 3xl:flex flex-none border border-green-500 animate-slide-left bg-yellow-900">
                     <SidebarRight />
