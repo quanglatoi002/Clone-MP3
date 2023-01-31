@@ -59,6 +59,37 @@ module.exports = {
                         transform: "translateX(0);",
                     },
                 },
+                "rotate-center": {
+                    "0%": {
+                        "-webkit-transform": " rotate(0);",
+                        transform: "rotate(0);",
+                    },
+                    "100%": {
+                        "-webkit-transform": "rotate(360deg);",
+                        transform: "rotate(360deg);",
+                    },
+                },
+                "rotate-center": {
+                    "0%": {
+                        "-webkit-transform": " rotate(0);",
+                        transform: "rotate(0);",
+                    },
+                    "100%": {
+                        "-webkit-transform": "rotate(360deg);",
+                        transform: "rotate(360deg);",
+                    },
+                },
+                "rotate-center-pause": {
+                    "0%": {
+                        "-webkit-transform": " rotate(360deg);",
+                        transform: "rotate(360deg);",
+                        "border-radius": "999px",
+                    },
+                    "100%": {
+                        "-webkit-transform": "rotate(0);",
+                        transform: "rotate(0);",
+                    },
+                },
             },
             animation: {
                 "slide-right":
@@ -67,10 +98,12 @@ module.exports = {
                     "slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
                 "slide-left2":
                     "slide-left2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
+                "rotate-center": "rotate-center 20s linear infinite;",
+                "rotate-center-pause":
+                    "rotate-center-pause 0.2s linear 2 both;",
             },
         },
     },
-
     plugins: [require("@neojp/tailwindcss-line-clamp-utilities")],
     variants: {
         lineClamp: ["responsive"],

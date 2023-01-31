@@ -162,7 +162,7 @@ const Player = () => {
     };
 
     const handleRepeatOne = () => {
-        console.log("mode1");
+        audio.play();
     };
 
     return (
