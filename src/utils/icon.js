@@ -19,6 +19,7 @@ import {
     BsMusicNoteBeamed,
     BsDot,
 } from "react-icons/bs";
+import { TbRepeatOnce } from "react-icons/tb";
 
 const icons = {
     MdOutlineLibraryMusic,
@@ -38,6 +39,7 @@ const icons = {
     BsPauseFill,
     BsMusicNoteBeamed,
     BsDot,
+    TbRepeatOnce,
 };
 
 export default icons;

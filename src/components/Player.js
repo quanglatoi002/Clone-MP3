@@ -17,6 +17,7 @@ const {
     CiShuffle,
     BsFillPlayFill,
     BsPauseFill,
+    TbRepeatOnce,
 } = icons;
 
 var intervalId;
@@ -28,7 +29,7 @@ const Player = () => {
     const [audio, setAudio] = useState(new Audio());
     const [curSeconds, setCurSeconds] = useState(0);
     const [isShuffle, setIsShuffle] = useState(false);
-    const [isRepeat, setIsRepeat] = useState(false);
+    const [repeatMode, setRepeatMode] = useState(1);
 
     const thumbRef = useRef();
     const trackRef = useRef();
@@ -84,8 +85,8 @@ const Player = () => {
         const handleEnded = () => {
             if (isShuffle) {
                 handleShuffle();
-            } else if (isRepeat) {
-                handleNextSong();
+            } else if (repeatMode) {
+                repeatMode === 1 ? handleRepeatOne() : handleNextSong();
             } else {
                 audio.pause();
                 dispatch(actions.play(false));
@@ -95,7 +96,7 @@ const Player = () => {
         return () => {
             audio.removeEventListener("ended", handleEnded);
         };
-    }, [audio, isShuffle, isRepeat]);
+    }, [audio, isShuffle, repeatMode]);
 
     // -----> handle pause and play audio
     const handleTogglePlayMusic = () => {
@@ -158,7 +159,10 @@ const Player = () => {
         const randomIndex = Math.round(Math.random() * songs?.length);
         dispatch(actions.setCurSongId(songs[randomIndex - 1].encodeId));
         dispatch(actions.play(true));
-        setIsShuffle((prev) => !prev);
+    };
+
+    const handleRepeatOne = () => {
+        console.log("mode1");
     };
 
     return (
@@ -226,11 +230,17 @@ const Player = () => {
                         <MdSkipNext size={26} />
                     </span>
                     <span
-                        onClick={() => setIsRepeat((prev) => !prev)}
-                        className={`${isRepeat && "text-purple-600"}`}
+                        onClick={() =>
+                            setRepeatMode((prev) => (prev === 2 ? 0 : prev + 1))
+                        }
+                        className={`${repeatMode && "text-purple-600"}`}
                         title="Bật phát lại tất cả"
                     >
-                        <CiRepeat size={26} />
+                        {repeatMode === 1 ? (
+                            <TbRepeatOnce size={26} />
+                        ) : (
+                            <CiRepeat size={26} />
+                        )}
                     </span>
                 </div>
                 <div className="w-full flex items-center px-3 lg:px-10">
