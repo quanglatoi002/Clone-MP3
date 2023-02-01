@@ -18,6 +18,7 @@ import {
     BsPauseFill,
     BsMusicNoteBeamed,
     BsDot,
+    BsMusicNoteList,
 } from "react-icons/bs";
 import { TbRepeatOnce } from "react-icons/tb";
 
@@ -40,6 +41,7 @@ const icons = {
     BsMusicNoteBeamed,
     BsDot,
     TbRepeatOnce,
+    BsMusicNoteList,
 };
 
 export default icons;

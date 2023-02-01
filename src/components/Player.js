@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import * as apis from "../apis";
 import icons from "../utils/icon";
 import * as actions from "../store/actions";
+import { LoadingSong } from "./";
 
 const {
     AiOutlineHeart,
@@ -18,29 +19,34 @@ const {
     BsFillPlayFill,
     BsPauseFill,
     TbRepeatOnce,
+    BsMusicNoteList,
 } = icons;
 
 var intervalId;
 
-const Player = () => {
+const Player = ({ setIsShowLeftSidebar }) => {
     const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
     const dispatch = useDispatch();
     const [audio, setAudio] = useState(new Audio());
     const [curSeconds, setCurSeconds] = useState(0);
     const [isShuffle, setIsShuffle] = useState(false);
-    const [repeatMode, setRepeatMode] = useState(1);
+    const [repeatMode, setRepeatMode] = useState(0);
+    const [isLoadedSource, setIsLoadedSource] = useState(false);
 
     const thumbRef = useRef();
     const trackRef = useRef();
+    console.log(typeof setIsShowLeftSidebar);
 
     // ----->take info song and song pass parameters(id)
     useEffect(() => {
         const fetchDetailsSong = async () => {
+            setIsLoadedSource(false);
             const [res1, res2] = await Promise.all([
                 apis.apiGetDetailSong(curSongId),
                 apis.apiGetSong(curSongId),
             ]);
+            setIsLoadedSource(true);
             if (res1.data.err === 0) {
                 setSongInfo(res1?.data?.data);
                 setCurSeconds(0);
@@ -215,7 +221,9 @@ const Player = () => {
                         onClick={handleTogglePlayMusic}
                         className="border p-1 border-gray-700 rounded-full hover:text-main-500"
                     >
-                        {isPlaying ? (
+                        {!isLoadedSource ? (
+                            <LoadingSong />
+                        ) : isPlaying ? (
                             <BsPauseFill size={30} />
                         ) : (
                             <BsFillPlayFill className="pl-1" size={30} />
@@ -264,9 +272,15 @@ const Player = () => {
             </div>
             <div
                 className="w-[30%] flex-auto border
-             border-green-500"
+             border-green-500 flex items-center justify-end gap-4"
             >
-                Volume
+                <input type="range" step={1} min={0} max={100} value={50} />
+                <span
+                    onClick={() => setIsShowLeftSidebar((prev) => !prev)}
+                    className="p-1 rounded-sm cursor-pointer bg-main-500 opacity-90 hover:opacity-100"
+                >
+                    <BsMusicNoteList size={20} />
+                </span>
             </div>
         </div>
     );

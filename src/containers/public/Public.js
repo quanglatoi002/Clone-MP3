@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import { SidebarLeft, SidebarRight, Player, Header } from "../../components";
 
 const Public = () => {
+    const [isShowRightSidebar, setIsShowLeftSidebar] = useState(true);
     return (
         <div className="flex flex-col w-full h-screen bg-main-300 ">
             <div className="w-full h-full flex flex-auto">
@@ -22,12 +24,14 @@ const Public = () => {
                     <Outlet />
                     <div className="w-full h-[500px]"></div>
                 </div>
-                <div className="w-[329px] hidden 3xl:flex flex-none border border-green-500 animate-slide-left bg-yellow-900">
-                    <SidebarRight />
-                </div>
+                {isShowRightSidebar && (
+                    <div className="w-[329px] hidden 3xl:flex flex-none border border-green-500 animate-slide-left bg-yellow-900">
+                        <SidebarRight />
+                    </div>
+                )}
             </div>
             <div className="flex-none  h-[90px] border border-red-600">
-                <Player />
+                <Player setIsShowLeftSidebar={setIsShowLeftSidebar} />
             </div>
         </div>
     );
