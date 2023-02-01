@@ -21,6 +21,7 @@ import {
     BsMusicNoteList,
 } from "react-icons/bs";
 import { TbRepeatOnce } from "react-icons/tb";
+import { SlVolumeOff, SlVolume2, SlVolume1 } from "react-icons/sl";
 
 const icons = {
     MdOutlineLibraryMusic,
@@ -42,6 +43,9 @@ const icons = {
     BsDot,
     TbRepeatOnce,
     BsMusicNoteList,
+    SlVolumeOff,
+    SlVolume2,
+    SlVolume1,
 };
 
 export default icons;

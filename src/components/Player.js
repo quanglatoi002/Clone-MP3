@@ -20,6 +20,9 @@ const {
     BsPauseFill,
     TbRepeatOnce,
     BsMusicNoteList,
+    SlVolumeOff,
+    SlVolume2,
+    SlVolume1,
 } = icons;
 
 var intervalId;
@@ -33,11 +36,10 @@ const Player = ({ setIsShowLeftSidebar }) => {
     const [isShuffle, setIsShuffle] = useState(false);
     const [repeatMode, setRepeatMode] = useState(0);
     const [isLoadedSource, setIsLoadedSource] = useState(false);
+    const [volume, setVolume] = useState(100);
 
     const thumbRef = useRef();
     const trackRef = useRef();
-    console.log(typeof setIsShowLeftSidebar);
-
     // ----->take info song and song pass parameters(id)
     useEffect(() => {
         const fetchDetailsSong = async () => {
@@ -103,6 +105,10 @@ const Player = ({ setIsShowLeftSidebar }) => {
             audio.removeEventListener("ended", handleEnded);
         };
     }, [audio, isShuffle, repeatMode]);
+
+    useEffect(() => {
+        audio.volume = volume / 100;
+    }, [volume]);
 
     // -----> handle pause and play audio
     const handleTogglePlayMusic = () => {
@@ -197,8 +203,7 @@ const Player = ({ setIsShowLeftSidebar }) => {
                 </div>
             </div>
             <div
-                className="w-[40%] flex-auto border
-             border-red-500 flex flex-col justify-center 
+                className="w-[40%] flex-auto flex flex-col justify-center 
              gap-2 items-center py-2 font-normal"
             >
                 <div className="flex gap-8 justify-center items-center text-gray-700">
@@ -270,11 +275,30 @@ const Player = ({ setIsShowLeftSidebar }) => {
                     </span>
                 </div>
             </div>
-            <div
-                className="w-[30%] flex-auto border
-             border-green-500 flex items-center justify-end gap-4"
-            >
-                <input type="range" step={1} min={0} max={100} value={50} />
+            <div className="w-[30%] flex-auto flex items-center justify-end gap-4">
+                <div className="flex gap-2 items-center">
+                    <span
+                        onClick={() =>
+                            setVolume((prev) => (+prev === 0 ? 70 : 0))
+                        }
+                    >
+                        {+volume >= 50 ? (
+                            <SlVolume2 />
+                        ) : +volume === 0 ? (
+                            <SlVolumeOff />
+                        ) : (
+                            <SlVolume1 />
+                        )}
+                    </span>
+                    <input
+                        type="range"
+                        step={1}
+                        min={0}
+                        max={100}
+                        value={volume}
+                        onChange={(e) => setVolume(e.target.value)}
+                    />
+                </div>
                 <span
                     onClick={() => setIsShowLeftSidebar((prev) => !prev)}
                     className="p-1 rounded-sm cursor-pointer bg-main-500 opacity-90 hover:opacity-100"
