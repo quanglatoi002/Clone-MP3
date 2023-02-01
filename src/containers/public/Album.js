@@ -44,12 +44,18 @@ const Album = () => {
                                 : "rounded-md animate-rotate-center-pause"
                         } shadow-md`}
                     />
-                    <div className="absolute top-0 left-0 right-[20px] bottom-0 hover:bg-overlay-30 text-white flex justify-center items-center">
-                        {isPlaying ? (
-                            <AudioLoading />
-                        ) : (
-                            <BsFillPlayFill size={30} />
-                        )}
+                    <div
+                        className={`absolute top-0 left-0 right-[20px] bottom-0 hover:bg-overlay-30 text-white flex justify-center items-center ${
+                            isPlaying && "rounded-full"
+                        }`}
+                    >
+                        <span className="p-2 border border-white rounded-full ">
+                            {isPlaying ? (
+                                <AudioLoading />
+                            ) : (
+                                <BsFillPlayFill size={30} />
+                            )}
+                        </span>
                     </div>
                 </div>
                 <div className="flex flex-col lg:items-center ">

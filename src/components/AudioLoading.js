@@ -3,8 +3,8 @@ import { memo } from "react";
 const AudioLoading = () => {
     return (
         <Audio
-            height="30"
-            width="30"
+            height="20"
+            width="20"
             color="white"
             ariaLabel="audio-loading"
             wrapperStyle={{}}

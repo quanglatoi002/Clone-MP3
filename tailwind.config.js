@@ -100,7 +100,7 @@ module.exports = {
                     "slide-left2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
                 "rotate-center": "rotate-center 20s linear infinite;",
                 "rotate-center-pause":
-                    "rotate-center-pause 0.2s linear 2 both;",
+                    "rotate-center-pause 0.5s ease-out 1 both;",
             },
         },
     },
