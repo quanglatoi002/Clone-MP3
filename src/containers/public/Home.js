@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Slider, Section } from "../../components";
+import { Slider, Section, NewRelease } from "../../components";
 
 const Home = () => {
     const { friday, newEveryday, top100, topArtist, newMusic } = useSelector(
@@ -10,6 +10,7 @@ const Home = () => {
             <Slider />
             <Section data={friday} />
             <Section data={newEveryday} />
+            <NewRelease />
             <Section data={top100} isTrue={true} />
             <Section data={topArtist} />
             <Section data={newMusic} />

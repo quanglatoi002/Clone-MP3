@@ -8,6 +8,7 @@ const initialState = {
     topArtist: {},
     newMusic: [],
     isLoading: false,
+    newRelease: {},
 };
 
 const appReducer = (state = initialState, action) => {
@@ -36,6 +37,11 @@ const appReducer = (state = initialState, action) => {
                         (item) => item.sectionId === "hAlbum"
                     ),
                     title: "Nhạc mới" || {},
+                },
+                newRelease: {
+                    ...(action.homeData?.find(
+                        (item) => item.sectionType === "new-release"
+                    ) || {}),
                 },
             };
         case actionTypes.LOADING:
