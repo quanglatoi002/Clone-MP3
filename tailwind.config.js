@@ -90,6 +90,16 @@ module.exports = {
                         transform: "rotate(0);",
                     },
                 },
+                "scale-up-center": {
+                    "0%": {
+                        "-webkit-transform": " scale(0);",
+                        transform: "scale(0);",
+                    },
+                    "100%": {
+                        "-webkit-transform": "scale(1);",
+                        transform: "scale(1);",
+                    },
+                },
             },
             animation: {
                 "slide-right":
@@ -101,6 +111,8 @@ module.exports = {
                 "rotate-center": "rotate-center 20s linear infinite;",
                 "rotate-center-pause":
                     "rotate-center-pause 0.5s ease-out 1 both;",
+                "scale-up-center":
+                    "scale-up-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
             },
         },
     },

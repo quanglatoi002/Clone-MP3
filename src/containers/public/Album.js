@@ -5,19 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 //
 import * as apis from "../../apis";
-import { ListSong, AudioLoading } from "../../components";
+import { ListSong, AudioLoading, Loading } from "../../components";
 import icons from "../../utils/icon";
 
 const { BsFillPlayFill } = icons;
 
 const Album = () => {
     const { pid } = useParams();
-    const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
+    const { isPlaying } = useSelector((state) => state.music);
     const [playlistData, setPlaylistData] = useState({});
     const dispatch = useDispatch();
+    //API
     useEffect(() => {
+        dispatch(actions.loading(true));
         const fetchDetailPlaylist = async () => {
             const response = await apis.apiGetDetailPlaylist(pid);
+            dispatch(actions.loading(false));
+
             if (response.data?.err === 0 || response.data?.data) {
                 setPlaylistData(response.data?.data);
                 dispatch(
@@ -29,7 +33,7 @@ const Album = () => {
     }, [pid]);
 
     return (
-        <div className="flex lg:flex-row flex-col gap-8 w-full">
+        <div className="flex relative lg:flex-row flex-col gap-8 w-full animate-scale-up-center">
             <div
                 className="flex-none w-full lg:w-1/5 border
              border-red-600 flex flex-row lg:flex-col lg:items-center gap-2"
