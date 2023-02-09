@@ -9,6 +9,7 @@ const initialState = {
     newMusic: [],
     isLoading: false,
     newRelease: {},
+    weekChart: {},
 };
 
 const appReducer = (state = initialState, action) => {
@@ -41,6 +42,11 @@ const appReducer = (state = initialState, action) => {
                 newRelease: {
                     ...(action.homeData?.find(
                         (item) => item.sectionType === "new-release"
+                    ) || {}),
+                },
+                weekChart: {
+                    ...(action.homeData?.find(
+                        (item) => item.sectionType === "weekChart"
                     ) || {}),
                 },
             };

@@ -5,7 +5,14 @@ import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //
-import { Home, Login, Public, Personal, Album } from "./containers/public";
+import {
+    Home,
+    Login,
+    Public,
+    Personal,
+    Album,
+    WeekRank,
+} from "./containers/public";
 import path from "./utils/path";
 
 function App() {
@@ -29,6 +36,10 @@ function App() {
                         <Route
                             path={path.PLAYLIST__TITLE__PID}
                             element={<Album />}
+                        />
+                        <Route
+                            path={path.WEEKRANK__TITLE__PID}
+                            element={<WeekRank />}
                         />
 
                         <Route path={path.STAR} element={<Home />} />

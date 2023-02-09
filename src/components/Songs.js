@@ -1,11 +1,21 @@
 import { memo } from "react";
 import moment from "moment";
 import "moment/locale/vi";
+import { useDispatch } from "react-redux";
 ///
 import SongItem from "./SongItem";
+import * as actions from "../store/actions";
+
 const Songs = ({ data }) => {
+    const dispatch = useDispatch();
     return (
-        <div className="flex flex-auto p-[10px] w-[45%] lg:w-[30%] gap-[10px] hover:bg-main-100">
+        <div
+            onClick={() => {
+                dispatch(actions.setCurSongId(data.encodeId));
+                dispatch(actions.play(true));
+            }}
+            className="flex flex-auto p-[10px] w-[45%] lg:w-[30%] gap-[10px] hover:bg-main-100 cursor-pointer"
+        >
             <img
                 src={data.thumbnail}
                 alt="thumbnail"
