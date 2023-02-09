@@ -1,9 +1,8 @@
-import { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import { memo, useState } from "react";
+import { SectionItem } from "./";
 
 const Section = ({ data, isTrue }) => {
-    const navigate = useNavigate();
-
+    const [isHover, setIsHover] = useState(false);
     // console.log(data);
 
     return (
@@ -20,43 +19,16 @@ const Section = ({ data, isTrue }) => {
                     data?.items
                         ?.filter((item, index) => index <= 4)
                         ?.map((item) => (
-                            <div
-                                onClick={() => {
-                                    navigate(item?.link?.split(".")[0]);
-                                }}
+                            <SectionItem
                                 key={item.encodeId}
-                                className="flex flex-col gap-3 flex-auto w-1/4 text-sm cursor-pointer "
-                            >
-                                <img
-                                    src={item.thumbnail}
-                                    alt="avatar"
-                                    className={`${
-                                        isTrue
-                                            ? "h-[97px] rounded-lg  object-contain lg:max-w-full lg:h-auto"
-                                            : "max-w-full h-auto object-contain rounded-lg"
-                                    }  `}
-                                />
-                                <span
-                                    className="flex flex-col 
-                            "
-                                >
-                                    <span className=" font-semibold">
-                                        {item.title}
-                                    </span>
-                                    {data?.sectionId === "h100" ? (
-                                        <span> </span>
-                                    ) : (
-                                        <span className="mt-auto text-sm text-secondary">
-                                            {item.sortDescription?.length >= 20
-                                                ? `${item.sortDescription?.slice(
-                                                      0,
-                                                      20
-                                                  )}... 1`
-                                                : item.sortDescription}
-                                        </span>
-                                    )}
-                                </span>
-                            </div>
+                                isTrue={isTrue}
+                                data={data}
+                                title={item.title}
+                                artistsNames={item.artistsNames}
+                                sortDescription={item.sortDescription}
+                                thumbnailM={item.thumbnailM}
+                                link={item.link}
+                            />
                         ))}
             </div>
         </div>

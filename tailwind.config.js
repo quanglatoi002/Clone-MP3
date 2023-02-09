@@ -69,16 +69,7 @@ module.exports = {
                         transform: "rotate(360deg);",
                     },
                 },
-                "rotate-center": {
-                    "0%": {
-                        "-webkit-transform": " rotate(0);",
-                        transform: "rotate(0);",
-                    },
-                    "100%": {
-                        "-webkit-transform": "rotate(360deg);",
-                        transform: "rotate(360deg);",
-                    },
-                },
+
                 "rotate-center-pause": {
                     "0%": {
                         "-webkit-transform": " rotate(360deg);",
@@ -100,6 +91,16 @@ module.exports = {
                         transform: "scale(1);",
                     },
                 },
+                "scale-up-image": {
+                    "0%": {
+                        "-webkit-transform": " scale(1);",
+                        transform: "scale(1);",
+                    },
+                    "100%": {
+                        "-webkit-transform": "scale(1.2);",
+                        transform: "scale(1.2);",
+                    },
+                },
             },
             animation: {
                 "slide-right":
@@ -113,6 +114,8 @@ module.exports = {
                     "rotate-center-pause 0.5s ease-out 1 both;",
                 "scale-up-center":
                     "scale-up-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
+                "scale-up-image":
+                    "scale-up-image 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
             },
         },
     },
