@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 //
-import { Slider, Section, NewRelease } from "../../components";
+import { Slider, Section, NewRelease, ChartSection } from "../../components";
 
 const Home = () => {
     const { friday, newEveryday, top100, topArtist, newMusic, weekChart } =
@@ -13,6 +13,7 @@ const Home = () => {
             <Section data={newEveryday} />
             <NewRelease />
             <Section data={top100} isTrue={true} />
+            <ChartSection />
             <Section data={topArtist} />
             <Section data={newMusic} />
             <div className="flex items-center px-[43px] w-full mt-12">
