@@ -1,6 +1,11 @@
 import { memo, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+//
+import icons from "../utils/icon";
+import * as actions from "../store/actions";
 
+const { AiOutlineHeart, BsFillPlayFill, BsThreeDots } = icons;
 const SectionItem = ({
     link,
     thumbnailM,
@@ -10,32 +15,64 @@ const SectionItem = ({
     data,
     isTrue,
 }) => {
+    const location = useLocation();
+    console.log(location);
     const navigate = useNavigate();
     const [isHover, setIsHover] = useState(false);
     const imgRef = useRef();
+    const dispatch = useDispatch();
 
     const handleHover = (e) => {
         setIsHover(true);
+        imgRef.current.classList?.remove("animate-scale-down-image");
         imgRef.current.classList?.add("animate-scale-up-image");
     };
+    ///// handle
     const handleHoverLeave = (e) => {
         setIsHover(false);
         imgRef.current.classList?.remove("animate-scale-up-image");
+        imgRef.current.classList?.add("animate-scale-down-image");
     };
+    // const handlePlayMusic = () => {
+    //     dispatch(actions.setCurSongId(data?.encodeId));
+
+    //     dispatch(actions.play(true));
+    //     dispatch(actions.playAlbum(true));
+    // };
+
     return (
         <div
             onClick={() => {
-                navigate(link?.split(".")[0]);
+                navigate(link?.split(".")[0], { state: { playAlbum: false } });
             }}
             className="flex flex-col gap-3 flex-auto w-1/4 text-sm cursor-pointer "
         >
             <div
                 onMouseEnter={handleHover}
                 onMouseLeave={handleHoverLeave}
-                className="w-full relative"
+                className="w-full relative overflow-hidden rounded-lg"
             >
                 {isHover && (
-                    <div className=" absolute top-0 bottom-0 left-0 right-0 hover:bg-overlay-30 rounded-md"></div>
+                    <div className=" absolute top-0 bottom-0 left-0 z-40 right-0 hover:bg-overlay-30 rounded-lg text-white flex items-center justify-around">
+                        <span>
+                            <AiOutlineHeart size={17} />
+                        </span>
+                        <span>
+                            <BsFillPlayFill
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate(link?.split(".")[0], {
+                                        state: { playAlbum: true },
+                                    });
+                                }}
+                                size={30}
+                                className="border pl-[2px] rounded-full"
+                            />
+                        </span>
+                        <span>
+                            <BsThreeDots size={17} />
+                        </span>
+                    </div>
                 )}
                 <img
                     ref={imgRef}
@@ -58,7 +95,7 @@ const SectionItem = ({
                 ) : (
                     <span className="mt-auto text-sm text-secondary">
                         {sortDescription?.length >= 20
-                            ? `${sortDescription?.slice(0, 20)}... 1`
+                            ? `${sortDescription?.slice(0, 20)}...`
                             : sortDescription}
                     </span>
                 )}

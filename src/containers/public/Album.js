@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
@@ -11,6 +11,8 @@ import icons from "../../utils/icon";
 const { BsFillPlayFill } = icons;
 
 const Album = () => {
+    const location = useLocation();
+    console.log(location);
     const { pid } = useParams();
     const { isPlaying } = useSelector((state) => state.music);
     const [playlistData, setPlaylistData] = useState({});
@@ -31,6 +33,21 @@ const Album = () => {
         };
         fetchDetailPlaylist();
     }, [pid]);
+
+    useEffect(() => {
+        console.log(location?.state?.playAlbum);
+        if (location?.state?.playAlbum) {
+            const randomSong = Math.round(
+                Math.random() * playlistData?.song?.items.length - 1
+            );
+            dispatch(
+                actions.setCurSongId(
+                    playlistData?.song?.items[randomSong]?.encodeId
+                )
+            );
+            dispatch(actions.play(true));
+        }
+    }, [pid, playlistData]);
 
     return (
         <div className="flex relative lg:flex-row flex-col gap-8 w-full animate-scale-up-center">
