@@ -2,6 +2,7 @@ import { memo, useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import { useSelector } from "react-redux";
+import { Songs } from "./";
 //
 import bgChart from "../assets/bg-chart.jpg";
 const ChartSection = () => {
@@ -36,11 +37,6 @@ const ChartSection = () => {
         const labels = chart?.times
             ?.filter((item) => +item.hour % 2 === 0)
             ?.map((item) => item.hour);
-        console.log(
-            chart?.times
-                ?.filter((item) => +item.hour % 2 === 0)
-                ?.map((item) => item.hour)
-        );
         const datasets = [];
         if (chart?.items) {
             for (let i = 0; i < 3; i++) {
@@ -77,7 +73,21 @@ const ChartSection = () => {
                     #zingchart
                 </h3>
                 <div className="flex flex-col-reverse xl:flex-row gap-4">
-                    <div className="xl:flex-4 border border-white">rank</div>
+                    <div className="xl:flex-4 border border-white flex flex-col">
+                        {rank &&
+                            rank
+                                ?.filter((i, index) => index < 3)
+                                ?.map((item, index) => (
+                                    <Songs
+                                        order={index + 1}
+                                        percent={Math.round(
+                                            item.score / chart?.totalScore
+                                        )}
+                                        data={item}
+                                        key={item.encodeId}
+                                    />
+                                ))}
+                    </div>
 
                     <div className="xl:flex-6 h-full">
                         {data && <Line data={data} options={options} />}

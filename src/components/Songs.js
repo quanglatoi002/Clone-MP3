@@ -3,10 +3,9 @@ import moment from "moment";
 import "moment/locale/vi";
 import { useDispatch } from "react-redux";
 ///
-import SongItem from "./SongItem";
 import * as actions from "../store/actions";
 
-const Songs = ({ data }) => {
+const Songs = ({ data, order, percent }) => {
     const dispatch = useDispatch();
     return (
         <div
@@ -14,8 +13,9 @@ const Songs = ({ data }) => {
                 dispatch(actions.setCurSongId(data.encodeId));
                 dispatch(actions.play(true));
             }}
-            className="flex flex-auto p-[10px] w-[45%] lg:w-[30%] gap-[10px] hover:bg-main-100 cursor-pointer"
+            className="flex flex-auto p-[10px] w-full gap-[10px] hover:bg-main-100 cursor-pointer"
         >
+            {order && <span>1</span>}
             <img
                 src={data.thumbnail}
                 alt="thumbnail"
@@ -30,10 +30,13 @@ const Songs = ({ data }) => {
                 <span className="text-xs text-secondary hover:text-hover_secondary">
                     {data.artistsNames}
                 </span>
-                <span className=" text-xs text-secondary">
-                    {moment(data.releaseDate * 1000).fromNow()}
-                </span>
+                {data.releaseDate && (
+                    <span className=" text-xs text-secondary">
+                        {moment(data.releaseDate * 1000).fromNow()}
+                    </span>
+                )}
             </div>
+            {percent && <span>68%</span>}
         </div>
     );
 };
