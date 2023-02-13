@@ -11,7 +11,7 @@ const ChartSection = () => {
     const options = {
         responsive: true,
         pointRadius: 0,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
             y: {
                 ticks: { display: false },
@@ -34,7 +34,6 @@ const ChartSection = () => {
         },
     };
     useEffect(() => {
-        console.log(typeof rank, typeof chart);
         const labels = chart?.times
             ?.filter((item) => +item.hour % 2 === 0)
             ?.map((item) => item.hour);
@@ -62,27 +61,28 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 px-[59px] relative h-[500px] lg:max-h-[350px]">
+        <div className="mt-12 px-[59px] relative min-h-[550px] lg:min-h-[350px]">
             <img
                 src={bgChart}
                 alt="bg-chart"
-                className="w-full h-[500px] lg:max-h-[350px] object-cover rounded-md"
+                className="w-full min-h-[550px] lg:min-h-[350px] object-cover rounded-md"
             />
             <div className="absolute z-10 top-0 left-[59px] right-[59px] bottom-0 bg-[rgba(77,34,104,0.9)] "></div>
-            <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5">
+            <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5 gap-8">
                 <h3 className="text-2xl text-white font-bold mb-5">
                     #zingchart
                 </h3>
                 <div className="flex flex-col-reverse xl:flex-row gap-4">
-                    <div className="xl:flex-4 border border-white flex flex-col">
-                        {rank &&
+                    <div className="xl:flex-4 flex flex-col gap-4">
+                        {rank.items &&
                             rank.items
                                 ?.filter((i, index) => index < 3)
                                 ?.map((item, index) => (
                                     <Songs
                                         order={index + 1}
                                         percent={Math.round(
-                                            item.score / chart?.totalScore
+                                            (+item.score * 100) /
+                                                +chart?.totalScore
                                         )}
                                         data={item}
                                         key={item.encodeId}

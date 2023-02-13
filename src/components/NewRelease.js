@@ -45,12 +45,12 @@ const NewRelease = () => {
                     QUỐC TẾ
                 </button>
             </div>
-            <div className="flex flex-wrap w-full ">
-                <div className="w-[45%] lg:w-[30%]">
-                    {songs?.map((item) => (
+            <div className="w-full flex flex-wrap">
+                {songs?.map((item) => (
+                    <div className="w-[45%] lg:w-[30%]">
                         <Songs key={item.encodeId} data={item} />
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

@@ -13,6 +13,7 @@ module.exports = {
                 "main-400": "#C0D8D8",
                 "main-500": "#0E8080",
                 "overlay-30": "rgba(0,0,0,0.3)",
+                "alpha-bg": "hsla(0,0%,100%,0.03)",
             },
             colors: {
                 hover_secondary: "#0f7070",
@@ -23,6 +24,7 @@ module.exports = {
                 "main-300": "#CED9D9",
                 "main-400": "#C0D8D8",
                 "main-500": "#0E8080",
+                "alpha-bg": "hsla(0,0%,100%,0.03)",
             },
             fontFamily: {
                 poppins: ["Poppins", "sans-serif"],

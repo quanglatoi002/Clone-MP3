@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import moment from "moment";
 import "moment/locale/vi";
 import { useDispatch } from "react-redux";
@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import * as actions from "../store/actions";
 
 const Songs = ({ data, order, percent }) => {
+    const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();
     return (
         <div
@@ -13,30 +14,61 @@ const Songs = ({ data, order, percent }) => {
                 dispatch(actions.setCurSongId(data.encodeId));
                 dispatch(actions.play(true));
             }}
-            className="flex flex-auto p-[10px] w-full gap-[10px] hover:bg-main-100 cursor-pointer"
+            //hover:bg-[#704385]
+            className={`flex flex-auto p-[10px] w-full gap-[10px]  items-center justify-between cursor-pointer ${
+                order
+                    ? "text-white border border-alpha-bg bg-alpha-bg rounded hover:bg-[#704385]"
+                    : "text-black hover:bg-main-100 "
+            }`}
         >
-            {order && <span>1</span>}
-            <img
-                src={data.thumbnail}
-                alt="thumbnail"
-                className="w-[60px] h-[60px] object-cover rounded-md"
-            />
-            <div className="flex flex-col gap-1 whitespace-nowrap">
-                <span className="font-medium text-[14px] leading-[18.2px] text-primary ">
-                    {data.title.length > 30
-                        ? `${data.title.slice(0, 30)}...`
-                        : data.title}
-                </span>
-                <span className="text-xs text-secondary hover:text-hover_secondary">
-                    {data.artistsNames}
-                </span>
-                {data.releaseDate && (
-                    <span className=" text-xs text-secondary">
-                        {moment(data.releaseDate * 1000).fromNow()}
+            <div className="flex items-center gap-4">
+                {order && (
+                    <span
+                        className={`${order} drop-shadow-md text-[32px] text-white `}
+                    >
+                        {order}
                     </span>
                 )}
+                <img
+                    src={data.thumbnail}
+                    alt="thumbnail"
+                    className="w-[60px] h-[60px] object-cover rounded-md"
+                />
+                <div
+                    className={`flex flex-col gap-1 whitespace-nowrap ${
+                        order ? "align-center" : "justify-start items-start"
+                    }`}
+                >
+                    <span
+                        className={`font-medium text-[14px] leading-[18.2px]  ${
+                            order ? "text-white" : "text-primary"
+                        }`}
+                    >
+                        {data.title.length > 25
+                            ? `${data.title.slice(0, 25)}...`
+                            : data.title}
+                    </span>
+                    <span
+                        className={`text-xs hover:text-hover_secondary ${
+                            order ? "text-[#FFFFFF80]" : "text-secondary"
+                        } `}
+                    >
+                        {data.artistsNames}
+                    </span>
+                    {data.releaseDate && (
+                        <span
+                            className={`text-xs ${
+                                order ? "w-full" : "text-secondary"
+                            }`}
+                        >
+                            {isOrder
+                                ? moment(data.releaseDate * 1000).fromNow()
+                                : null}
+                        </span>
+                    )}
+                </div>
             </div>
-            {percent && <span>68%</span>}
+            {percent && <span>{`${percent}%`}</span>}
         </div>
     );
 };
