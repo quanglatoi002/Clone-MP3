@@ -34,6 +34,7 @@ const ChartSection = () => {
         },
     };
     useEffect(() => {
+        console.log(typeof rank, typeof chart);
         const labels = chart?.times
             ?.filter((item) => +item.hour % 2 === 0)
             ?.map((item) => item.hour);
@@ -61,11 +62,11 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 px-[59px] relative max-h-[350px]">
+        <div className="mt-12 px-[59px] relative h-[500px] lg:max-h-[350px]">
             <img
                 src={bgChart}
                 alt="bg-chart"
-                className="w-full max-h-[350px] object-cover rounded-md"
+                className="w-full h-[500px] lg:max-h-[350px] object-cover rounded-md"
             />
             <div className="absolute z-10 top-0 left-[59px] right-[59px] bottom-0 bg-[rgba(77,34,104,0.9)] "></div>
             <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5">
@@ -75,7 +76,7 @@ const ChartSection = () => {
                 <div className="flex flex-col-reverse xl:flex-row gap-4">
                     <div className="xl:flex-4 border border-white flex flex-col">
                         {rank &&
-                            rank
+                            rank.items
                                 ?.filter((i, index) => index < 3)
                                 ?.map((item, index) => (
                                     <Songs

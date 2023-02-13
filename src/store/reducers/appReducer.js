@@ -59,7 +59,7 @@ const appReducer = (state = initialState, action) => {
                 rank: {
                     ...(action.homeData?.find(
                         (item) => item.sectionId === "hZC"
-                    )?.items || []),
+                    ) || []),
                 },
             };
         case actionTypes.LOADING:
