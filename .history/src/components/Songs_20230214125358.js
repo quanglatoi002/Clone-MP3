@@ -6,21 +6,20 @@ import { useDispatch } from "react-redux";
 import * as actions from "../store/actions";
 
 const Songs = ({
-    sid,
+    data,
     order,
     percent,
     thumbnail,
     title,
     artistsNames,
     releaseDate,
-    style,
 }) => {
     const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();
     return (
         <div
             onClick={() => {
-                dispatch(actions.setCurSongId(sid));
+                dispatch(actions.setCurSongId(data.encodeId));
                 dispatch(actions.play(true));
             }}
             //hover:bg-[#704385]

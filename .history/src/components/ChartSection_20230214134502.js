@@ -14,7 +14,7 @@ const ChartSection = () => {
         top: 0,
         left: 0,
     });
-    const [tooltipData, setTooltipData] = useState(null);
+    console.log(tooltip);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -46,8 +46,9 @@ const ChartSection = () => {
                                 ?.filter((item) => +item.hour % 2 === 0)
                                 ?.map((item) => item.counter),
                         });
+                    console.log("test");
                     const tooltipModel = ctx.tooltip;
-                    setTooltipData(
+                    setTooltip(
                         data.find((i) =>
                             i.data.some(
                                 (n) =>
@@ -153,30 +154,7 @@ const ChartSection = () => {
                                 left: tooltip.left,
                                 opacity: tooltip.opacity,
                             }}
-                        >
-                            <Songs
-                                thumbnail={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.thumbnail
-                                }
-                                title={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.title
-                                }
-                                artists={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.artistsNames
-                                }
-                                sid={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.encodeId
-                                }
-                            />
-                        </div>
+                        ></div>
                     </div>
                 </div>
             </div>

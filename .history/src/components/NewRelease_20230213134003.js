@@ -48,15 +48,7 @@ const NewRelease = () => {
             <div className="w-full flex flex-wrap">
                 {songs?.map((item) => (
                     <div className="w-[45%] lg:w-[30%]">
-                        <Songs
-                            key={item.encodeId}
-                            data={item}
-                            sid={item.encodeId}
-                            thumbnail={item.thumbnail}
-                            title={item.title}
-                            artistsNames={item.artistsNames}
-                            releaseDate={item.releaseDate}
-                        />
+                        <Songs key={item.encodeId} data={item} />
                     </div>
                 ))}
             </div>

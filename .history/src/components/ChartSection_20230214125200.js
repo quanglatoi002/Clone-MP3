@@ -14,7 +14,6 @@ const ChartSection = () => {
         top: 0,
         left: 0,
     });
-    const [tooltipData, setTooltipData] = useState(null);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -37,41 +36,41 @@ const ChartSection = () => {
             legend: false,
             tooltip: {
                 enabled: false,
-                external: (ctx) => {
-                    const data = [];
-                    for (let i = 0; i < 3; i++)
-                        data.push({
-                            encodeId: Object.keys(chart?.items)[i],
-                            data: chart?.items[Object.keys(chart?.items)[i]]
-                                ?.filter((item) => +item.hour % 2 === 0)
-                                ?.map((item) => item.counter),
-                        });
-                    const tooltipModel = ctx.tooltip;
-                    setTooltipData(
-                        data.find((i) =>
-                            i.data.some(
-                                (n) =>
-                                    n ===
-                                    +tooltipModel.body[0].lines[0].replace(
-                                        ",",
-                                        ""
-                                    )
-                            )
-                        )?.encodeId
-                    );
-                    if (tooltipModel.opacity === 0) {
-                        if (tooltip.opacity !== 0)
-                            setTooltip((prev) => ({ ...prev, opacity: 0 }));
-                        return;
-                    }
-                    const newTooltipData = {
-                        opacity: 1,
-                        left: tooltipModel.caretX,
-                        top: tooltipModel.caretY,
-                    };
-                    if (!_.isEqual(tooltip, newTooltipData))
-                        setTooltip(newTooltipData);
-                },
+                // external: (ctx) => {
+                //     const data = [];
+                //     for (let i = 0; i < 3; i++)
+                //         data.push({
+                //             encodeId: Object.keys(chart?.items)[i],
+                //             data: chart?.items[Object.keys(chart?.items)[i]]
+                //                 ?.filter((item) => +item.hour % 2 === 0)
+                //                 ?.map((item) => item.counter),
+                //         });
+                //     const tooltipModel = ctx.tooltip;
+                //     setTooltip(
+                //         data.find((i) =>
+                //             i.data.some(
+                //                 (n) =>
+                //                     n ===
+                //                     +tooltipModel.body[0].lines[0].replace(
+                //                         ",",
+                //                         ""
+                //                     )
+                //             )
+                //         )?.encodeId
+                //     );
+                //     if (tooltipModel.opacity === 0) {
+                //         if (tooltip.opacity !== 0)
+                //             setTooltip((prev) => ({ ...prev, opacity: 0 }));
+                //         return;
+                //     }
+                //     const newTooltipData = {
+                //         opacity: 1,
+                //         left: tooltipModel.caretX,
+                //         top: tooltipModel.caretY,
+                //     };
+                //     if (!_.isEqual(tooltip, newTooltipData))
+                //         setTooltip(newTooltipData);
+                // },
             },
         },
         hover: {
@@ -126,11 +125,7 @@ const ChartSection = () => {
                                 ?.filter((i, index) => index < 3)
                                 ?.map((item, index) => (
                                     <Songs
-                                        sid={item.encodeId}
                                         thumbnail={item.thumbnail}
-                                        title={item.title}
-                                        artistsNames={item.artistsNames}
-                                        releaseDate={item.releaseDate}
                                         order={index + 1}
                                         percent={Math.round(
                                             (+item.score * 100) /
@@ -153,30 +148,7 @@ const ChartSection = () => {
                                 left: tooltip.left,
                                 opacity: tooltip.opacity,
                             }}
-                        >
-                            <Songs
-                                thumbnail={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.thumbnail
-                                }
-                                title={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.title
-                                }
-                                artists={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.artistsNames
-                                }
-                                sid={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.encodeId
-                                }
-                            />
-                        </div>
+                        ></div>
                     </div>
                 </div>
             </div>

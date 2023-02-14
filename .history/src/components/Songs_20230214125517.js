@@ -7,13 +7,13 @@ import * as actions from "../store/actions";
 
 const Songs = ({
     sid,
+    data,
     order,
     percent,
     thumbnail,
     title,
     artistsNames,
     releaseDate,
-    style,
 }) => {
     const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();

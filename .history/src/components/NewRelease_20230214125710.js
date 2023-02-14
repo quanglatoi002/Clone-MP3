@@ -51,11 +51,9 @@ const NewRelease = () => {
                         <Songs
                             key={item.encodeId}
                             data={item}
-                            sid={item.encodeId}
                             thumbnail={item.thumbnail}
-                            title={item.title}
-                            artistsNames={item.artistsNames}
-                            releaseDate={item.releaseDate}
+                            title = {item.title}
+                            
                         />
                     </div>
                 ))}

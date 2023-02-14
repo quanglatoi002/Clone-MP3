@@ -2,7 +2,6 @@ import { memo, useState, useEffect, useRef } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import { useSelector } from "react-redux";
-import _ from "lodash";
 import { Songs } from "./";
 //
 import bgChart from "../assets/bg-chart.jpg";
@@ -14,7 +13,6 @@ const ChartSection = () => {
         top: 0,
         left: 0,
     });
-    const [tooltipData, setTooltipData] = useState(null);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -35,51 +33,12 @@ const ChartSection = () => {
         },
         plugins: {
             legend: false,
-            tooltip: {
-                enabled: false,
-                external: (ctx) => {
-                    const data = [];
-                    for (let i = 0; i < 3; i++)
-                        data.push({
-                            encodeId: Object.keys(chart?.items)[i],
-                            data: chart?.items[Object.keys(chart?.items)[i]]
-                                ?.filter((item) => +item.hour % 2 === 0)
-                                ?.map((item) => item.counter),
-                        });
-                    const tooltipModel = ctx.tooltip;
-                    setTooltipData(
-                        data.find((i) =>
-                            i.data.some(
-                                (n) =>
-                                    n ===
-                                    +tooltipModel.body[0].lines[0].replace(
-                                        ",",
-                                        ""
-                                    )
-                            )
-                        )?.encodeId
-                    );
-                    if (tooltipModel.opacity === 0) {
-                        if (tooltip.opacity !== 0)
-                            setTooltip((prev) => ({ ...prev, opacity: 0 }));
-                        return;
-                    }
-                    const newTooltipData = {
-                        opacity: 1,
-                        left: tooltipModel.caretX,
-                        top: tooltipModel.caretY,
-                    };
-                    if (!_.isEqual(tooltip, newTooltipData))
-                        setTooltip(newTooltipData);
-                },
-            },
         },
         hover: {
             mode: "dataset",
             intersect: false,
         },
     };
-    console.log();
     useEffect(() => {
         const labels = chart?.times
             ?.filter((item) => +item.hour % 2 === 0)
@@ -108,11 +67,11 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 px-[59px] relative min-h-[650px] lg:min-h-[350px]">
+        <div className="mt-12 px-[59px] relative min-h-[550px] lg:min-h-[350px]">
             <img
                 src={bgChart}
                 alt="bg-chart"
-                className="w-full min-h-[650px] lg:min-h-[350px] object-cover rounded-md"
+                className="w-full min-h-[550px] lg:min-h-[350px] object-cover rounded-md"
             />
             <div className="absolute z-10 top-0 left-[59px] right-[59px] bottom-0 bg-[rgba(77,34,104,0.9)] "></div>
             <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5 gap-8">
@@ -126,11 +85,6 @@ const ChartSection = () => {
                                 ?.filter((i, index) => index < 3)
                                 ?.map((item, index) => (
                                     <Songs
-                                        sid={item.encodeId}
-                                        thumbnail={item.thumbnail}
-                                        title={item.title}
-                                        artistsNames={item.artistsNames}
-                                        releaseDate={item.releaseDate}
                                         order={index + 1}
                                         percent={Math.round(
                                             (+item.score * 100) /
@@ -146,37 +100,6 @@ const ChartSection = () => {
                         {data && (
                             <Line ref={chatRef} data={data} options={options} />
                         )}
-                        <div
-                            className="tooltip"
-                            style={{
-                                top: tooltip.top,
-                                left: tooltip.left,
-                                opacity: tooltip.opacity,
-                            }}
-                        >
-                            <Songs
-                                thumbnail={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.thumbnail
-                                }
-                                title={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.title
-                                }
-                                artists={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.artistsNames
-                                }
-                                sid={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.encodeId
-                                }
-                            />
-                        </div>
                     </div>
                 </div>
             </div>

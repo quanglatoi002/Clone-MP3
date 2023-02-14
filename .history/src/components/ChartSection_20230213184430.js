@@ -14,7 +14,6 @@ const ChartSection = () => {
         top: 0,
         left: 0,
     });
-    const [tooltipData, setTooltipData] = useState(null);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -37,37 +36,23 @@ const ChartSection = () => {
             legend: false,
             tooltip: {
                 enabled: false,
-                external: (ctx) => {
-                    const data = [];
-                    for (let i = 0; i < 3; i++)
-                        data.push({
-                            encodeId: Object.keys(chart?.items)[i],
-                            data: chart?.items[Object.keys(chart?.items)[i]]
-                                ?.filter((item) => +item.hour % 2 === 0)
-                                ?.map((item) => item.counter),
-                        });
-                    const tooltipModel = ctx.tooltip;
-                    setTooltipData(
-                        data.find((i) =>
-                            i.data.some(
-                                (n) =>
-                                    n ===
-                                    +tooltipModel.body[0].lines[0].replace(
-                                        ",",
-                                        ""
-                                    )
-                            )
-                        )?.encodeId
-                    );
+                external: (context) => {
+                    const tooltipModel = context.tooltip;
+                    if (!chart || !chart.current) return;
+
                     if (tooltipModel.opacity === 0) {
                         if (tooltip.opacity !== 0)
                             setTooltip((prev) => ({ ...prev, opacity: 0 }));
                         return;
                     }
+                    const position =
+                        context.chart.canvas.getBoundingClientRect();
                     const newTooltipData = {
                         opacity: 1,
-                        left: tooltipModel.caretX,
-                        top: tooltipModel.caretY,
+                        left: position.left + tooltipModel.caretX,
+                        top: position.top + tooltipModel.caretY,
+                        date: tooltipModel.dataPoints[0].label,
+                        value: tooltipModel.dataPoints[0].formattedValue,
                     };
                     if (!_.isEqual(tooltip, newTooltipData))
                         setTooltip(newTooltipData);
@@ -108,7 +93,7 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 px-[59px] relative min-h-[650px] lg:min-h-[350px]">
+        <div className="mt-12 px-[59px] relative min-h-[650px] ">
             <img
                 src={bgChart}
                 alt="bg-chart"
@@ -126,11 +111,6 @@ const ChartSection = () => {
                                 ?.filter((i, index) => index < 3)
                                 ?.map((item, index) => (
                                     <Songs
-                                        sid={item.encodeId}
-                                        thumbnail={item.thumbnail}
-                                        title={item.title}
-                                        artistsNames={item.artistsNames}
-                                        releaseDate={item.releaseDate}
                                         order={index + 1}
                                         percent={Math.round(
                                             (+item.score * 100) /
@@ -146,37 +126,6 @@ const ChartSection = () => {
                         {data && (
                             <Line ref={chatRef} data={data} options={options} />
                         )}
-                        <div
-                            className="tooltip"
-                            style={{
-                                top: tooltip.top,
-                                left: tooltip.left,
-                                opacity: tooltip.opacity,
-                            }}
-                        >
-                            <Songs
-                                thumbnail={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.thumbnail
-                                }
-                                title={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.title
-                                }
-                                artists={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.artistsNames
-                                }
-                                sid={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.encodeId
-                                }
-                            />
-                        </div>
                     </div>
                 </div>
             </div>

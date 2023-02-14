@@ -156,22 +156,22 @@ const ChartSection = () => {
                         >
                             <Songs
                                 thumbnail={
-                                    rank?.items?.find(
+                                    rank?.items.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.thumbnail
                                 }
                                 title={
-                                    rank?.items?.find(
+                                    rank?.items.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.title
                                 }
                                 artists={
-                                    rank?.items?.find(
+                                    rank?.items.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.artistsNames
                                 }
                                 sid={
-                                    rank?.items?.find(
+                                    rank?.items.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.encodeId
                                 }

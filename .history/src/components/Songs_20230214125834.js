@@ -13,7 +13,6 @@ const Songs = ({
     title,
     artistsNames,
     releaseDate,
-    style,
 }) => {
     const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();

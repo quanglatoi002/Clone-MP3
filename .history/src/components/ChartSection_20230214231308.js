@@ -9,12 +9,11 @@ import bgChart from "../assets/bg-chart.jpg";
 const ChartSection = () => {
     const [data, setData] = useState(null);
     const { chart, rank } = useSelector((state) => state.app);
-    const [tooltip, setTooltip] = useState({
+    const [tooltipData, setTooltipData] = useState({
         opacity: 0,
         top: 0,
         left: 0,
     });
-    const [tooltipData, setTooltipData] = useState(null);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -154,27 +153,28 @@ const ChartSection = () => {
                                 opacity: tooltip.opacity,
                             }}
                         >
-                            <Songs
+                            <SongItem
                                 thumbnail={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.thumbnail
                                 }
                                 title={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.title
                                 }
                                 artists={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.artistsNames
                                 }
                                 sid={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.encodeId
                                 }
+                                style="bg-white"
                             />
                         </div>
                     </div>

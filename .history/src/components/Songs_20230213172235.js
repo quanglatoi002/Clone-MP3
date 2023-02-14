@@ -5,22 +5,13 @@ import { useDispatch } from "react-redux";
 ///
 import * as actions from "../store/actions";
 
-const Songs = ({
-    sid,
-    order,
-    percent,
-    thumbnail,
-    title,
-    artistsNames,
-    releaseDate,
-    style,
-}) => {
+const Songs = ({ data, order, percent }) => {
     const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();
     return (
         <div
             onClick={() => {
-                dispatch(actions.setCurSongId(sid));
+                dispatch(actions.setCurSongId(data.encodeId));
                 dispatch(actions.play(true));
             }}
             //hover:bg-[#704385]
@@ -39,7 +30,7 @@ const Songs = ({
                     </span>
                 )}
                 <img
-                    src={thumbnail}
+                    src={data.thumbnail}
                     alt="thumbnail"
                     className="w-[60px] h-[60px] object-cover rounded-md"
                 />
@@ -53,25 +44,25 @@ const Songs = ({
                             order ? "text-white" : "text-primary"
                         }`}
                     >
-                        {title?.length > 25
-                            ? `${title?.slice(0, 25)}...`
-                            : title}
+                        {data.title.length > 25
+                            ? `${data.title.slice(0, 25)}...`
+                            : data.title}
                     </span>
                     <span
                         className={`text-xs hover:text-hover_secondary ${
                             order ? "text-[#FFFFFF80]" : "text-secondary"
                         } `}
                     >
-                        {artistsNames}
+                        {data.artistsNames}
                     </span>
-                    {releaseDate && (
+                    {data.releaseDate && (
                         <span
                             className={`text-xs ${
                                 order ? "w-full" : "text-secondary"
                             }`}
                         >
                             {isOrder
-                                ? moment(releaseDate * 1000).fromNow()
+                                ? moment(data.releaseDate * 1000).fromNow()
                                 : null}
                         </span>
                     )}

@@ -175,6 +175,7 @@ const ChartSection = () => {
                                         (i) => i.encodeId === tooltipData
                                     )?.encodeId
                                 }
+                                style="bg-white"
                             />
                         </div>
                     </div>

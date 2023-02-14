@@ -14,7 +14,6 @@ const ChartSection = () => {
         top: 0,
         left: 0,
     });
-    const [tooltipData, setTooltipData] = useState(null);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -126,11 +125,6 @@ const ChartSection = () => {
                                 ?.filter((i, index) => index < 3)
                                 ?.map((item, index) => (
                                     <Songs
-                                        sid={item.encodeId}
-                                        thumbnail={item.thumbnail}
-                                        title={item.title}
-                                        artistsNames={item.artistsNames}
-                                        releaseDate={item.releaseDate}
                                         order={index + 1}
                                         percent={Math.round(
                                             (+item.score * 100) /
@@ -154,28 +148,7 @@ const ChartSection = () => {
                                 opacity: tooltip.opacity,
                             }}
                         >
-                            <Songs
-                                thumbnail={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.thumbnail
-                                }
-                                title={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.title
-                                }
-                                artists={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.artistsNames
-                                }
-                                sid={
-                                    rank?.items?.find(
-                                        (i) => i.encodeId === tooltipData
-                                    )?.encodeId
-                                }
-                            />
+                            tool
                         </div>
                     </div>
                 </div>
