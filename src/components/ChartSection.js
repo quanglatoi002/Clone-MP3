@@ -43,22 +43,24 @@ const ChartSection = () => {
                         data.push({
                             encodeId: Object.keys(chart?.items)[i],
                             data: chart?.items[Object.keys(chart?.items)[i]]
-                                ?.filter((item) => +item.hour % 2 === 0)
-                                ?.map((item) => item.counter),
+                                ?.filter((item) => +item?.hour % 2 === 0)
+                                ?.map((item) => item?.counter),
                         });
                     const tooltipModel = ctx.tooltip;
                     setTooltipData(
                         data.find((i) =>
-                            i.data.some(
+                            i.data?.some(
                                 (n) =>
                                     n ===
-                                    +tooltipModel.body[0].lines[0].replace(
+                                    +tooltipModel?.body[0]?.lines[0]?.replace(
                                         ",",
                                         ""
                                     )
                             )
                         )?.encodeId
                     );
+                    console.log(tooltipData);
+
                     if (tooltipModel.opacity === 0) {
                         if (tooltip.opacity !== 0)
                             setTooltip((prev) => ({ ...prev, opacity: 0 }));
@@ -71,6 +73,7 @@ const ChartSection = () => {
                     };
                     if (!_.isEqual(tooltip, newTooltipData))
                         setTooltip(newTooltipData);
+                    console.log(newTooltipData);
                 },
             },
         },
@@ -79,7 +82,7 @@ const ChartSection = () => {
             intersect: false,
         },
     };
-    console.log();
+
     useEffect(() => {
         const labels = chart?.times
             ?.filter((item) => +item.hour % 2 === 0)
@@ -108,14 +111,14 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 px-[59px] relative min-h-[650px] lg:min-h-[350px]">
+        <div className="mt-12 px-[59px] relative min-h-[650px] rounded-md lg:min-h-[350px]">
             <img
                 src={bgChart}
                 alt="bg-chart"
                 className="w-full min-h-[650px] lg:min-h-[350px] object-cover rounded-md"
             />
-            <div className="absolute z-10 top-0 left-[59px] right-[59px] bottom-0 bg-[rgba(77,34,104,0.9)] "></div>
-            <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5 gap-8">
+            <div className="absolute z-10 top-0 left-[59px] right-[59px] bottom-0 rounded-md bg-[rgba(77,34,104,0.9)] "></div>
+            <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5 gap-8 rounded-md">
                 <h3 className="text-2xl text-white font-bold mb-5">
                     #zingchart
                 </h3>
@@ -136,8 +139,8 @@ const ChartSection = () => {
                                             (+item.score * 100) /
                                                 +chart?.totalScore
                                         )}
-                                        data={item}
                                         key={item.encodeId}
+                                        style={`text-white border border-alpha-bg bg-alpha-bg rounded hover:bg-[#704385]`}
                                     />
                                 ))}
                     </div>
@@ -151,6 +154,7 @@ const ChartSection = () => {
                             style={{
                                 top: tooltip.top,
                                 left: tooltip.left,
+                                position: "absolute",
                                 opacity: tooltip.opacity,
                             }}
                         >
@@ -175,6 +179,7 @@ const ChartSection = () => {
                                         (i) => i.encodeId === tooltipData
                                     )?.encodeId
                                 }
+                                style={`bg-white`}
                             />
                         </div>
                     </div>

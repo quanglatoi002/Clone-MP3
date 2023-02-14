@@ -25,15 +25,19 @@ const Songs = ({
             }}
             //hover:bg-[#704385]
             className={`flex flex-auto p-[10px] w-full gap-[10px]  items-center justify-between cursor-pointer ${
-                order
-                    ? "text-white border border-alpha-bg bg-alpha-bg rounded hover:bg-[#704385]"
-                    : "text-black hover:bg-main-100 "
+                style || "text-black hover:bg-main-100 "
             }`}
         >
             <div className="flex items-center gap-4">
                 {order && (
                     <span
-                        className={`${order} drop-shadow-md text-[32px] text-white `}
+                        className={`${
+                            order === 1
+                                ? "text-shadow-no1"
+                                : order === 2
+                                ? "text-shadow-no2"
+                                : "text-shadow-no3"
+                        } text-[32px] text-[rgba(77,34,104,0.9)] `}
                     >
                         {order}
                     </span>
@@ -77,7 +81,7 @@ const Songs = ({
                     )}
                 </div>
             </div>
-            {percent && <span>{`${percent}%`}</span>}
+            {percent && <span className="font-bold">{`${percent}%`}</span>}
         </div>
     );
 };

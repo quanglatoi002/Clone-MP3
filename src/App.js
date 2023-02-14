@@ -12,6 +12,7 @@ import {
     Personal,
     Album,
     WeekRank,
+    ZingChart,
 } from "./containers/public";
 import path from "./utils/path";
 
@@ -41,6 +42,7 @@ function App() {
                             path={path.WEEKRANK__TITLE__PID}
                             element={<WeekRank />}
                         />
+                        <Route path={path.ZING_CHART} element={<ZingChart />} />
 
                         <Route path={path.STAR} element={<Home />} />
                     </Route>
