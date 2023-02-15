@@ -14,8 +14,6 @@ const Home = () => {
             <NewRelease />
             <Section data={top100} isTrue={true} />
             <ChartSection />
-            <Section data={topArtist} />
-            <Section data={newMusic} />
             <div className="flex items-center px-[43px] w-full mt-12">
                 {weekChart?.items?.map((item) => (
                     <Link
@@ -31,6 +29,9 @@ const Home = () => {
                     </Link>
                 ))}
             </div>
+            <Section data={topArtist} />
+            <Section data={newMusic} />
+
             <div className="w-full h-[500px]"></div>
         </div>
     );

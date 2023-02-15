@@ -10,7 +10,7 @@ import {
     AiFillHeart,
 } from "react-icons/ai";
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiMoreHorizontal } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
 import { CiRepeat, CiShuffle } from "react-icons/ci";
 import {
@@ -22,6 +22,8 @@ import {
 } from "react-icons/bs";
 import { TbRepeatOnce } from "react-icons/tb";
 import { SlVolumeOff, SlVolume2, SlVolume1 } from "react-icons/sl";
+import { ImBin } from "react-icons/im";
+import { GiAlarmClock } from "react-icons/gi";
 
 const icons = {
     MdOutlineLibraryMusic,
@@ -46,6 +48,9 @@ const icons = {
     SlVolumeOff,
     SlVolume2,
     SlVolume1,
+    ImBin,
+    FiMoreHorizontal,
+    GiAlarmClock,
 };
 
 export default icons;

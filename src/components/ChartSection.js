@@ -3,9 +3,16 @@ import { Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import { useSelector } from "react-redux";
 import _ from "lodash";
-import { Songs } from "./";
+import { Link } from "react-router-dom";
 //
+import icons from "../utils/icon";
+import path from "../utils/path";
+import { Songs } from "./";
 import bgChart from "../assets/bg-chart.jpg";
+
+//
+const { BsFillPlayFill } = icons;
+
 const ChartSection = () => {
     const [data, setData] = useState(null);
     const { chart, rank } = useSelector((state) => state.app);
@@ -73,7 +80,6 @@ const ChartSection = () => {
                     };
                     if (!_.isEqual(tooltip, newTooltipData))
                         setTooltip(newTooltipData);
-                    console.log(newTooltipData);
                 },
             },
         },
@@ -111,17 +117,25 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 px-[59px] relative min-h-[650px] rounded-md lg:min-h-[350px]">
+        <div className="mt-12 px-[59px] relative min-h-[750px] rounded-md lg:min-h-[350px]">
             <img
                 src={bgChart}
                 alt="bg-chart"
-                className="w-full min-h-[650px] lg:min-h-[350px] object-cover rounded-md"
+                className="w-full min-h-[750px] lg:min-h-[350px] object-cover rounded-md"
             />
             <div className="absolute z-10 top-0 left-[59px] right-[59px] bottom-0 rounded-md bg-[rgba(77,34,104,0.9)] "></div>
             <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5 gap-8 rounded-md">
-                <h3 className="text-2xl text-white font-bold mb-5">
-                    #zingchart
-                </h3>
+                <Link
+                    to={path.ZING_CHART}
+                    className="flex items-center gap-2 mb-5"
+                >
+                    <h3 className="text-2xl hover:text-green-800 text-white font-bold">
+                        #zingchart
+                    </h3>
+                    <span className=" text-green-700 p-1 rounded-full bg-white">
+                        <BsFillPlayFill size={20} />
+                    </span>
+                </Link>
                 <div className="flex flex-col-reverse xl:flex-row gap-4">
                     <div className="xl:flex-4 flex flex-col gap-4">
                         {rank.items &&
@@ -143,6 +157,12 @@ const ChartSection = () => {
                                         style={`text-white border border-alpha-bg bg-alpha-bg rounded hover:bg-[#704385]`}
                                     />
                                 ))}
+                        <Link
+                            to={path.ZING_CHART}
+                            className="px-[25px] py-[5px] text-white border rounded-full w-fit m-auto"
+                        >
+                            Xem thêm
+                        </Link>
                     </div>
 
                     <div className="xl:flex-6 h-full">
@@ -180,6 +200,7 @@ const ChartSection = () => {
                                     )?.encodeId
                                 }
                                 style={`bg-white`}
+                                isChart={true}
                             />
                         </div>
                     </div>

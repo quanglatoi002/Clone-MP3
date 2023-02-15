@@ -16,7 +16,6 @@ const SectionItem = ({
     isTrue,
 }) => {
     const location = useLocation();
-    console.log(location);
     const navigate = useNavigate();
     const [isHover, setIsHover] = useState(false);
     const imgRef = useRef();
