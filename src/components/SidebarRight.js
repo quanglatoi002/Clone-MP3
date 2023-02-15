@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 //
 import icons from "../utils/icon";
+import { Songs } from "./";
+import { apiGetDetailPlaylist } from "../apis";
 
 const { FiMoreHorizontal, GiAlarmClock } = icons;
 const SidebarRight = () => {
     const [isRecent, setIsRecent] = useState(false);
+    const [playlist, setPlaylist] = useState();
+    const { curSongData, curAlbumId } = useSelector((state) => state.music);
+    useEffect(() => {
+        const fetchDetailPlaylist = async () => {
+            const response = await apiGetDetailPlaylist(curAlbumId);
+            if (response.data?.err === 0)
+                setPlaylist(response.data?.data?.song?.items);
+        };
+        if (curAlbumId) fetchDetailPlaylist();
+    }, [curAlbumId]);
+    console.log(playlist);
+
     return (
         <div className="flex flex-col w-full">
             <div className="flex text-xs h-[70px] flex-none py-[14px] px-2 justify-between items-center  cursor-pointer">
@@ -35,7 +50,39 @@ const SidebarRight = () => {
                     </span>
                 </div>
             </div>
-            <div>body</div>
+            <div className="w-full flex-col flex px-2">
+                <Songs
+                    thumbnail={curSongData?.thumbnail}
+                    title={curSongData?.title}
+                    artistsNames={curSongData?.artistsNames}
+                    sid={curSongData?.encodeId}
+                    svRight
+                    style={`bg-main-500 text-white`}
+                />
+                <div className="flex flex-col pt-[15px] px-2 pb-[5px] text-black">
+                    <span className="text-sm font-bold">Tiếp theo</span>
+                    <span className="opacity-70 text-xs flex gap-1">
+                        <span>Từ playlist</span>
+                        <span className="font-semibold text-main-500">
+                            {curSongData?.album?.title}
+                        </span>
+                    </span>
+                </div>
+                {playlist && (
+                    <div className="flex flex-col">
+                        {playlist?.map((item) => (
+                            <Songs
+                                key={item?.encodeId}
+                                thumbnail={item?.thumbnail}
+                                title={item?.title}
+                                artistsNames={item?.artistsNames}
+                                sid={item?.encodeId}
+                                svRight
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

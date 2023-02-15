@@ -14,6 +14,7 @@ const Songs = ({
     artistsNames,
     releaseDate,
     style,
+    svRight,
 }) => {
     const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();
@@ -45,7 +46,9 @@ const Songs = ({
                 <img
                     src={thumbnail}
                     alt="thumbnail"
-                    className="w-[60px] h-[60px] object-cover rounded-md"
+                    className={`${
+                        svRight ? "w-[40px] h-[40px]" : "w-[60px] h-[60px]"
+                    } object-cover rounded-md`}
                 />
                 <div
                     className={`flex flex-col gap-1 whitespace-nowrap ${

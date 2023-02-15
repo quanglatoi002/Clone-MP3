@@ -12,13 +12,13 @@ const { BsFillPlayFill } = icons;
 
 const Album = () => {
     const location = useLocation();
-    console.log(location);
     const { pid } = useParams();
     const { isPlaying } = useSelector((state) => state.music);
     const [playlistData, setPlaylistData] = useState({});
     const dispatch = useDispatch();
     //API
     useEffect(() => {
+        dispatch(actions.setCurAlbumId(pid));
         dispatch(actions.loading(true));
         const fetchDetailPlaylist = async () => {
             const response = await apis.apiGetDetailPlaylist(pid);
@@ -35,7 +35,6 @@ const Album = () => {
     }, [pid]);
 
     useEffect(() => {
-        console.log(location?.state?.playAlbum);
         if (location?.state?.playAlbum) {
             const randomSong = Math.round(
                 Math.random() * playlistData?.song?.items.length - 1
