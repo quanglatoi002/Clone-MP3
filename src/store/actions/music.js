@@ -29,9 +29,15 @@ export const setCurSongData = (data) => ({
     type: actionTypes.SET_CUR_SONG_DATA,
     data,
 });
+
 export const setCurAlbumId = (pid) => ({
     type: actionTypes.SET_CUR_ALBUM_ID,
     pid,
+});
+
+export const setRecent = (data) => ({
+    type: actionTypes.SET_RECENT,
+    data,
 });
 
 // export const fetchDetailPlaylist = (pid) => async (dispatch) => {

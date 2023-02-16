@@ -23,6 +23,9 @@ const Songs = ({
             onClick={() => {
                 dispatch(actions.setCurSongId(sid));
                 dispatch(actions.play(true));
+                dispatch(
+                    actions.setRecent({ thumbnail, title, sid, artistsNames })
+                );
             }}
             //hover:bg-[#704385]
             className={`flex flex-auto p-[10px] w-full gap-[10px]  items-center justify-between cursor-pointer ${
@@ -69,7 +72,9 @@ const Songs = ({
                             order ? "text-[#FFFFFF80]" : "text-secondary"
                         } `}
                     >
-                        {artistsNames}
+                        {artistsNames?.length > 25
+                            ? `${artistsNames?.slice(0, 25)}...`
+                            : artistsNames}
                     </span>
                     {releaseDate && (
                         <span

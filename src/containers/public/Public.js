@@ -40,12 +40,12 @@ const Public = () => {
                     <div className="w-full h-[500px]"></div>
                 </div>
                 {isShowRightSidebar && (
-                    <div className="w-[329px] hidden 3xl:flex flex-none border border-green-500 animate-slide-left bg-yellow-900">
+                    <div className="w-[329px] relative hidden 3xl:flex flex-none border h-screen border-green-500 animate-slide-left bg-yellow-900">
                         <SidebarRight />
                     </div>
                 )}
             </div>
-            <div className="flex-none z-50 h-[90px] border border-red-600">
+            <div className="flex-none fixed bottom-0 w-full z-50 h-[90px] border border-red-600">
                 <Player setIsShowLeftSidebar={setIsShowLeftSidebar} />
             </div>
         </div>

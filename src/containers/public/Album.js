@@ -32,7 +32,7 @@ const Album = () => {
             }
         };
         fetchDetailPlaylist();
-    }, [pid]);
+    }, [dispatch, pid]);
 
     useEffect(() => {
         if (location?.state?.playAlbum) {
