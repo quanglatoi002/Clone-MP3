@@ -88,7 +88,7 @@ const ChartSection = () => {
             intersect: false,
         },
     };
-
+    console.log(chart);
     useEffect(() => {
         const labels = chart?.times
             ?.filter((item) => +item.hour % 2 === 0)
