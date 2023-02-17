@@ -40,7 +40,7 @@ const Public = () => {
                     <div className="w-full h-[500px]"></div>
                 </div>
                 {isShowRightSidebar && (
-                    <div className="w-[329px] relative hidden 3xl:flex flex-none border h-screen border-green-500 animate-slide-left bg-yellow-900">
+                    <div className="w-[329px] relative hidden 3xl:flex flex-none bg-main-300 h-screen animate-slide-left ">
                         <SidebarRight />
                     </div>
                 )}

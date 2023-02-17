@@ -45,13 +45,17 @@ const musicReducer = (state = initialState, action) => {
         case actionTypes.SET_RECENT:
             let songs = state.recentSongs;
             if (action.data) {
-                if (songs.length > 20) {
+                if (state.recentSongs?.some((i) => action.data.sid === i.sid)) {
+                    songs = songs.filter((i) => action.data.sid !== i.sid);
+                }
+                if (songs.length > 19) {
                     songs = songs.filter(
                         (i, index, seft) => index !== seft.length - 1
                     );
                 }
+
+                songs = [action.data, ...songs];
             }
-            songs = [action.data, ...songs];
 
             return {
                 ...state,
