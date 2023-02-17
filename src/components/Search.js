@@ -1,24 +1,27 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, createSearchParams } from "react-router-dom";
+
 //
 import icons from "../utils/icon";
-import { apiSearch } from "../apis";
+import * as actions from "../store/actions";
+import path from "../utils/path";
+
 const { FiSearch } = icons;
 
 const Search = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [keyword, setKeyword] = useState("");
-
-    // useEffect(() => {
-    //     window.addEventListener("keyup", handleSearch);
-
-    //     return () => {
-    //         window.removeEventListener("keyup", handleSearch);
-    //     };
-    // }, []);
-
     const handleSearch = async (e) => {
         if (e.keyCode === 13) {
-            const response = await apiSearch(keyword);
-            console.log(response);
+            dispatch(actions.setSearch(keyword));
+            navigate({
+                pathname: `${path.SEARCH}/${path.ALL}`,
+                search: createSearchParams({
+                    q: keyword,
+                }).toString(),
+            });
         }
     };
 

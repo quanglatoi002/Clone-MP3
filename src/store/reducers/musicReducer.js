@@ -8,6 +8,7 @@ const initialState = {
     songs: null,
     curAlbumId: null,
     recentSongs: [],
+    searchData: {},
 };
 
 const musicReducer = (state = initialState, action) => {
@@ -60,6 +61,11 @@ const musicReducer = (state = initialState, action) => {
             return {
                 ...state,
                 recentSongs: songs,
+            };
+        case actionTypes.SEARCH:
+            return {
+                ...state,
+                searchData: action.data || null,
             };
         // ? [action.data, ...state.recentSongs]
         //         : state.recentSongs,
