@@ -27,3 +27,11 @@ export const getArrSlider = (start, end, number) => {
 //vd ----> start = 4 > end = 3
 // for(let i = 0; i <= end; i++)
 //chạy tiết vòng lặp phía trên thì kết quả sẽ là [2,3,1]
+
+export const handleNumber = (number) => {
+    if (number >= Math.pow(10, 6)) {
+        return `${Math.round((number * 10) / Math.pow(10, 6)) / 10}M `;
+    } else {
+        return `${Math.round((number * 10) / Math.pow(10, 3)) / 10}K`;
+    }
+};
