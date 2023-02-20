@@ -67,8 +67,6 @@ const musicReducer = (state = initialState, action) => {
                 ...state,
                 searchData: action.data || null,
             };
-        // ? [action.data, ...state.recentSongs]
-        //         : state.recentSongs,
         default:
             return state;
     }

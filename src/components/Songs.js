@@ -14,7 +14,7 @@ const Songs = ({
     artistsNames,
     releaseDate,
     style,
-    svRight,
+    size,
 }) => {
     const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();
@@ -50,11 +50,11 @@ const Songs = ({
                     src={thumbnail}
                     alt="thumbnail"
                     className={`${
-                        svRight ? "w-[40px] h-[40px]" : "w-[60px] h-[60px]"
+                        size || "w-[60px] h-[60px]"
                     } object-cover rounded-md`}
                 />
                 <div
-                    className={`flex flex-col gap-1 whitespace-nowrap ${
+                    className={`flex flex-col gap-1 ${
                         order ? "align-center" : "justify-start items-start"
                     }`}
                 >

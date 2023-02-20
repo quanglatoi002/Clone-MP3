@@ -67,7 +67,7 @@ const SidebarRight = () => {
                                     title={item?.title}
                                     artistsNames={item?.artists}
                                     sid={item?.sid}
-                                    svRight
+                                    size={`w-10 h-10`}
                                 />
                             ))}
                         </div>
@@ -80,7 +80,7 @@ const SidebarRight = () => {
                         title={curSongData?.title}
                         artistsNames={curSongData?.artistsNames}
                         sid={curSongData?.encodeId}
-                        svRight
+                        size={`w-10 h-10`}
                         style={`bg-main-500 text-white`}
                     />
                     <div className="flex flex-col pt-[15px] px-2 pb-[5px] text-black">
@@ -106,7 +106,7 @@ const SidebarRight = () => {
                                     title={item?.title}
                                     artistsNames={item?.artistsNames}
                                     sid={item?.encodeId}
-                                    svRight
+                                    size={`w-10 h-10`}
                                 />
                             ))}
                         </div>

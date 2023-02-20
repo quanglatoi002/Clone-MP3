@@ -8,7 +8,7 @@ import * as actions from "../store/actions";
 
 const { BsMusicNoteBeamed } = icons;
 
-const SongItem = ({ songData }) => {
+const SongItem = ({ songData, isHideAlbum }) => {
     const dispatch = useDispatch();
 
     return (
@@ -32,31 +32,35 @@ const SongItem = ({ songData }) => {
                 className="flex items-center gap-[10px] flex-1 mr-10 lg:mr-0
              "
             >
-                <span>
-                    <BsMusicNoteBeamed />
-                </span>
+                {!isHideAlbum && (
+                    <span>
+                        <BsMusicNoteBeamed />
+                    </span>
+                )}
                 <img
                     className="w-[40px] h-[40px] object-cover rounded-md"
                     src={songData?.thumbnail}
                     alt="thumb"
                 />
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <span className="text-sm text-primary font-medium whitespace-nowrap">
                         {songData?.title?.length > 20
                             ? `${songData?.title?.slice(0, 20)}...`
                             : songData?.title}
                     </span>
-                    <span className="text-xs text-secondary hover:text-hover_secondary cursor-pointer">
+                    <span className="text-xs text-secondary hover:text-hover_secondary opacity-70 cursor-pointer">
                         {songData?.artistsNames}
                     </span>
                 </div>
             </div>
-            <div className="flex-1 flex items-center">
-                {songData?.album?.title.length > 30
-                    ? `${songData?.album?.title.slice(0, 30)}...`
-                    : songData?.album?.title}
-            </div>
-            <div className="flex justify-end">
+            {!isHideAlbum && (
+                <div className="flex-1 flex items-center">
+                    {songData?.album?.title.length > 30
+                        ? `${songData?.album?.title.slice(0, 30)}...`
+                        : songData?.album?.title}
+                </div>
+            )}
+            <div className="flex justify-end opacity-70 text-xs">
                 {moment.utc(songData?.duration * 1000).format("mm:ss")}
             </div>
         </div>

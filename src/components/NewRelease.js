@@ -54,6 +54,7 @@ const NewRelease = () => {
                             title={item.title}
                             artistsNames={item.artistsNames}
                             releaseDate={item.releaseDate}
+                            size={`w-10 h-10`}
                         />
                     </div>
                 ))}
