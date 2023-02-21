@@ -27,9 +27,10 @@ const Search = () => {
                     </span>
                 </div>
             </div>
-            <div className="w-full overflow-y-auto">
+            <div className="w-full ">
                 <Outlet />
             </div>
+            <div className="w-full h-[120px]"></div>
         </div>
     );
 };

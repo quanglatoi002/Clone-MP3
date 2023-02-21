@@ -14,3 +14,4 @@ export { default as Loading } from "./Loading";
 export { default as Songs } from "./Songs";
 export { default as NewRelease } from "./NewRelease";
 export { default as ChartSection } from "./ChartSection";
+export { default as Artist } from "./Artist";

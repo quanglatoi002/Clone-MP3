@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 //
 import { handleNumber } from "../../utils/fn";
-import { Songs, SongItem } from "../../components";
+import { Songs, SongItem, SectionItem, Artist } from "../../components";
 const SearchAll = () => {
     const { searchData } = useSelector((state) => state.music);
 
@@ -73,6 +73,38 @@ const SearchAll = () => {
                             <SongItem isHideAlbum songData={item} />
                         </div>
                     ))}
+                </div>
+            </div>
+            <div className="flex flex-col w-full">
+                <h3 className="text-lg font-bold mb-5">Playlist/Album</h3>
+                <div className="flex items-start justify-between gap-[28px]">
+                    {searchData?.playlists
+                        ?.filter((i, index) => index <= 4)
+                        ?.map((item) => (
+                            <SectionItem
+                                key={item.encodeId}
+                                title={item.title}
+                                artistsNames={item.artistsNames}
+                                sortDescription={item.sortDescription}
+                                thumbnailM={item.thumbnailM}
+                                link={item.link}
+                            />
+                        ))}
+                </div>
+            </div>
+            <div className="flex flex-col w-full">
+                <h3 className="text-lg font-bold mb-5">Nghệ sĩ</h3>
+                <div className="flex items-start justify-between gap-[28px]">
+                    {searchData?.artists
+                        ?.filter((i, index) => index <= 4)
+                        ?.map((item) => (
+                            <Artist
+                                key={item.id}
+                                title={item.name}
+                                image={item.thumbnailM}
+                                follower={item.totalFollow}
+                            />
+                        ))}
                 </div>
             </div>
         </div>
