@@ -7,7 +7,7 @@ import icons from "../utils/icon";
 import * as actions from "../store/actions";
 import path from "../utils/path";
 
-const { FiSearch } = icons;
+const { FiSearch, GrClose } = icons;
 
 const Search = () => {
     const navigate = useNavigate();
@@ -30,6 +30,7 @@ const Search = () => {
             <span>
                 <FiSearch size={24} />
             </span>
+
             <input
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
@@ -39,6 +40,14 @@ const Search = () => {
                 type="text"
                 placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
             />
+            {keyword && (
+                <span
+                    onClick={() => setKeyword("")}
+                    className="cursor-pointer opacity-50"
+                >
+                    <GrClose size={14} />
+                </span>
+            )}
         </div>
     );
 };

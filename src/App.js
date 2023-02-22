@@ -16,6 +16,8 @@ import {
     SearchSongs,
     Search,
     SearchAll,
+    Singer,
+    SearchPlaylist,
 } from "./containers/public";
 import path from "./utils/path";
 
@@ -46,9 +48,14 @@ function App() {
                             element={<WeekRank />}
                         />
                         <Route path={path.ZING_CHART} element={<ZingChart />} />
+                        <Route path={path.HOME__SINGER} element={<Singer />} />
                         <Route path={path.SEARCH} element={<Search />}>
                             <Route path={path.ALL} element={<SearchAll />} />
                             <Route path={path.SONG} element={<SearchSongs />} />
+                            <Route
+                                path={path.PLAYLIST_SEARCH}
+                                element={<SearchPlaylist />}
+                            />
                         </Route>
 
                         <Route path={path.STAR} element={<Home />} />

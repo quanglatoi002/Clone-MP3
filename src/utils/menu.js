@@ -23,3 +23,18 @@ export const sidebarMenu = [
         icons: tSVG,
     },
 ];
+
+export const searchMenu = [
+    {
+        path: "tat-ca",
+        text: "Tất cả",
+    },
+    {
+        path: "bai-hat",
+        text: "Bài hát",
+    },
+    {
+        path: "playlist",
+        text: "PLAYLIST/ALBUM",
+    },
+];

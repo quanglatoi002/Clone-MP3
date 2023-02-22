@@ -60,3 +60,18 @@ export const apiSearch = (keyword) =>
             reject(error);
         }
     });
+
+export const apiGetArtist = (link) =>
+    new Promise(async (resolve, reject) => {
+        console.log(link);
+        try {
+            const response = await axios({
+                method: "get",
+                url: "/",
+                params: { link },
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
