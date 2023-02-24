@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 //
 import { searchMenu } from "../../utils/menu";
@@ -10,8 +9,8 @@ const activeStyle =
 const notActiveStyle = "px-4 hover:text-main-500 font-semibold cursor";
 
 const Search = () => {
-    const { keyWork } = useSelector((state) => state.music);
-    console.log(keyWork);
+    const { keyword } = useSelector((state) => state.music);
+    console.log(keyword);
     return (
         <div className="w-full px-[29px]">
             <div className="flex mb-7 items-center text-sm border-b border-gray-400 xl:pl-[60px]">
@@ -21,7 +20,8 @@ const Search = () => {
                 <div className="flex items-center cursor-pointer uppercase ">
                     {searchMenu?.map((item) => (
                         <NavLink
-                            to={`${item.path}?q=${keyWork.replace("", "+")}`}
+                            to={item.path}
+                            // to={`${item.path}?q=${keywork?.replace(' ', '+')}`}
                             key={item.path}
                             className={({ isActive }) =>
                                 isActive ? activeStyle : notActiveStyle

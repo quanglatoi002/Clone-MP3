@@ -75,3 +75,22 @@ export const apiGetArtist = (link) =>
             reject(error);
         }
     });
+
+export const apiGetArtistSongs = (singerId) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios({
+                method: "get",
+                url: "/artistsong",
+                params: {
+                    id: singerId,
+                    page: 1,
+                    count: 20,
+                },
+            });
+            console.log(response);
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });

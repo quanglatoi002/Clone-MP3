@@ -8,9 +8,9 @@ import * as actions from "../store/actions";
 
 const { BsMusicNoteBeamed } = icons;
 
-const SongItem = ({ songData, isHideAlbum }) => {
+const SongItem = ({ songData, isHideAlbum, isListSongs }) => {
     const dispatch = useDispatch();
-
+    console.log(isListSongs);
     return (
         <div
             onClick={() => {
@@ -26,13 +26,13 @@ const SongItem = ({ songData, isHideAlbum }) => {
                     })
                 );
             }}
-            className="flex justify-between border-t border-solid border-gray-400 p-[10px] hover:bg-[#DCE5E5] cursor-pointer"
+            className="flex justify-between border-t border-solid border-gray-400 p-[10px] hover:bg-[#DCE5E5] hover:rounded-[4px] hover:border-0 z-10 cursor-pointer"
         >
             <div
                 className="flex items-center gap-[10px] flex-1 mr-10 lg:mr-0
              "
             >
-                {!isHideAlbum && (
+                {!isListSongs && !isHideAlbum && (
                     <span>
                         <BsMusicNoteBeamed />
                     </span>

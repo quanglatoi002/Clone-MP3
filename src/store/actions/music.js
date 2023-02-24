@@ -44,6 +44,8 @@ export const setRecent = (data) => ({
 export const setSearch = (keyword) => async (dispatch) => {
     try {
         const response = await apis.apiSearch(keyword);
+        console.log(keyword);
+        console.log(response);
         if (response.data.err === 0) {
             dispatch({
                 type: actionTypes.SEARCH,
@@ -54,12 +56,39 @@ export const setSearch = (keyword) => async (dispatch) => {
             dispatch({
                 type: actionTypes.SEARCH,
                 data: null,
+                keyword: null,
             });
         }
     } catch (err) {
         dispatch({
             type: actionTypes.SEARCH,
             data: null,
+            keyword: null,
+        });
+    }
+};
+
+export const getSearchSongs = (singerId) => async (dispatch) => {
+    try {
+        console.log(singerId);
+
+        const response = await apis.apiGetArtistSongs(singerId);
+        console.log(response);
+        // if (response.data.err === 0) {
+        //     dispatch({
+        //         type: actionTypes.PLAYLIST,
+        //         songs: response.data.data.song.items,
+        //     });
+        // } else {
+        //     dispatch({
+        //         type: actionTypes.PLAYLIST,
+        //         songs: null,
+        //     });
+        // }
+    } catch (err) {
+        dispatch({
+            type: actionTypes.PLAYLIST,
+            songs: null,
         });
     }
 };
