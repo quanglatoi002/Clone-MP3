@@ -32,7 +32,7 @@ const Public = () => {
 
                     <div
                         className="h-[70px] flex
-         items-center mb-5 px-[29px] lg:px-[59px] "
+         items-center fixed top-0 xl:left-[240px] xl:right-[329px] left-[97px] right-0 z-50 lg:px-[59px] "
                     >
                         <Header />
                     </div>

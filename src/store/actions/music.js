@@ -73,18 +73,18 @@ export const getSearchSongs = (singerId) => async (dispatch) => {
         console.log(singerId);
 
         const response = await apis.apiGetArtistSongs(singerId);
-        console.log(response);
-        // if (response.data.err === 0) {
-        //     dispatch({
-        //         type: actionTypes.PLAYLIST,
-        //         songs: response.data.data.song.items,
-        //     });
-        // } else {
-        //     dispatch({
-        //         type: actionTypes.PLAYLIST,
-        //         songs: null,
-        //     });
-        // }
+        // console.log(response);
+        if (response.data.err === 0) {
+            dispatch({
+                type: actionTypes.PLAYLIST,
+                songs: response.data.data.items,
+            });
+        } else {
+            dispatch({
+                type: actionTypes.PLAYLIST,
+                songs: null,
+            });
+        }
     } catch (err) {
         dispatch({
             type: actionTypes.PLAYLIST,

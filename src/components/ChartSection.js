@@ -117,13 +117,13 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 px-[59px] relative min-h-[750px] rounded-md lg:min-h-[350px]">
+        <div className="mt-12 xl:px-[59px] px-[29px] relative min-h-[750px] rounded-md lg:min-h-[350px]">
             <img
                 src={bgChart}
                 alt="bg-chart"
                 className="w-full min-h-[750px] lg:min-h-[350px] object-cover rounded-md"
             />
-            <div className="absolute z-10 top-0 left-[59px] right-[59px] bottom-0 rounded-md bg-[rgba(77,34,104,0.9)] "></div>
+            <div className="absolute z-10 top-0 xl:left-[59px] xl:right-[59px] left-[29px] right-[29px] bottom-0 rounded-md bg-[rgba(77,34,104,0.9)] "></div>
             <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5 gap-8 rounded-md">
                 <Link
                     to={path.ZING_CHART}

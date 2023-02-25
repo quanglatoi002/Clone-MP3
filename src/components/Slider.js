@@ -86,7 +86,7 @@ const Slider = () => {
     return (
         <div
             className="w-full overflow-hidden
-        px-[59px]"
+        xl:px-[59px] px-[29px]"
         >
             <div className="flex w-full gap-4 pt-8">
                 {banner.items?.map((item, index) => (

@@ -4,16 +4,15 @@ import { SectionItem } from "./";
 const Section = ({ data, isTrue }) => {
     const [isHover, setIsHover] = useState(false);
     // console.log(data);
-
     return (
-        <div className="mt-12 px-[59px] flex flex-col gap-5">
+        <div className="mt-12 xl:px-[43px] px-[13] flex flex-col gap-1">
             <div className="flex items-center justify-between">
-                <h3 className=" text-5 font-bold">{data?.title}</h3>
+                <h3 className=" text-5 pl-4 font-bold">{data?.title}</h3>
                 <span className=" text-xs font-medium text-secondary">
                     Tất cả
                 </span>
             </div>
-            <div className="flex items-start justify-between gap-[28px]">
+            <div className="flex items-start justify-between">
                 {data &&
                     data?.items?.length > 0 &&
                     data?.items

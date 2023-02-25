@@ -12,6 +12,7 @@ const initialState = {
     weekChart: {},
     chart: {},
     rank: [],
+    singers: null,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -61,6 +62,10 @@ const appReducer = (state = initialState, action) => {
                         (item) => item.sectionId === "hZC"
                     ) || []),
                 },
+                singers:
+                    action.homeData?.find(
+                        (item) => item.sectionType === "artistSpotlight"
+                    )?.items || null,
             };
         case actionTypes.LOADING:
             return {

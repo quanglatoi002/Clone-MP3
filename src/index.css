@@ -39,3 +39,17 @@
             1px -1px 0 #e35050;
     }
 }
+.slick-next:before,
+.slick-prev:before {
+    font-size: 38px !important;
+}
+
+.slick-next {
+    right: -15px !important;
+    top: 30% !important;
+}
+
+.slick-prev {
+    left: -30px !important;
+    top: 30% !important;
+}

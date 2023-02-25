@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 ///
-import { ListSong, SongItem } from "../../components";
+import { ListSong } from "../../components";
 import * as actions from "../../store/actions";
 const SearchSongs = () => {
     const dispatch = useDispatch();

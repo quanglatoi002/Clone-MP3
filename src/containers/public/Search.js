@@ -20,8 +20,8 @@ const Search = () => {
                 <div className="flex items-center cursor-pointer uppercase ">
                     {searchMenu?.map((item) => (
                         <NavLink
-                            to={item.path}
-                            // to={`${item.path}?q=${keywork?.replace(' ', '+')}`}
+                            // to={item.path}
+                            to={`${item.path}?q=${keyword?.replace(" ", "+")}`}
                             key={item.path}
                             className={({ isActive }) =>
                                 isActive ? activeStyle : notActiveStyle

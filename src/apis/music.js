@@ -61,20 +61,20 @@ export const apiSearch = (keyword) =>
         }
     });
 
-export const apiGetArtist = (link) =>
-    new Promise(async (resolve, reject) => {
-        console.log(link);
-        try {
-            const response = await axios({
-                method: "get",
-                url: "/",
-                params: { link },
-            });
-            resolve(response);
-        } catch (error) {
-            reject(error);
-        }
-    });
+// export const apiGetArtist = (link) =>
+//     new Promise(async (resolve, reject) => {
+//         console.log(link);
+//         try {
+//             const response = await axios({
+//                 method: "get",
+//                 url: "/",
+//                 params: { link },
+//             });
+//             resolve(response);
+//         } catch (error) {
+//             reject(error);
+//         }
+//     });
 
 export const apiGetArtistSongs = (singerId) =>
     new Promise(async (resolve, reject) => {
@@ -85,10 +85,26 @@ export const apiGetArtistSongs = (singerId) =>
                 params: {
                     id: singerId,
                     page: 1,
-                    count: 20,
+                    count: 40,
                 },
             });
             console.log(response);
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+export const apiGetArtist = (alias) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios({
+                method: "get",
+                url: "/artist",
+                params: {
+                    name: alias,
+                },
+            });
             resolve(response);
         } catch (error) {
             reject(error);
