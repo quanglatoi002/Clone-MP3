@@ -20,7 +20,7 @@ const Singer = () => {
             <img
                 src={artistData?.data?.data?.cover}
                 alt="background"
-                className=" xl:mt-[70px]"
+                className="h-[410px] object-cover"
             />
         </div>
     );
