@@ -9,6 +9,7 @@ import {
     AiOutlineHeart,
     AiFillHeart,
     AiOutlineUserAdd,
+    AiFillStar,
 } from "react-icons/ai";
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
 import { FiSearch, FiMoreHorizontal } from "react-icons/fi";
@@ -54,6 +55,7 @@ const icons = {
     GiAlarmClock,
     AiOutlineUserAdd,
     GrClose,
+    AiFillStar,
 };
 
 export default icons;

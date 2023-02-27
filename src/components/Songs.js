@@ -4,6 +4,9 @@ import "moment/locale/vi";
 import { useDispatch } from "react-redux";
 ///
 import * as actions from "../store/actions";
+import icons from "../utils/icon";
+
+const { AiFillStar } = icons;
 
 const Songs = ({
     sid,
@@ -15,6 +18,7 @@ const Songs = ({
     releaseDate,
     style,
     size,
+    isStarSinger,
 }) => {
     const [isOrder, setIsOrder] = useState(false);
     const dispatch = useDispatch();
@@ -67,15 +71,23 @@ const Songs = ({
                             ? `${title?.slice(0, 25)}...`
                             : title}
                     </span>
-                    <span
-                        className={`text-xs hover:text-hover_secondary ${
-                            order ? "text-[#FFFFFF80]" : "text-secondary"
-                        } `}
-                    >
-                        {artistsNames?.length > 25
-                            ? `${artistsNames?.slice(0, 25)}...`
-                            : artistsNames}
-                    </span>
+                    <div className="flex gap-[2px]">
+                        <span
+                            className={`text-xs hover:text-hover_secondary ${
+                                order ? "text-[#FFFFFF80]" : "text-secondary"
+                            } `}
+                        >
+                            {artistsNames?.length > 25
+                                ? `${artistsNames?.slice(0, 25)}...`
+                                : artistsNames}
+                        </span>
+                        {isStarSinger && (
+                            <span className="opacity-50">
+                                <AiFillStar size={14} />
+                            </span>
+                        )}
+                    </div>
+
                     {releaseDate && (
                         <span
                             className={`text-xs ${

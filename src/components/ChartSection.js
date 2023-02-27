@@ -16,6 +16,7 @@ const { BsFillPlayFill } = icons;
 const ChartSection = () => {
     const [data, setData] = useState(null);
     const { chart, rank } = useSelector((state) => state.app);
+
     const [tooltip, setTooltip] = useState({
         opacity: 0,
         top: 0,

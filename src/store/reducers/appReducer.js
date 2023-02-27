@@ -47,16 +47,15 @@ const appReducer = (state = initialState, action) => {
                         (item) => item.sectionType === "new-release"
                     ) || {}),
                 },
-                weekChart: {
-                    ...(action.homeData?.find(
+                weekChart:
+                    action.homeData?.find(
                         (item) => item.sectionType === "weekChart"
-                    ) || {}),
-                },
-                chart: {
-                    ...(action.homeData?.find(
-                        (item) => item.sectionId === "hZC"
-                    )?.chart || {}),
-                },
+                    ) || {},
+
+                chart:
+                    action.homeData?.find((item) => item.sectionId === "hZC")
+                        ?.chart || {},
+
                 rank: {
                     ...(action.homeData?.find(
                         (item) => item.sectionId === "hZC"
