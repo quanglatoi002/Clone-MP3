@@ -8,7 +8,7 @@ import * as actions from "../store/actions";
 
 const { BsMusicNoteBeamed } = icons;
 
-const SongItem = ({ songData, isHideAlbum, isListSongs }) => {
+const SongItem = ({ songData, isHideAlbum, isListSongs, hideTime }) => {
     const dispatch = useDispatch();
     console.log(isListSongs);
     return (

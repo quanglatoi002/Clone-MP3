@@ -12,7 +12,7 @@ const Section = ({ data, isTrue }) => {
                     Tất cả
                 </span>
             </div>
-            <div className="flex items-start justify-between">
+            <div className="flex">
                 {data &&
                     data?.items?.length > 0 &&
                     data?.items

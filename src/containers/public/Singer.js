@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { AiOutlineUserAdd } from "react-icons/ai";
 //
 import { apiGetArtist } from "../../apis";
 import { handleNumber } from "../../utils/fn";
 import { SearchAll } from "./";
-import { Songs } from "../../components";
+import { Section, Songs, Artist } from "../../components";
 import icons from "../../utils/icon";
 
 const { BsFillPlayFill, AiFillStar } = icons;
@@ -14,6 +14,7 @@ const Singer = () => {
     const { singer } = useParams();
     // console.log(singer);
     const [artistData, setArtistData] = useState(null);
+    const ref = useRef();
     useEffect(() => {
         const fetchArtistData = async () => {
             const res = await apiGetArtist(singer);
@@ -23,10 +24,12 @@ const Singer = () => {
         };
         singer && fetchArtistData();
     }, [singer]);
-    console.log(artistData);
+    useEffect(() => {
+        ref.current.scrollIntoView(true);
+    });
     return (
         <div className="flex flex-col w-full">
-            <div className="relative">
+            <div ref={ref} className="relative">
                 <img
                     src={artistData?.cover}
                     alt="background"
@@ -89,29 +92,84 @@ const Singer = () => {
                     </div>
                 )}
 
-                <div className="xl:w-[65%] border border-red-500 flex-auto">
+                <div className="xl:w-[65%] border border-red-500 flex-auto pl-6">
                     <h3 className="mb-5 font-bold text-[20px]">
                         Bài Hát Nổi Bật
                     </h3>
-                    <div className="w-full flex flex-wrap">
+                    <div className="w-full flex flex-wrap gap-4">
                         {artistData?.sections
                             ?.find((item) => item.sectionType === "song")
                             ?.items?.filter((item, index) => index < 6)
                             ?.map((item) => (
                                 <div
                                     key={item.encodeId}
-                                    className="w-[50%] lg:w-[45%] flex-auto "
+                                    className="w-[45%] lg:w-[45%] flex-auto"
                                 >
-                                    <Songs
-                                        sid={item.encodeId}
-                                        thumbnail={item.thumbnail}
-                                        title={item.title}
-                                        artistsNames={item.artistsNames}
-                                        size={`w-10 h-10`}
-                                        isStarSinger
-                                    />
+                                    <div className="w-full border-b border-gray-400 mr-5">
+                                        <Songs
+                                            className="w-full border-b border-green-400"
+                                            sid={item.encodeId}
+                                            thumbnail={item.thumbnail}
+                                            title={item.title}
+                                            artistsNames={item.artistsNames}
+                                            size={`w-10 h-10`}
+                                            isStarSinger
+                                        />
+                                    </div>
                                 </div>
                             ))}
+                    </div>
+                </div>
+            </div>
+            {artistData?.sections
+                ?.filter((item) => item.sectionType === "playlist")
+                ?.map((item, index) => (
+                    <Section key={index} data={item} />
+                ))}
+            <div className="flex flex-col w-full px-[59px] mt-12">
+                <h3 className="text-lg font-bold mb-5">
+                    {
+                        artistData?.sections?.find(
+                            (item) => item.sectionType === "artist"
+                        )?.title
+                    }
+                </h3>
+                <div className="flex gap-[28px]">
+                    {artistData?.sections
+                        ?.find((item) => item.sectionType === "artist")
+                        ?.items?.map((item) => (
+                            <Artist
+                                key={item.id}
+                                title={item.name}
+                                image={item.thumbnailM}
+                                follower={item.totalFollow}
+                                link={item.link}
+                            />
+                        ))}
+                </div>
+            </div>
+            <div className="px-[59px] mt-12">
+                <h3 className="text-lg font-bold mb-5">{`Về ${artistData?.name}`}</h3>
+                <div className="flex gap-8 mt-5">
+                    <img
+                        src={artistData?.cover}
+                        alt="thumbnailM"
+                        className="w-[45%] h-[200px] flex-none object-cover rounded-md"
+                    />
+                    <div className="flex flex-col gap-12 text-sm">
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: artistData?.sortBiography,
+                            }}
+                        ></p>
+                        <div className="flex flex-col gap-2">
+                            <span className="text-[20px] font-bold">
+                                {Number(
+                                    artistData?.follow?.toFixed(1)
+                                ).toLocaleString()}
+                            </span>
+                            <span>Người quan tâm</span>
+                        </div>
                     </div>
                 </div>
             </div>
