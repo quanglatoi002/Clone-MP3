@@ -42,11 +42,10 @@ const appReducer = (state = initialState, action) => {
                     ),
                     title: "Nhạc mới" || {},
                 },
-                newRelease: {
-                    ...(action.homeData?.find(
+                newRelease:
+                    action.homeData?.find(
                         (item) => item.sectionType === "new-release"
-                    ) || {}),
-                },
+                    ) || {},
                 weekChart:
                     action.homeData?.find(
                         (item) => item.sectionType === "weekChart"
@@ -56,11 +55,10 @@ const appReducer = (state = initialState, action) => {
                     action.homeData?.find((item) => item.sectionId === "hZC")
                         ?.chart || {},
 
-                rank: {
-                    ...(action.homeData?.find(
-                        (item) => item.sectionId === "hZC"
-                    ) || []),
-                },
+                rank:
+                    action.homeData?.find((item) => item.sectionId === "hZC")
+                        ?.items || [],
+
                 singers:
                     action.homeData?.find(
                         (item) => item.sectionType === "artistSpotlight"

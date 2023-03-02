@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { Scrollbars } from "react-custom-scrollbars-2";
 import {
     SidebarLeft,
     SidebarRight,
@@ -14,7 +14,14 @@ const Public = () => {
     const { isLoading } = useSelector((state) => state.app);
 
     const [isShowRightSidebar, setIsShowLeftSidebar] = useState(true);
+    const ref = useRef(null);
+    const [scrollTop, setScrollTop] = useState(0);
+    console.log(scrollTop);
     const { singer } = useParams();
+    const handleScroll = () => {
+        if (singer) setScrollTop(ref.current.scrollTop);
+    };
+
     return (
         <div className="flex resize-none flex-col w-full h-screen bg-main-300 ">
             <div className="w-full h-full flex flex-auto">
@@ -30,15 +37,19 @@ const Public = () => {
 
                     <div
                         className={`h-[70px] flex
-                        items-center fixed xl:left-[240px] xl:right-[329px] left-[75px] right-0 z-50 ${
-                            singer ? "bg-transparent" : "bg-[#CED9D9] "
+                        items-center fixed xl:left-[240px] xl:right-[329px] left-[74px] right-0 z-50 ${
+                            !singer ? "bg-transparent" : "bg-[#CED9D9] "
                         }  `}
                     >
                         <Header />
                     </div>
 
-                    {!singer && <div className="w-full h-[70px]"></div>}
-                    <div className="flex-auto w-full">
+                    {/* {!singer && <div className="w-full h-[70px]"></div>} */}
+                    <div
+                        ref={ref}
+                        onScroll={handleScroll}
+                        className="flex-auto w-full"
+                    >
                         <Outlet />
                     </div>
                 </div>

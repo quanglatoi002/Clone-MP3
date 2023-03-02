@@ -16,6 +16,7 @@ const { BsFillPlayFill } = icons;
 const ChartSection = () => {
     const [data, setData] = useState(null);
     const { chart, rank } = useSelector((state) => state.app);
+    console.log(rank);
 
     const [tooltip, setTooltip] = useState({
         opacity: 0,
@@ -139,8 +140,8 @@ const ChartSection = () => {
                 </Link>
                 <div className="flex flex-col-reverse xl:flex-row gap-4">
                     <div className="xl:flex-4 flex flex-col gap-4">
-                        {rank.items &&
-                            rank.items
+                        {rank &&
+                            rank
                                 ?.filter((i, index) => index < 3)
                                 ?.map((item, index) => (
                                     <Songs
@@ -179,30 +180,30 @@ const ChartSection = () => {
                                 opacity: tooltip.opacity,
                             }}
                         >
-                            <Songs
+                            {/* <Songs
                                 thumbnail={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.thumbnail
                                 }
                                 title={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.title
                                 }
                                 artists={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.artistsNames
                                 }
                                 sid={
-                                    rank?.items?.find(
+                                    rank?.find(
                                         (i) => i.encodeId === tooltipData
                                     )?.encodeId
                                 }
                                 style={`bg-white`}
                                 isChart={true}
-                            />
+                            /> */}
                         </div>
                     </div>
                 </div>

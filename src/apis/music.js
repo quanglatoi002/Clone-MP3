@@ -110,3 +110,16 @@ export const apiGetArtist = (alias) =>
             reject(error);
         }
     });
+
+export const apiGetChartHome = (alias) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios({
+                method: "get",
+                url: "/charthome",
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
