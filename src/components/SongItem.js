@@ -1,5 +1,5 @@
 // Note đối số được truyền bởi props thì cần phải dùng Memo để ngăn re-render
-import { memo } from "react";
+import { memo, useState } from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 //
@@ -8,9 +8,9 @@ import * as actions from "../store/actions";
 
 const { BsMusicNoteBeamed } = icons;
 
-const SongItem = ({ songData, isHideAlbum, isListSongs, hideTime }) => {
+const SongItem = ({ songData, isHideAlbum, isListSongs, hideTime, order }) => {
     const dispatch = useDispatch();
-    console.log(isListSongs);
+
     return (
         <div
             onClick={() => {
@@ -32,6 +32,21 @@ const SongItem = ({ songData, isHideAlbum, isListSongs, hideTime }) => {
                 className="flex items-center gap-[10px] flex-1 mr-10 lg:mr-0
              "
             >
+                {order && (
+                    <span
+                        className={`${
+                            order === 1
+                                ? "text-shadow-no1"
+                                : order === 2
+                                ? "text-shadow-no2"
+                                : order === 3
+                                ? "text-shadow-no3"
+                                : "text-shadow-rest"
+                        } xl:text-[32px] text-[26px] text-main-300 flex-none flex items-center justify-center xl:w-[10%] w-[5%]`}
+                    >
+                        {order}
+                    </span>
+                )}
                 {!isListSongs && !isHideAlbum && (
                     <span>
                         <BsMusicNoteBeamed />
@@ -54,7 +69,7 @@ const SongItem = ({ songData, isHideAlbum, isListSongs, hideTime }) => {
                 </div>
             </div>
             {!isHideAlbum && (
-                <div className="flex-1 flex items-center">
+                <div className="flex-1 flex items-center text-sm">
                     {songData?.album?.title.length > 30
                         ? `${songData?.album?.title.slice(0, 30)}...`
                         : songData?.album?.title}

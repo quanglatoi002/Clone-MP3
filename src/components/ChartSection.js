@@ -24,6 +24,7 @@ const ChartSection = () => {
         left: 0,
     });
     const [tooltipData, setTooltipData] = useState(null);
+    console.log(tooltipData);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -68,7 +69,7 @@ const ChartSection = () => {
                             )
                         )?.encodeId
                     );
-                    console.log(tooltipData);
+                    console.log(tooltipModel);
 
                     if (tooltipModel.opacity === 0) {
                         if (tooltip.opacity !== 0)
@@ -180,7 +181,7 @@ const ChartSection = () => {
                                 opacity: tooltip.opacity,
                             }}
                         >
-                            {/* <Songs
+                            <Songs
                                 thumbnail={
                                     rank?.find(
                                         (i) => i.encodeId === tooltipData
@@ -203,7 +204,7 @@ const ChartSection = () => {
                                 }
                                 style={`bg-white`}
                                 isChart={true}
-                            /> */}
+                            />
                         </div>
                     </div>
                 </div>

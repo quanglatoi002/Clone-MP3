@@ -19,7 +19,7 @@ const Public = () => {
     console.log(scrollTop);
     const { singer } = useParams();
     const handleScroll = () => {
-        if (singer) setScrollTop(ref.current.scrollTop);
+        setScrollTop(ref.current.scrollTop);
     };
 
     return (
@@ -51,6 +51,7 @@ const Public = () => {
                         className="flex-auto w-full"
                     >
                         <Outlet />
+                        <div className="h-[120px] w-full"></div>
                     </div>
                 </div>
                 {isShowRightSidebar && (
@@ -59,6 +60,7 @@ const Public = () => {
                     </div>
                 )}
             </div>
+
             <div className="flex-none fixed bottom-0 w-full z-50 h-[90px] border border-red-600">
                 <Player setIsShowLeftSidebar={setIsShowLeftSidebar} />
             </div>
