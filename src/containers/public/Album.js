@@ -52,7 +52,7 @@ const Album = () => {
         <div className="flex relative lg:flex-row flex-col gap-8 w-full animate-scale-up-center">
             <div
                 className="flex-none w-full lg:w-1/5 border
-             border-red-600 flex flex-row lg:flex-col lg:items-center gap-2"
+                 border-red-600 flex flex-row lg:flex-col lg:items-center gap-2"
             >
                 <div className="relative overflow-hidden">
                     <img
@@ -84,7 +84,6 @@ const Album = () => {
                     </h3>
                     <div className="flex text-[12px] leading-[21px] text-secondary">
                         <span className="mr-1">Cập nhật:</span>
-
                         <span>
                             {moment
                                 .unix(playlistData?.contentLastUpdate)
@@ -103,7 +102,7 @@ const Album = () => {
             </div>
             <div
                 className="flex-auto border
-             border-blue-600 mb-10"
+                 border-blue-600 mb-10"
             >
                 <div className="flex gap-1 text-sm mb-[10px]">
                     <span className="text-secondary">Lời tựa</span>

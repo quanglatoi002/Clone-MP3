@@ -145,10 +145,16 @@ const ZingChart = () => {
                     </div>
                     <div className="absolute top-1/3 left-0 right-0 bottom-0 xl:px-[59px] px-[29px]">
                         {data && (
-                            <Line ref={chatRef} data={data} options={options} />
+                            <div className="xl:w-[1100px] xl:h-[500px]">
+                                <Line
+                                    ref={chatRef}
+                                    data={data}
+                                    options={options}
+                                />
+                            </div>
                         )}
                         <div
-                            className="tooltip"
+                            className="tooltip "
                             style={{
                                 top: tooltip.top,
                                 left: tooltip.left,
@@ -184,14 +190,14 @@ const ZingChart = () => {
                     </div>
                 </div>
             </div>
-            <div className="xl:px-[59px] px-[29px] mt-12">
+            <div className="xl:px-[59px] px-[29px] xl:mt-[250px] mt-12">
                 <RankList data={chartData?.RTChart?.items} number={10} />
             </div>
             <div className="relative">
                 <img
                     src={bgChart}
                     alt="bg-chart"
-                    className="w-full object-cover grayscale"
+                    className="w-full object-cover grayscale xl:h-[700px]"
                 />
                 <div className="absolute top-0 left-0 right-0 bottom-0 bg-[rgba(206,217,217,0.9)]"></div>
 

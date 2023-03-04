@@ -43,8 +43,10 @@ const Public = () => {
                     >
                         <Header />
                     </div>
+                    {/* <div className="h-[90px] w-full"></div> */}
 
-                    {/* {!singer && <div className="w-full h-[70px]"></div>} */}
+                    {/* <div className="w-full h-[70px] "></div> */}
+
                     <div
                         ref={ref}
                         onScroll={handleScroll}

@@ -53,7 +53,13 @@ function App() {
                         />
                         <Route
                             path={path.WEEKRANK__TITLE__PID}
-                            element={<WeekRank weekChart={weekChart} />}
+                            element={
+                                <WeekRank
+                                    weekChart={
+                                        weekChart && Object.values(weekChart)
+                                    }
+                                />
+                            }
                         />
                         <Route path={path.ZING_CHART} element={<ZingChart />} />
                         <Route path={path.HOME__SINGER} element={<Singer />} />
