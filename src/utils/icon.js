@@ -2,6 +2,9 @@ import {
     MdOutlineLibraryMusic,
     MdSkipPrevious,
     MdSkipNext,
+    MdArrowBackIosNew,
+    MdNavigateNext,
+    MdOutlineNavigateNext,
 } from "react-icons/md";
 import {
     AiOutlineArrowLeft,
@@ -56,6 +59,9 @@ const icons = {
     AiOutlineUserAdd,
     GrClose,
     AiFillStar,
+    MdArrowBackIosNew,
+    MdNavigateNext,
+    MdOutlineNavigateNext,
 };
 
 export default icons;

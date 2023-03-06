@@ -13,6 +13,7 @@ const initialState = {
     chart: {},
     rank: [],
     singers: null,
+    currentWidth: null,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -68,6 +69,11 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: action.flag,
+            };
+        case actionTypes.CURRENT_WIDTH:
+            return {
+                ...state,
+                currentWidth: action.w,
             };
         default:
             return state;

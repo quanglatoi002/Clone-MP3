@@ -25,6 +25,7 @@ import path from "./utils/path";
 function App() {
     const dispatch = useDispatch();
     const [weekChart, setWeekChart] = useState(null);
+    const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
     useEffect(() => {
         dispatch(actions.getHome());
         const petchChartData = async () => {
@@ -34,6 +35,19 @@ function App() {
         };
         petchChartData();
     }, [dispatch]);
+    const setWidth = (e) => {
+        setCurrentWidth(e.target.innerWidth);
+    };
+    useEffect(() => {
+        window.addEventListener("resize", setWidth);
+        return () => {
+            window.removeEventListener("resize", setWidth);
+        };
+    });
+    useEffect(() => {
+        dispatch(actions.setCurrentWidth(currentWidth));
+    }, [currentWidth, dispatch]);
+    console.log(currentWidth);
     //Note: Những route nào được gọi ở trong path.PUBLIC sẽ được chuyển đến <Outlet> được định nghĩa sẵn ở bên trong Public
     return (
         <>

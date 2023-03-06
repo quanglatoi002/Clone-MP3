@@ -138,6 +138,9 @@ module.exports = {
                 7: "7 7 0%",
             },
         },
+        screens: {
+            1400: "1400",
+        },
     },
     plugins: [require("@neojp/tailwindcss-line-clamp-utilities")],
     variants: {

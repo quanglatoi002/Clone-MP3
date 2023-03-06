@@ -38,11 +38,13 @@ const Public = () => {
                     <div
                         className={`h-[70px] flex
                         items-center fixed xl:left-[240px] xl:right-[329px] left-[74px] right-0 z-50 ${
-                            !singer ? "bg-transparent" : "bg-[#CED9D9] "
+                            singer ? "bg-transparent" : "bg-[#CED9D9] "
                         }  `}
                     >
                         <Header />
                     </div>
+                    {<Header /> ? "" : <div className="w-full h-[70px]"></div>}
+
                     {/* <div className="h-[90px] w-full"></div> */}
 
                     {/* <div className="w-full h-[70px] "></div> */}

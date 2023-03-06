@@ -37,9 +37,10 @@ const Player = ({ setIsShowLeftSidebar }) => {
     const [repeatMode, setRepeatMode] = useState(0);
     const [isLoadedSource, setIsLoadedSource] = useState(false);
     const [volume, setVolume] = useState(100);
-
+    const [isHoverVolume, setIsHoverVolume] = useState(false);
     const thumbRef = useRef();
     const trackRef = useRef();
+    const volumeRef = useRef();
     // ----->take info song and song pass parameters(id)
     useEffect(() => {
         const fetchDetailsSong = async () => {
@@ -109,6 +110,12 @@ const Player = ({ setIsShowLeftSidebar }) => {
 
     useEffect(() => {
         audio.volume = volume / 100;
+    }, [audio, volume]);
+
+    useEffect(() => {
+        if (volumeRef.current) {
+            volumeRef.current.style.cssText = `right: ${100 - volume}%`;
+        }
     }, [volume]);
 
     // -----> handle pause and play audio
@@ -277,7 +284,15 @@ const Player = ({ setIsShowLeftSidebar }) => {
                 </div>
             </div>
             <div className="w-[30%] flex-auto flex items-center justify-end gap-4">
-                <div className="flex gap-2 items-center">
+                <div
+                    onMouseEnter={() => {
+                        setIsHoverVolume(true);
+                    }}
+                    onMouseLeave={() => {
+                        setIsHoverVolume(false);
+                    }}
+                    className="flex gap-2 items-center"
+                >
                     <span
                         onClick={() =>
                             setVolume((prev) => (+prev === 0 ? 70 : 0))
@@ -291,6 +306,18 @@ const Player = ({ setIsShowLeftSidebar }) => {
                             <SlVolume1 />
                         )}
                     </span>
+
+                    <div
+                        className={`w-[130px] h-1 bg-white rounded-full relative ${
+                            isHoverVolume ? "hidden" : "relative"
+                        }`}
+                    >
+                        <div
+                            ref={volumeRef}
+                            className={`absolute left-0 bottom-0 top-0 h-1 right-0 bg-main-500`}
+                        ></div>
+                    </div>
+
                     <input
                         type="range"
                         step={1}
@@ -298,6 +325,9 @@ const Player = ({ setIsShowLeftSidebar }) => {
                         max={100}
                         value={volume}
                         onChange={(e) => setVolume(e.target.value)}
+                        className={`w-[130px] ${
+                            isHoverVolume ? "inline" : "hidden"
+                        }`}
                     />
                 </div>
                 <span
