@@ -36,8 +36,7 @@ const Public = () => {
                     )}
 
                     <div
-                        className={`h-[70px] flex
-                        items-center fixed xl:left-[240px] xl:right-[329px] left-[74px] right-0 z-50 ${
+                        className={`h-[70px] flex                        items-center fixed lg:left-[240px] xl:right-[329px] max-[900px]:left-[74px] left-[149px] right-0 z-50 ${
                             singer ? "bg-transparent" : "bg-[#CED9D9] "
                         }  `}
                     >

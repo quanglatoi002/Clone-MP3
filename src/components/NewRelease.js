@@ -47,14 +47,14 @@ const NewRelease = () => {
             </div>
             <div className="w-full flex flex-wrap">
                 {songs?.map((item) => (
-                    <div key={item.encodeId} className="w-[45%] lg:w-[30%]">
+                    <div key={item.encodeId} className="w-[45%] xl:w-[30%]">
                         <Songs
                             sid={item.encodeId}
                             thumbnail={item.thumbnail}
                             title={item.title}
                             artistsNames={item.artistsNames}
                             releaseDate={item.releaseDate}
-                            size={`w-10 h-10`}
+                            size={`xl:w-10 xl:h-10`}
                         />
                     </div>
                 ))}

@@ -29,7 +29,7 @@ const Home = () => {
     };
 
     return (
-        <div className="overflow-y-auto w-full">
+        <div className="overflow-y-auto xl:px-[35px] px-[15px] w-full">
             <div className="w-full h-[70px]"></div>
             <MySlider />
             <Section data={friday} />

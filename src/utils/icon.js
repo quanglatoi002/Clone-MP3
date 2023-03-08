@@ -5,6 +5,7 @@ import {
     MdArrowBackIosNew,
     MdNavigateNext,
     MdOutlineNavigateNext,
+    MdOutlineTopic,
 } from "react-icons/md";
 import {
     AiOutlineArrowLeft,
@@ -13,9 +14,15 @@ import {
     AiFillHeart,
     AiOutlineUserAdd,
     AiFillStar,
+    AiOutlineStar,
 } from "react-icons/ai";
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
-import { FiSearch, FiMoreHorizontal } from "react-icons/fi";
+import {
+    FiSearch,
+    FiMoreHorizontal,
+    FiMusic,
+    FiSettings,
+} from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
 import { CiRepeat, CiShuffle } from "react-icons/ci";
 import {
@@ -30,6 +37,9 @@ import { SlVolumeOff, SlVolume2, SlVolume1 } from "react-icons/sl";
 import { ImBin } from "react-icons/im";
 import { GiAlarmClock } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
+import { BiCategory, BiVideoOff } from "react-icons/bi";
+import { RiVipFill } from "react-icons/ri";
+import { RxAvatar } from "react-icons/rx";
 const icons = {
     MdOutlineLibraryMusic,
     AiOutlineArrowLeft,
@@ -62,6 +72,14 @@ const icons = {
     MdArrowBackIosNew,
     MdNavigateNext,
     MdOutlineNavigateNext,
+    FiMusic,
+    BiCategory,
+    AiOutlineStar,
+    BiVideoOff,
+    MdOutlineTopic,
+    RiVipFill,
+    FiSettings,
+    RxAvatar,
 };
 
 export default icons;

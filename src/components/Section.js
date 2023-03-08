@@ -10,7 +10,7 @@ const Section = ({ data, isTrue }) => {
     const [isHover, setIsHover] = useState(false);
     // console.log(data);
     return (
-        <div className="mt-12 xl:px-[43px] px-[13px] flex flex-col gap-1">
+        <div className="mt-12  flex flex-col gap-1">
             <div className="flex items-center justify-between">
                 <h3 className=" text-5 pl-4 font-bold">{data?.title}</h3>
                 <div className="flex gap-1">
@@ -31,7 +31,7 @@ const Section = ({ data, isTrue }) => {
                                 index <=
                                 (currentWidth < 600
                                     ? 2
-                                    : currentWidth < 900
+                                    : currentWidth < 1000
                                     ? 3
                                     : 4)
                         )

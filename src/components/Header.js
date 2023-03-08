@@ -1,7 +1,9 @@
 import icons from "../utils/icon";
 import Search from "./Search";
 import { useNavigate, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
+import { headerRight } from "../utils/menu";
 const { HiArrowNarrowLeft, HiArrowNarrowRight } = icons;
 
 const Header = () => {
@@ -28,7 +30,15 @@ const Header = () => {
                     <Search />
                 </div>
             </div>
-            <div>Login</div>
+            <div className="flex opacity-70 gap-5">
+                {headerRight.map((item, index) => (
+                    <NavLink key={index} to={item.path}>
+                        <div className="border rounded-full p-2 bg-[#DCE5E5]  ">
+                            {item.icons}
+                        </div>
+                    </NavLink>
+                ))}
+            </div>
         </div>
     );
 };

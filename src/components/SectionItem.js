@@ -44,7 +44,7 @@ const SectionItem = ({
             onClick={() => {
                 navigate(link?.split(".")[0], { state: { playAlbum: false } });
             }}
-            className="flex flex-col gap-3 xl:flex-none flex-auto text-sm cursor-pointer p-4"
+            className="flex flex-col  flex-auto  text-sm cursor-pointer p-4"
         >
             <div
                 onMouseEnter={handleHover}
@@ -79,7 +79,7 @@ const SectionItem = ({
                     alt="avatar"
                     className={`${
                         isTrue
-                            ? "h-[97px] rounded-lg  object-contain lg:max-w-full lg:h-auto"
+                            ? " rounded-lg object-contain lg:max-w-full lg:h-auto"
                             : "max-w-full h-auto object-contain rounded-lg"
                     }  `}
                 />

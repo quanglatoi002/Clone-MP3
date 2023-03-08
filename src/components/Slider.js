@@ -11,13 +11,17 @@ const { MdArrowBackIosNew, MdNavigateNext, MdOutlineNavigateNext } = icons;
 
 var intervalId;
 const Slider = () => {
-    const { banner } = useSelector((state) => state.app);
+    const { banner, currentWidth } = useSelector((state) => state.app);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(2);
     const [isAuto, setIsAuto] = useState(true);
 
+    // useEffect(() => {
+    //     setMax(() => (currentWidth < 900 ? 1 : 2));
+    // }, [currentWidth, max]);
+    // console.log(max);
     //animation
     useEffect(() => {
         if (isAuto) {
@@ -28,7 +32,7 @@ const Slider = () => {
         return () => {
             intervalId && clearInterval(intervalId);
         };
-    }, [min, max, isAuto]);
+    }, [min, max, isAuto, currentWidth]);
 
     const handleClickBanner = (item) => {
         if (item?.type === 1) {
@@ -113,7 +117,7 @@ const Slider = () => {
     return (
         <div
             className="w-full relative overflow-hidden
-        xl:px-[59px] px-[29px]"
+    "
         >
             <Button
                 handleOnClick={() => handleBlack(1)}
@@ -127,7 +131,7 @@ const Slider = () => {
             />
             <div
                 onMouseLeave={() => setIsAuto(true)}
-                className="flex relative w-full gap-5 pt-8"
+                className="flex relative w-full gap-5 px-4 pt-8"
             >
                 {banner.items?.map((item, index) => (
                     <img
@@ -135,9 +139,12 @@ const Slider = () => {
                         src={item.banner}
                         alt="banner"
                         onClick={() => handleClickBanner(item)}
-                        className={`slider-item flex-1 object-cover w-1/2 xl:w-1/3 slider_width
+                        className={`slider-item flex-1 object-cover slider_width
                          rounded-lg
-                        ${index <= 2 ? "block" : "hidden"}`}
+
+                        
+                        ${index <= 2 ? "block" : "hidden"} 
+                `}
                     />
                 ))}
             </div>
