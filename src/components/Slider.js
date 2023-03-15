@@ -7,7 +7,7 @@ import * as actions from "../store/actions";
 import { Button } from "./";
 import icons from "../utils/icon";
 
-const { MdArrowBackIosNew, MdNavigateNext, MdOutlineNavigateNext } = icons;
+const { MdArrowBackIosNew, MdOutlineNavigateNext } = icons;
 
 var intervalId;
 const Slider = () => {
@@ -23,6 +23,8 @@ const Slider = () => {
     // }, [currentWidth, max]);
     // console.log(max);
     //animation
+
+    //handle width run auto
     useEffect(() => {
         if (isAuto) {
             intervalId = setInterval(() => {
@@ -32,8 +34,9 @@ const Slider = () => {
         return () => {
             intervalId && clearInterval(intervalId);
         };
-    }, [min, max, isAuto, currentWidth]);
+    }, [min, max, isAuto]);
 
+    //handle ClickBanner with "1" songs and "4" album
     const handleClickBanner = (item) => {
         if (item?.type === 1) {
             dispatch(actions.setCurSongId(item.encodeId));

@@ -73,6 +73,17 @@ export const searchMenu = [
     },
 ];
 
+export const searchMenuLeft = [
+    {
+        path: "ĐĂNG NHẬP",
+        text: "Đăng nhập để khám phá playlist dành riêng cho bạn",
+    },
+    {
+        path: "NÂNG CẤP VIP",
+        text: "Nghe nhạc không quảng cáo cùng kho nhạc VIP",
+    },
+];
+
 export const headerRight = [
     {
         path: "moi-phat-hanh",

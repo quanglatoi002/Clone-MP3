@@ -17,12 +17,15 @@ const Search = () => {
     const handleSearch = async (e) => {
         if (e.keyCode === 13) {
             dispatch(actions.setSearch(keyword));
-            navigate({
-                pathname: `${path.SEARCH}/${path.ALL}`,
-                search: createSearchParams({
-                    q: keyword,
-                }).toString(),
-            });
+            // trong navigate có 2 thuộc tính pathname và "search" trong đó "search" được bắt đầu với ?search=
+            //khi tồn tại keyword thì mới được navigate
+            keyword &&
+                navigate({
+                    pathname: `${path.SEARCH}/${path.ALL}`,
+                    search: createSearchParams({
+                        q: keyword,
+                    }).toString(),
+                });
         }
     };
 
@@ -42,7 +45,7 @@ const Search = () => {
                 // onChange={(e) => setKeyword((e) => e.target.value)}
                 onKeyUp={handleSearch}
                 className={`outline-none w-full h-[34px] bg-transparent ${
-                    singer && " placeholder:text-[#DADADA]"
+                    singer && "placeholder:text-[#DADADA]"
                 } `}
                 type="text"
                 placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."

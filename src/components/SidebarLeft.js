@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Selector, useSelector } from "react-redux";
 //
 import logo from "../assets/logo.svg";
-import { sidebarMenu, sidebarNextMenu } from "../utils/menu";
+import { sidebarMenu, sidebarNextMenu, searchMenuLeft } from "../utils/menu";
 import path from "../utils/path";
-import { Selector, useSelector } from "react-redux";
+import { ButtonLeft } from "./";
 
 const notActiveStyle =
     "py-2 font-bold px-[25px] flex flex-row items-center gap-x-[10px] text-[13px] text-primary";
@@ -16,7 +17,7 @@ const SidebarLeft = () => {
     const { currentWidth } = useSelector((state) => state.app);
 
     return (
-        <div className="flex h-full gap-5 flex-col bg-main-200">
+        <div className="flex h-full overflow-y-auto gap-5 flex-col bg-main-200">
             <div onClick={() => navigate(path.HOME)} className="">
                 <img
                     src={logo}
@@ -65,6 +66,16 @@ const SidebarLeft = () => {
                         </span>
                     </NavLink>
                 ))}
+            </div>
+            <div className="flex-col xl:flex hidden gap-3 px-[25px]">
+                {searchMenuLeft?.map((index) => (
+                    <ButtonLeft
+                        buttonLeft={index.path}
+                        info={index.text}
+                        bgColor={`bg-[#0E8080]`}
+                    />
+                ))}
+                <div className="h-[90px] w-full"></div>
             </div>
         </div>
     );

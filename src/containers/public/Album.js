@@ -5,14 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 //
 import * as apis from "../../apis";
-import { ListSong, AudioLoading, Loading } from "../../components";
+import { ListSong, AudioLoading } from "../../components";
 import icons from "../../utils/icon";
 
 const { BsFillPlayFill } = icons;
 
 const Album = () => {
+    // location truy cập thông tin về địa chỉ URL
     const location = useLocation();
+    console.log(location);
     const { pid } = useParams();
+
     const { isPlaying } = useSelector((state) => state.music);
     const [playlistData, setPlaylistData] = useState({});
     const dispatch = useDispatch();

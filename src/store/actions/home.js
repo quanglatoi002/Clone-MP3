@@ -1,6 +1,7 @@
 import actionTypes from "./actionTypes";
 import * as apis from "../../apis";
 import { type } from "@testing-library/user-event/dist/type";
+import { elements } from "chart.js";
 
 export const getHome = () => async (dispatch) => {
     try {
@@ -23,6 +24,7 @@ export const getHome = () => async (dispatch) => {
         });
     }
 };
+
 export const setCurrentWidth = (w) => ({
     type: actionTypes.CURRENT_WIDTH,
     w,

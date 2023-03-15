@@ -16,7 +16,7 @@ const { BsFillPlayFill } = icons;
 const ChartSection = () => {
     const [data, setData] = useState(null);
     const { chart, rank } = useSelector((state) => state.app);
-    console.log(rank);
+    console.log(chart);
 
     const [tooltip, setTooltip] = useState({
         opacity: 0,
@@ -24,7 +24,6 @@ const ChartSection = () => {
         left: 0,
     });
     const [tooltipData, setTooltipData] = useState(null);
-    console.log(tooltipData);
     const chatRef = useRef();
     const options = {
         responsive: true,
@@ -91,7 +90,6 @@ const ChartSection = () => {
             intersect: false,
         },
     };
-    console.log(chart);
     useEffect(() => {
         const labels = chart?.times
             ?.filter((item) => +item.hour % 2 === 0)
@@ -120,14 +118,14 @@ const ChartSection = () => {
         }
     }, [chart]);
     return (
-        <div className="mt-12 xl:px-[59px] px-[29px] relative min-h-[750px] rounded-md lg:min-h-[350px]">
+        <div className="mt-12 xl:px-[16px] px-[29px] relative min-h-[750px] rounded-md lg:min-h-[350px]">
             <img
                 src={bgChart}
                 alt="bg-chart"
                 className="w-full min-h-[750px] lg:min-h-[350px] object-cover rounded-md"
             />
-            <div className="absolute z-10 top-0 xl:left-[59px] xl:right-[59px] left-[29px] right-[29px] bottom-0 rounded-md bg-[rgba(77,34,104,0.9)] "></div>
-            <div className="absolute z-20 top-0 left-[59px] right-[59px] bottom-0 p-5 gap-8 rounded-md">
+            <div className="absolute z-10 top-0 xl:left-[16px] xl:right-[16px] left-[29px] right-[29px] bottom-0 rounded-md bg-[rgba(77,34,104,0.9)] "></div>
+            <div className="absolute z-20 top-0 left-[16px] right-[16px] bottom-0 p-5 gap-8 rounded-md">
                 <Link
                     to={path.ZING_CHART}
                     className="flex items-center gap-2 mb-5"

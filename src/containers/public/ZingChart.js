@@ -8,7 +8,6 @@ import { Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 const ZingChart = () => {
     const [chartData, setChartData] = useState(null);
-    console.log(chartData?.weekChart);
     const [data, setData] = useState(null);
     const [tooltip, setTooltip] = useState({
         opacity: 0,
@@ -213,7 +212,7 @@ const ZingChart = () => {
                                         className="flex-1 bg-gray-200 px-[10px] py-5"
                                         key={index}
                                     >
-                                        <h3 className=" text-[24px] text-main-500 font-bold">
+                                        <h3 className="text-[24px] text-main-500 font-bold">
                                             {item[0] === "vn"
                                                 ? "Việt Nam"
                                                 : item[0] === "us"

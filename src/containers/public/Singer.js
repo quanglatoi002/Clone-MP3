@@ -3,16 +3,14 @@ import { useParams } from "react-router-dom";
 import { AiOutlineUserAdd } from "react-icons/ai";
 //
 import { apiGetArtist } from "../../apis";
-import { handleNumber } from "../../utils/fn";
-import { SearchAll } from "./";
 import { Section, Songs, Artist } from "../../components";
 import icons from "../../utils/icon";
 
-const { BsFillPlayFill, AiFillStar } = icons;
+const { BsFillPlayFill } = icons;
 
 const Singer = () => {
     const { singer } = useParams();
-    // console.log(singer);
+    console.log(singer);
     const [artistData, setArtistData] = useState(null);
     const ref = useRef();
     useEffect(() => {

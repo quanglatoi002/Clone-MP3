@@ -13,6 +13,7 @@ const Search = () => {
     console.log(keyword);
     return (
         <div className="w-full px-[29px]">
+            <div className="w-full h-[70px]"></div>
             <div className="flex mb-7 items-center text-sm border-b border-gray-400 xl:pl-[60px]">
                 <span className="hidden h-[50px] xl:flex text-[24px] pr-6 font-bold border-r border-gray-400">
                     Kết quả tìm kiếm

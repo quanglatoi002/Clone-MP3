@@ -7,6 +7,7 @@ const SearchSongs = () => {
     const dispatch = useDispatch();
     const { searchData } = useSelector((state) => state.music);
     console.log(searchData?.top?.id);
+    //sau khi có được id ca sĩ sẽ dispatch id đó qua music để lấy thông tin bài hát => actions/music
     useEffect(() => {
         dispatch(actions.getSearchSongs(searchData?.top?.id));
     }, [searchData]);

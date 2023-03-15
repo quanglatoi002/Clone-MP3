@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 //
 import { apiGetArtist } from "../../apis";
-import { Section, SectionItem } from "../../components";
+import { SectionItem } from "../../components";
 
 const SearchPlaylist = () => {
     const { searchData } = useSelector((state) => state.music);

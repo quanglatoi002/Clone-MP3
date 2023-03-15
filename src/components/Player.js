@@ -35,6 +35,7 @@ const Player = ({ setIsShowLeftSidebar }) => {
     const [curSeconds, setCurSeconds] = useState(0);
     const [isShuffle, setIsShuffle] = useState(false);
     const [repeatMode, setRepeatMode] = useState(0);
+    // Check can show source?
     const [isLoadedSource, setIsLoadedSource] = useState(false);
     const [volume, setVolume] = useState(100);
     const [isHoverVolume, setIsHoverVolume] = useState(false);
@@ -45,6 +46,7 @@ const Player = ({ setIsShowLeftSidebar }) => {
     useEffect(() => {
         const fetchDetailsSong = async () => {
             setIsLoadedSource(false);
+            // use destructuring take two Promise.all({apiGetDetailSong, apiGetSong})
             const [res1, res2] = await Promise.all([
                 apis.apiGetDetailSong(curSongId),
                 apis.apiGetSong(curSongId),
@@ -65,8 +67,7 @@ const Player = ({ setIsShowLeftSidebar }) => {
                 dispatch(actions.play(false));
                 toast.warn(res2.data.msg);
                 setCurSeconds(0);
-                thumbRef.current.style.cssText = `right: 
-                100%`;
+                thumbRef.current.style.cssText = `right: 100%`;
             }
         };
         fetchDetailsSong();
@@ -126,6 +127,7 @@ const Player = ({ setIsShowLeftSidebar }) => {
         } else {
             audio.play();
             dispatch(actions.play(true));
+            // sẽ thông báo khi nhạc chạy xong
             audio.onended = () => {
                 console.log("ended");
             };
@@ -148,11 +150,13 @@ const Player = ({ setIsShowLeftSidebar }) => {
     const handleNextSong = () => {
         if (songs) {
             let currentSongIndex;
+            //kiểm tra xem bài hát hiện tại và gán bài hát tiếp theo = index
             songs?.forEach((item, index) => {
                 if (item.encodeId === curSongId) {
                     currentSongIndex = index;
                 }
             });
+            //sau đó dispatch setCurSongId với vị trí hiện tại của bài hát + 1 sẽ ra bài hát tiếp theo
             dispatch(
                 actions.setCurSongId(songs[currentSongIndex + 1].encodeId)
             );
@@ -160,6 +164,7 @@ const Player = ({ setIsShowLeftSidebar }) => {
         }
     };
     //prev songs
+    // tương tự nhưng trừ đi 1
     const handlePrevSong = () => {
         if (songs) {
             let currentSongIndex;

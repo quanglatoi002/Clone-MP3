@@ -16,7 +16,6 @@ const Public = () => {
     const [isShowRightSidebar, setIsShowLeftSidebar] = useState(true);
     const ref = useRef(null);
     const [scrollTop, setScrollTop] = useState(0);
-    console.log(scrollTop);
     const { singer } = useParams();
     const handleScroll = () => {
         setScrollTop(ref.current.scrollTop);
@@ -42,7 +41,11 @@ const Public = () => {
                     >
                         <Header />
                     </div>
-                    {<Header /> ? "" : <div className="w-full h-[70px]"></div>}
+                    {!(<Header />) ? (
+                        ""
+                    ) : (
+                        <div className="w-full h-[70px]"></div>
+                    )}
 
                     {/* <div className="h-[90px] w-full"></div> */}
 

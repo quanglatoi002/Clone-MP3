@@ -26,24 +26,30 @@ function App() {
     const dispatch = useDispatch();
     const [weekChart, setWeekChart] = useState(null);
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
+    //2 api sẽ được gọi ngay sau khi chạy trình duyệt
     useEffect(() => {
         dispatch(actions.getHome());
         const petchChartData = async () => {
             const response = await apiGetChartHome();
+            console.log(response.data.data.weekChart);
             if (response.data.err === 0)
                 setWeekChart(response.data.data.weekChart);
         };
         petchChartData();
     }, [dispatch]);
     const setWidth = (e) => {
+        console.log("a");
         setCurrentWidth(e.target.innerWidth);
     };
+    //Khi có sẽ thay đổi về kích thước thì set lại state sau đó sẽ remove sự kiện để trách rò sỉ bộ nhớ
     useEffect(() => {
         window.addEventListener("resize", setWidth);
         return () => {
+            console.log("b");
             window.removeEventListener("resize", setWidth);
         };
     });
+    // đẩy kích thước vừa setCurrentWidth lên redux
     useEffect(() => {
         dispatch(actions.setCurrentWidth(currentWidth));
     }, [currentWidth, dispatch]);
