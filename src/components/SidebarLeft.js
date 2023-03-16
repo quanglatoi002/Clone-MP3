@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Selector, useSelector } from "react-redux";
 //
-import logo from "../assets/logo.svg";
+import logo1 from "../assets/logo1.png";
 import { sidebarMenu, sidebarNextMenu, searchMenuLeft } from "../utils/menu";
 import path from "../utils/path";
 import { ButtonLeft } from "./";
@@ -20,10 +20,10 @@ const SidebarLeft = () => {
         <div className="flex h-full overflow-y-auto gap-5 flex-col bg-main-200">
             <div onClick={() => navigate(path.HOME)} className="">
                 <img
-                    src={logo}
+                    src={logo1}
                     alt="logo"
-                    className="w-[120px] h-10 
-                    object-contain hidden lg:block cursor-pointer"
+                    className="w-[170px] mt-5 h-[95px] object-cover
+                     hidden lg:block cursor-pointer"
                 />
             </div>
 
@@ -68,10 +68,11 @@ const SidebarLeft = () => {
                 ))}
             </div>
             <div className="flex-col xl:flex hidden gap-3 px-[25px]">
-                {searchMenuLeft?.map((index) => (
+                {searchMenuLeft?.map((item, index) => (
                     <ButtonLeft
-                        buttonLeft={index.path}
-                        info={index.text}
+                        key={index}
+                        buttonLeft={item.path}
+                        info={item.text}
                         bgColor={`bg-[#0E8080]`}
                     />
                 ))}

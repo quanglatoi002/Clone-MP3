@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import Slider from "react-slick";
 //
 import {
@@ -9,6 +10,8 @@ import {
     ChartSection,
     Artist,
 } from "../../components";
+
+const SliderLazy = lazy(() => import("../../components/Slider"));
 
 const Home = () => {
     const {
@@ -31,7 +34,9 @@ const Home = () => {
     return (
         <div className="overflow-y-auto xl:px-[35px] px-[15px] w-full">
             <div className="w-full h-[70px]"></div>
-            <MySlider />
+            <Suspense fallback={<div>Loading...</div>}>
+                <SliderLazy />
+            </Suspense>
             <Section data={friday} />
             <Section data={newEveryday} />
             <NewRelease />
@@ -70,7 +75,6 @@ const Home = () => {
             </div>
             <Section data={topArtist} />
             <Section data={newMusic} />
-
             <div className="w-full h-[500px]"></div>
         </div>
     );

@@ -81,6 +81,7 @@ function App() {
                                 />
                             }
                         />
+
                         <Route path={path.ZING_CHART} element={<ZingChart />} />
                         <Route path={path.HOME__SINGER} element={<Singer />} />
                         <Route
