@@ -38,7 +38,7 @@ const Home = () => {
                 <SliderLazy />
             </Suspense>
             <Section data={friday} />
-            <Section data={newEveryday} />
+            {/* <Section data={newEveryday} /> */}
             <NewRelease />
             <Section data={top100} isTrue={true} />
             <ChartSection />

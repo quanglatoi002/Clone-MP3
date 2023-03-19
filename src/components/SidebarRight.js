@@ -11,6 +11,7 @@ const SidebarRight = () => {
     const [playlist, setPlaylist] = useState();
     const { curSongData, curAlbumId, isPlaying, recentSongs, curSongId } =
         useSelector((state) => state.music);
+    console.log(curSongData);
     const fetchDetailPlaylist = async () => {
         const response = await apiGetDetailPlaylist(curAlbumId);
         if (response.data?.err === 0)
@@ -75,14 +76,16 @@ const SidebarRight = () => {
                 </div>
             ) : (
                 <div className="w-full overflow-y-auto flex-col flex px-2">
-                    <Songs
-                        thumbnail={curSongData?.thumbnail}
-                        title={curSongData?.title}
-                        artistsNames={curSongData?.artistsNames}
-                        sid={curSongData?.encodeId}
-                        size={`w-10 h-10`}
-                        style={`bg-main-500 text-white`}
-                    />
+                    {curSongData && (
+                        <Songs
+                            thumbnail={curSongData?.thumbnail}
+                            title={curSongData?.title}
+                            artistsNames={curSongData?.artistsNames}
+                            sid={curSongData?.encodeId}
+                            size={`w-10 h-10`}
+                            style={`bg-main-500 text-white`}
+                        />
+                    )}
                     <div className="flex flex-col pt-[15px] px-2 pb-[5px] text-black">
                         <span className="text-sm font-bold">Tiếp theo</span>
                         <span className="opacity-70 text-xs flex gap-1">

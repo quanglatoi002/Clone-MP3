@@ -12,6 +12,7 @@ import {
 
 const Public = () => {
     const { isLoading } = useSelector((state) => state.app);
+    const { curSongId } = useSelector((state) => state.music);
 
     const [isShowRightSidebar, setIsShowLeftSidebar] = useState(true);
     const ref = useRef(null);
@@ -67,9 +68,11 @@ const Public = () => {
                 )}
             </div>
 
-            <div className="flex-none fixed bottom-0 w-full z-50 h-[90px] border border-red-600">
-                <Player setIsShowLeftSidebar={setIsShowLeftSidebar} />
-            </div>
+            {curSongId && (
+                <div className="flex-none fixed bottom-0 w-full z-50 h-[90px] border border-red-600">
+                    <Player setIsShowLeftSidebar={setIsShowLeftSidebar} />
+                </div>
+            )}
         </div>
     );
 };

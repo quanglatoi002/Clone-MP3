@@ -28,8 +28,13 @@ const {
 var intervalId;
 
 const Player = ({ setIsShowLeftSidebar }) => {
-    const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
+    const { curSongId, isPlaying, songs, isCheck } = useSelector(
+        (state) => state.music
+    );
     const [songInfo, setSongInfo] = useState(null);
+    console.log(songInfo);
+    console.log(curSongId);
+
     const dispatch = useDispatch();
     const [audio, setAudio] = useState(new Audio());
     const [curSeconds, setCurSeconds] = useState(0);
@@ -39,6 +44,7 @@ const Player = ({ setIsShowLeftSidebar }) => {
     const [isLoadedSource, setIsLoadedSource] = useState(false);
     const [volume, setVolume] = useState(100);
     const [isHoverVolume, setIsHoverVolume] = useState(false);
+    const [isLove, setIsLove] = useState(false);
     const thumbRef = useRef();
     const trackRef = useRef();
     const volumeRef = useRef();
@@ -190,6 +196,13 @@ const Player = ({ setIsShowLeftSidebar }) => {
         audio.play();
     };
 
+    // useEffect(() => {
+    //     dispatch(actions.checkLove(songInfo));
+    // }, [songInfo, dispatch]);
+    // const handleSaveLove = () => {
+    //     setIsLove((prev) => !prev);
+    // };
+
     return (
         <div className="bg-main-400 h-full px-5 flex cursor-pointer">
             <div className=" flex items-center w-[30%] gap-3 flex-auto">
@@ -207,8 +220,11 @@ const Player = ({ setIsShowLeftSidebar }) => {
                     </span>
                 </div>
                 <div className="flex gap-4 pl-2">
-                    <span>
-                        <AiOutlineHeart size={16} />
+                    <span
+                    // className={`${isCheck ? "bg-black" : "bg-transparent"}`}
+                    // onClick={handleSaveLove}
+                    >
+                        <AiOutlineHeart color="red" size={16} />
                     </span>
                     <span className="hidden lg:block">
                         <BsThreeDots />

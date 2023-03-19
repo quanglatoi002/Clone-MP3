@@ -14,7 +14,13 @@ const commonConfig = {
 const musicConfig = {
     ...commonConfig,
     key: "music",
-    whitelist: ["curSongId", "curSongData", "curAlbumId", "recentSongs"],
+    whitelist: [
+        "curSongId",
+        "curSongData",
+        "curAlbumId",
+        "recentSongs",
+        "isCheck",
+    ],
 };
 
 const rootReducer = combineReducers({

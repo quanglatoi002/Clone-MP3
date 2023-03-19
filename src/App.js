@@ -26,6 +26,7 @@ function App() {
     const dispatch = useDispatch();
     const [weekChart, setWeekChart] = useState(null);
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
+
     //2 api sẽ được gọi ngay sau khi chạy trình duyệt
     useEffect(() => {
         dispatch(actions.getHome());
@@ -54,10 +55,25 @@ function App() {
         dispatch(actions.setCurrentWidth(currentWidth));
     }, [currentWidth, dispatch]);
     console.log(currentWidth);
+
+    // const [isScrolling, setIsScrolling] = useState(false);
+
+    // function handleScroll(event) {
+    //     if (event.target.scrollTop === 10) {
+    //         setIsScrolling(true);
+    //     } else {
+    //         setIsScrolling(false);
+    //     }
+    // }
+
     //Note: Những route nào được gọi ở trong path.PUBLIC sẽ được chuyển đến <Outlet> được định nghĩa sẵn ở bên trong Public
     return (
         <>
-            <div className="">
+            <div
+            // onScroll={handleScroll}
+            // style={{ height: "300px", overflowY: "scroll" }}
+            >
+                {/* {isScrolling && <div>Scrolling...</div>} */}
                 <Routes>
                     <Route path={path.PUBLIC} element={<Public />}>
                         <Route path={path.HOME} element={<Home />} />

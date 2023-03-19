@@ -41,6 +41,11 @@ export const setRecent = (data) => ({
     data,
 });
 
+export const checkLove = (data) => ({
+    type: actionTypes.CHECK_LOVE,
+    data,
+});
+
 export const setSearch = (keyword) => async (dispatch) => {
     try {
         const response = await apis.apiSearch(keyword);
