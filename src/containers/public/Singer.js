@@ -10,7 +10,6 @@ const { BsFillPlayFill } = icons;
 
 const Singer = () => {
     const { singer } = useParams();
-    console.log(singer);
     const [artistData, setArtistData] = useState(null);
     const ref = useRef();
     useEffect(() => {

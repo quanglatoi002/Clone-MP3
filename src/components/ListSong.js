@@ -12,7 +12,7 @@ const ListSong = ({ totalDuration, isListSongs }) => {
     return (
         <div className="flex flex-col text-secondary rounded-md ">
             <div
-                className="flex  justify-between items-center font-medium px-[10px]
+                className="flex justify-between items-center font-medium px-[12px]
             "
             >
                 <span

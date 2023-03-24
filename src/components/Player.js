@@ -32,8 +32,6 @@ const Player = ({ setIsShowLeftSidebar }) => {
         (state) => state.music
     );
     const [songInfo, setSongInfo] = useState(null);
-    console.log(songInfo);
-    console.log(curSongId);
 
     const dispatch = useDispatch();
     const [audio, setAudio] = useState(new Audio());
@@ -78,9 +76,8 @@ const Player = ({ setIsShowLeftSidebar }) => {
         };
         fetchDetailsSong();
     }, [curSongId]);
-    // take 1
-    //console.log
-    //(JSON.parse(localStorage.getItem("persist:music")));
+
+    //
     useEffect(() => {
         intervalId && clearInterval(intervalId);
         audio.pause();
@@ -134,9 +131,9 @@ const Player = ({ setIsShowLeftSidebar }) => {
             audio.play();
             dispatch(actions.play(true));
             // sẽ thông báo khi nhạc chạy xong
-            audio.onended = () => {
-                console.log("ended");
-            };
+            // audio.onended = () => {
+            //     console.log("ended");
+            // };
         }
     };
 
@@ -149,8 +146,6 @@ const Player = ({ setIsShowLeftSidebar }) => {
         trackRef.current.style.cssText = `right: ${100 - percent}%`;
         audio.currentTime = (percent * songInfo.duration) / 100;
         setCurSeconds(Math.round(percent * songInfo.duration) / 100);
-        console.log(e.clientX);
-        console.log(trackRect);
     };
     // next songs
     const handleNextSong = () => {

@@ -11,7 +11,6 @@ const SidebarRight = () => {
     const [playlist, setPlaylist] = useState();
     const { curSongData, curAlbumId, isPlaying, recentSongs, curSongId } =
         useSelector((state) => state.music);
-    console.log(curSongData);
     const fetchDetailPlaylist = async () => {
         const response = await apiGetDetailPlaylist(curAlbumId);
         if (response.data?.err === 0)

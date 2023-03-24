@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import path from "../utils/path";
 
 const RankList = ({ data, isHideAlbum, number, isListSongs, link }) => {
-    console.log(data?.filter((i, index) => index < number));
     const [isShowFull, setIsShowFull] = useState(false);
     const [songs, setSongs] = useState(null);
     const navigate = useNavigate();

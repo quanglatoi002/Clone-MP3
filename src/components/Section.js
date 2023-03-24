@@ -8,7 +8,6 @@ const { MdOutlineNavigateNext } = icons;
 const Section = ({ data, isTrue }) => {
     const { currentWidth } = useSelector((state) => state.app);
     const [isHover, setIsHover] = useState(false);
-    // console.log(data);
     return (
         <div className="mt-12 flex flex-col gap-1">
             <div className="flex items-center justify-between">

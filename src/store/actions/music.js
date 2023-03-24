@@ -49,8 +49,6 @@ export const checkLove = (data) => ({
 export const setSearch = (keyword) => async (dispatch) => {
     try {
         const response = await apis.apiSearch(keyword);
-        console.log(keyword);
-        console.log(response);
         if (response.data.err === 0) {
             dispatch({
                 type: actionTypes.SEARCH,
@@ -75,10 +73,7 @@ export const setSearch = (keyword) => async (dispatch) => {
 
 export const getSearchSongs = (singerId) => async (dispatch) => {
     try {
-        console.log(singerId);
-
         const response = await apis.apiGetArtistSongs(singerId);
-        // console.log(response);
         if (response.data.err === 0) {
             dispatch({
                 type: actionTypes.PLAYLIST,

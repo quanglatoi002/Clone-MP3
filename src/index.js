@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { AudioCircles } from "./components";
 
 const { store, persistor } = reduxConfig();
 

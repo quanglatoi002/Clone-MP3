@@ -16,7 +16,6 @@ const { BsFillPlayFill } = icons;
 const ChartSection = () => {
     const [data, setData] = useState(null);
     const { chart, rank } = useSelector((state) => state.app);
-    console.log(chart);
 
     const [tooltip, setTooltip] = useState({
         opacity: 0,
@@ -68,7 +67,6 @@ const ChartSection = () => {
                             )
                         )?.encodeId
                     );
-                    console.log(tooltipModel);
 
                     if (tooltipModel.opacity === 0) {
                         if (tooltip.opacity !== 0)

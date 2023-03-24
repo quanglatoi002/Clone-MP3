@@ -6,6 +6,12 @@ import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import appReducer from "./appReducer";
 import musicReducer from "./musicReducer";
 
+import { encryptTransform } from "redux-persist-transform-encrypt";
+
+const encryptForm = encryptTransform({
+    secretKey: process.env.REACT_APP_SECRET_KEY,
+});
+
 const commonConfig = {
     storage,
     stateReconciler: autoMergeLevel2,
@@ -21,6 +27,7 @@ const musicConfig = {
         "recentSongs",
         "isCheck",
     ],
+    transforms: [encryptForm],
 };
 
 const rootReducer = combineReducers({

@@ -47,7 +47,6 @@ const musicReducer = (state = initialState, action) => {
             };
         case actionTypes.SET_RECENT:
             let songs = state.recentSongs;
-            console.log(songs);
             if (action.data) {
                 if (state.recentSongs?.some((i) => action.data.sid === i.sid)) {
                     songs = songs.filter((i) => action.data.sid !== i.sid);
@@ -67,8 +66,6 @@ const musicReducer = (state = initialState, action) => {
             };
 
         case actionTypes.SEARCH:
-            console.log(action.keyword);
-
             return {
                 ...state,
                 searchData: action.data || {},

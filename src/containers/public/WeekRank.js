@@ -12,13 +12,12 @@ const activeStyle =
     "text-[24px] text-main-500 uppercase font-bold xl:py-[12px] py-[10px] border-b-[4px] border-[#0E8080]";
 const WeekRank = ({ weekChart }) => {
     //lúc này weekChart được truyền từ App.js
-    console.log(weekChart);
     // lấy pid của bài hát
     const { pid } = useParams();
-    useEffect(() => {
-        console.log(pid);
-    }, [pid]);
-    console.log(weekChart?.find((item) => item?.link?.includes(pid))?.items);
+    // useEffect(() => {
+    //     console.log(pid);
+    // }, [pid]);
+    // console.log(weekChart?.find((item) => item?.link?.includes(pid))?.items);
     return (
         <div className="relative">
             <img

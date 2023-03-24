@@ -17,10 +17,6 @@ const initialState = {
 };
 
 const appReducer = (state = initialState, action) => {
-    // console.log({
-    //     ...action.homeData?.find((item) => item.sectionId === "hAlbum"),
-    //     title: "Nhạc mới" || {},
-    // });
     switch (action.type) {
         case actionTypes.GET_HOME:
             return {

@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Slider from "react-slick";
+import { AudioCircles } from "../../components";
+
 //
 import {
     Slider as MySlider,
@@ -37,8 +39,8 @@ const Home = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <SliderLazy />
             </Suspense>
-            <Section data={friday} />
-            {/* <Section data={newEveryday} /> */}
+            {friday && <Section data={friday} />}
+            {newEveryday && <Section data={newEveryday} />}
             <NewRelease />
             <Section data={top100} isTrue={true} />
             <ChartSection />
@@ -75,7 +77,6 @@ const Home = () => {
             </div>
             <Section data={topArtist} />
             <Section data={newMusic} />
-            <div className="w-full h-[500px]"></div>
         </div>
     );
 };

@@ -69,7 +69,7 @@ const Public = () => {
             </div>
 
             {curSongId && (
-                <div className="flex-none fixed bottom-0 w-full z-50 h-[90px] border border-red-600">
+                <div className="flex-none fixed bottom-0 w-full z-50 h-[90px] ">
                     <Player setIsShowLeftSidebar={setIsShowLeftSidebar} />
                 </div>
             )}

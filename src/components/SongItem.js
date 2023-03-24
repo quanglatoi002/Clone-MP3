@@ -26,7 +26,7 @@ const SongItem = ({ songData, isHideAlbum, isListSongs, hideTime, order }) => {
                     })
                 );
             }}
-            className="flex justify-between border-t border-solid border-gray-400 p-[10px] hover:bg-[#DCE5E5] hover:rounded-[4px] hover:border-0 z-10 cursor-pointer"
+            className="flex justify-between border-t border-solid border-gray-400 py-[10px] px-3 hover:bg-[#DCE5E5] hover:rounded-[4px] hover:border-0 z-10 cursor-pointer"
         >
             <div
                 className="flex items-center gap-[10px] flex-1 mr-10 lg:mr-0

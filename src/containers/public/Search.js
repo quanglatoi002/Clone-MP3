@@ -10,7 +10,6 @@ const notActiveStyle = "px-4 hover:text-main-500 font-semibold cursor";
 
 const Search = () => {
     const { keyword } = useSelector((state) => state.music);
-    console.log(keyword);
     return (
         <div className="w-full px-[29px]">
             <div className="w-full h-[70px]"></div>

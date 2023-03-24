@@ -28,11 +28,11 @@ export const sidebarMenu = [
         text: "#zingchart",
         icons: kSVG,
     },
-    {
-        path: "follow",
-        text: "Theo dõi",
-        icons: tSVG,
-    },
+    // {
+    //     path: "follow",
+    //     text: "Theo dõi",
+    //     icons: tSVG,
+    // },
 ];
 
 export const sidebarNextMenu = [

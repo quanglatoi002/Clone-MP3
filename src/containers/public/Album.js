@@ -13,7 +13,6 @@ const { BsFillPlayFill } = icons;
 const Album = () => {
     // location truy cập thông tin về địa chỉ URL
     const location = useLocation();
-    console.log(location);
     const { pid } = useParams();
 
     const { isPlaying } = useSelector((state) => state.music);
@@ -53,10 +52,7 @@ const Album = () => {
 
     return (
         <div className="flex relative lg:flex-row flex-col gap-8 w-full animate-scale-up-center">
-            <div
-                className="flex-none w-full lg:w-1/5 border
-                 border-red-600 flex flex-row lg:flex-col lg:items-center gap-2"
-            >
+            <div className="flex-none w-full lg:w-1/5  flex flex-row lg:flex-col lg:items-center gap-2">
                 <div className="relative overflow-hidden">
                     <img
                         src={playlistData?.thumbnailM}
@@ -103,10 +99,7 @@ const Album = () => {
                     </span>
                 </div>
             </div>
-            <div
-                className="flex-auto border
-                 border-blue-600 mb-10"
-            >
+            <div className="flex-auto mb-10">
                 <div className="flex gap-1 text-sm mb-[10px]">
                     <span className="text-secondary">Lời tựa</span>
                     <span className="text-primary line-clamp-3 text-ellipsis">

@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Selector, useSelector } from "react-redux";
 //
-import logo1 from "../assets/logo1.png";
+import logo1 from "../assets/logo1.jpg";
 import { sidebarMenu, sidebarNextMenu, searchMenuLeft } from "../utils/menu";
 import path from "../utils/path";
 import { ButtonLeft } from "./";
@@ -67,7 +67,7 @@ const SidebarLeft = () => {
                     </NavLink>
                 ))}
             </div>
-            <div className="flex-col xl:flex hidden gap-3 px-[25px]">
+            {/* <div className="flex-col xl:flex hidden gap-3 px-[25px]">
                 {searchMenuLeft?.map((item, index) => (
                     <ButtonLeft
                         key={index}
@@ -77,7 +77,7 @@ const SidebarLeft = () => {
                     />
                 ))}
                 <div className="h-[90px] w-full"></div>
-            </div>
+            </div> */}
         </div>
     );
 };
