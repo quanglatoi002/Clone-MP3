@@ -25,6 +25,7 @@ const Home = () => {
         weekChart,
         singers,
     } = useSelector((state) => state.app);
+    console.log(top100);
     const settings = {
         dots: false,
         infinite: false,
@@ -39,13 +40,13 @@ const Home = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <SliderLazy />
             </Suspense>
-            {friday && <Section data={friday} />}
+            {friday?.item && <Section data={friday} />}
             {newEveryday && <Section data={newEveryday} />}
             <NewRelease />
             <Section data={top100} isTrue={true} />
             <ChartSection />
             {singers && (
-                <div className=" w-full mt-12">
+                <div className="w-full mt-12">
                     <Slider {...settings}>
                         {singers.map((item) => (
                             <div key={item.id} className="px-4">
@@ -60,7 +61,7 @@ const Home = () => {
                     </Slider>
                 </div>
             )}
-            <div className="flex items-center  w-full mt-12">
+            <div className="flex items-center w-full mt-12">
                 {weekChart?.items?.map((item) => (
                     <Link
                         to={item?.link?.split(".")[0]}

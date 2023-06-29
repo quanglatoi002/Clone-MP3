@@ -9,6 +9,7 @@ import {
     Header,
     Loading,
 } from "../../components";
+import Map from "../../utils/Map";
 
 const Public = () => {
     const { isLoading } = useSelector((state) => state.app);
@@ -42,6 +43,8 @@ const Public = () => {
                     >
                         <Header />
                     </div>
+                    <h1>Trangchủ Next.js với Google Maps</h1>
+                    <Map />
                     {!(<Header />) ? (
                         ""
                     ) : (

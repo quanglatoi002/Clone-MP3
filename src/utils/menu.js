@@ -37,22 +37,22 @@ export const sidebarMenu = [
 
 export const sidebarNextMenu = [
     {
-        path: "moi-phat-hanh",
+        // path: "moi-phat-hanh",
         text: "Nhạc mới",
         icons: <FiMusic size={"24px"} />,
     },
     {
-        path: "hub",
+        // path: "hub",
         text: "Thể Loại",
         icons: <BiCategory size={"24px"} />,
     },
     {
-        path: "Top 100",
+        // path: "Top 100",
         text: "top100",
         icons: <AiOutlineStar size={"24px"} />,
     },
     {
-        path: "",
+        // path: "",
         text: "MV",
         icons: <BiVideoOff size={"24px"} />,
     },
